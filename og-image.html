@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- Open this in a browser and screenshot at 1200x630 to generate og-image.png -->
+<html>
+<head>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1200px;
+  height: 630px;
+  background: #0a0a0f;
+  font-family: Georgia, 'Playfair Display', serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 60% 40%, rgba(201, 168, 76, 0.06) 0%, transparent 50%);
+}
+.card {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 60px;
+}
+.name {
+  font-size: 72px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #f0eee6 0%, #d4a056 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
+}
+.tagline {
+  font-size: 28px;
+  color: #c9a84c;
+  font-style: italic;
+  margin-bottom: 24px;
+}
+.sub {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 18px;
+  color: #9a978e;
+  letter-spacing: 0.5px;
+}
+.border-line {
+  position: absolute;
+  inset: 24px;
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 8px;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+  <div class="border-line"></div>
+  <div class="card">
+    <div class="name">Timothy Ivaikin</div>
+    <div class="tagline">I build systems that build empires.</div>
+    <div class="sub">Business Architecture &middot; AI & Technology &middot; Strategic Connections &middot; Leadership</div>
+  </div>
+</body>
+</html>
