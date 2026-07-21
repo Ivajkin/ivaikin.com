@@ -1,6 +1,6 @@
 const translations = {
   en: {
-    'hero.tagline': 'I build systems that build empires.',
+    'hero.tagline': 'Founder & CEO, Edge Ecosystem.',
     'hero.sub': 'Business architecture. AI & technology. Strategic connections. High-impact leadership.',
     'cta.apply': 'Apply for Strategic Session',
     'cta.community': 'Join the Inner Circle',
@@ -70,7 +70,7 @@ const translations = {
   },
 
   ru: {
-    'hero.tagline': 'Я строю системы, которые строят империи.',
+    'hero.tagline': 'Основатель и CEO, Edge Ecosystem (ООО «Эдж Экосистема»).',
     'hero.sub': 'Бизнес-архитектура. AI и технологии. Стратегические связи. Лидерство высокого уровня.',
     'cta.apply': 'Подать заявку на стратегическую сессию',
     'cta.community': 'Вступить в Inner Circle',
@@ -140,7 +140,7 @@ const translations = {
   },
 
   es: {
-    'hero.tagline': 'Construyo sistemas que construyen imperios.',
+    'hero.tagline': 'Fundador y CEO, Edge Ecosystem.',
     'hero.sub': 'Arquitectura de negocios. IA y tecnologia. Conexiones estrategicas. Liderazgo de alto impacto.',
     'cta.apply': 'Solicitar una sesion estrategica',
     'cta.community': 'Unirse al Circulo Interno',
