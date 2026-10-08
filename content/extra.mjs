@@ -1,6 +1,6 @@
 export const extraLocales = {
   es: {
-    name: 'Timothy Ivaikin', nativeName: 'Español', path: '/es/', locale: 'es_ES',
+    name: 'Timothy Ivaikin', nativeName: 'Español', path: '/es/about/', locale: 'es_ES',
     title: 'Timothy Ivaikin — fundador de Edge Ecosystem y EdgeFocus',
     description: 'Emprendedor y fundador de Edge Ecosystem. Timothy Ivaikin reúne software, infraestructura de TI y equipos para lanzar productos y servicios digitales.',
     skip: 'Ir al contenido', navLabel: 'Navegación principal', languageLabel: 'Elegir idioma',
@@ -15,7 +15,7 @@ export const extraLocales = {
     workEyebrow: 'Qué construyo', workTitle: 'Negocio, tecnología y personas. Conectados.',
     workIntro: 'Dirijo la ejecución técnica: desde entender la necesidad del negocio y reunir al equipo hasta la implementación y la aceptación del resultado acordado.',
     ecosystemCategory: 'Empresa', ecosystemTitle: 'Edge Ecosystem',
-    ecosystemBody: 'Software, infraestructura e implementación de servicios digitales. Junto con mi equipo, desarrollo portales para clientes, sistemas internos y automatizaciones.',
+    ecosystemBody: 'Junto con mi equipo, desarrollo portales para clientes, sistemas internos y automatizaciones para que los clientes accedan a servicios en línea, el personal trabaje sin introducir los mismos datos varias veces ni transferirlos manualmente, y los directivos puedan ver el estado de las operaciones.',
     ecosystemExamples: ['Servicios para clientes', 'Sistemas internos de negocio', 'Integración y automatización'],
     ecosystemLink: 'Conoce Edge Ecosystem',
     focusCategory: 'Producto', focusTitle: 'EdgeFocus',
@@ -51,7 +51,7 @@ export const extraLocales = {
     footerNote: 'Tecnología. Liderazgo. Posibilidades humanas.', backTop: 'Volver arriba',
   },
   zh: {
-    name: 'Timothy Ivaikin', nativeName: '中文', path: '/zh/', locale: 'zh_CN',
+    name: 'Timothy Ivaikin', nativeName: '中文', path: '/zh/about/', locale: 'zh_CN',
     title: 'Timothy Ivaikin — Edge Ecosystem 与 EdgeFocus 创始人',
     description: 'Timothy Ivaikin 是企业家、Edge Ecosystem 创始人。他将软件、IT 基础设施与团队协作结合起来，推动数字产品与服务上线。',
     skip: '跳转到正文', navLabel: '主导航', languageLabel: '选择语言',
@@ -66,7 +66,7 @@ export const extraLocales = {
     workEyebrow: '我在构建什么', workTitle: '连接业务、技术与人。',
     workIntro: '我负责技术交付：从理解业务需求、组建团队，到实施和验收双方约定的成果。',
     ecosystemCategory: '公司', ecosystemTitle: 'Edge Ecosystem',
-    ecosystemBody: '为数字服务提供软件、基础设施和交付支持。我与团队共同构建客户门户、内部系统和自动化流程。',
+    ecosystemBody: '我与团队共同构建客户门户、内部系统和自动化流程，让客户能够在线获取服务，让员工无需重复录入和手动传递数据，让管理者能够了解业务运行状态。',
     ecosystemExamples: ['面向客户的服务', '内部业务系统', '系统集成与自动化'],
     ecosystemLink: '了解 Edge Ecosystem',
     focusCategory: '产品', focusTitle: 'EdgeFocus',

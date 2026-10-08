@@ -18,6 +18,15 @@ export function validateRelease(release) {
 
 export function transformHtml(source, prefix, release) {
   let html = source.replace(/<meta\b[^>]*\bname=["'](?:robots|referrer)["'][^>]*>\s*/gi, '');
+  // Staged copies must not send analytics or form data to production services.
+  html = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, script =>
+    /googletagmanager\.com|google-analytics\.com|\bgtag\s*\(|\bsrc=["'][^"']*analytics\.js/i.test(script) ? '' : script);
+  html = html.replace(/<form\b[^>]*>/gi, tag => tag.replace(/\saction=(['"])[\s\S]*?\1/i, '')
+    .replace(/>$/, ' action="#" data-staging-form="disabled">'));
+  html = html.replace(/<button\b[^>]*type=["']submit["'][^>]*>/gi, tag => tag.replace(/>$/, ' disabled>'));
+  if (html.includes('data-staging-form="disabled"')) {
+    html = html.replace('</head>', '<script>document.addEventListener("submit",function(event){event.preventDefault();event.stopImmediatePropagation();},true);</script>\n</head>');
+  }
   html = html.replace(/<head>/i, `<head>\n<meta name="robots" content="noindex, nofollow, noarchive">\n<meta name="referrer" content="no-referrer">\n<meta name="staging-release" content="${validateRelease(release)}">`);
   // Absolute local asset/navigation paths must stay inside this isolated preview.
   html = html.replace(/\b(href|src|poster|action)=(['"])\/(?!\/)([^'"]*)\2/g, (_, attr, quote, path) => `${attr}=${quote}${prefix}${path}${quote}`);
@@ -26,7 +35,7 @@ export function transformHtml(source, prefix, release) {
 }
 
 export function transformScript(source, prefix) {
-  const marker = "const paths = { en: '/', ru: '/ru/', es: '/es/', zh: '/zh/' };";
+  const marker = "const paths = { en: '/about/', ru: '/ru/about/', es: '/es/about/', zh: '/zh/about/' };";
   if (!source.includes(marker)) throw new Error('Language redirect source changed; staging adaptation needs review');
   return source.replace(marker, `${marker}\n  for (const key of Object.keys(paths)) paths[key] = ${JSON.stringify(prefix)} + paths[key].slice(1);`);
 }
@@ -47,13 +56,20 @@ export async function packageSite(root, target, rawConfig, release, sourceCommit
   const config = validateConfig(rawConfig);
   validateRelease(release);
   await mkdir(target, { recursive: true });
-  const pages = ['index.html','ru/index.html','es/index.html','zh/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html'];
+  const pages = ['index.html','about/index.html','ru/about/index.html','es/about/index.html','zh/about/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html'];
   for (const file of pages) {
     await mkdir(dirname(resolve(target,file)), { recursive:true });
     await writeFile(resolve(target,file), transformHtml(await readFile(resolve(root,file),'utf8'), config.prefix, release));
   }
-  for (const file of ['assets/home','assets/interviews/tai-chi-business','favicon.svg']) await copyTree(resolve(root,file),resolve(target,file));
+  for (const file of ['assets/home','assets/interviews/tai-chi-business','favicon.svg','images','style.css','main.js','i18n.js']) await copyTree(resolve(root,file),resolve(target,file));
   await writeFile(resolve(target,'assets/home/home.js'),transformScript(await readFile(resolve(root,'assets/home/home.js'),'utf8'),config.prefix));
+  // Compatibility for previously shared staging links only, never public routes.
+  for (const lang of ['ru','es','zh']) {
+    const path = `${config.prefix}${lang}/about/`;
+    const redirect = `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><title>Preview moved</title></head><body><a href="${path}">Open preview</a><script>const target=new URL(${JSON.stringify(path)},window.location.origin);target.search=window.location.search;target.hash=window.location.hash;window.location.replace(target.href);</script></body></html>`;
+    // The target already contains the capability prefix; do not prefix it twice.
+    await writeFile(resolve(target,lang,'index.html'),transformHtml(redirect,'/',release));
+  }
   await writeFile(resolve(target,'robots.txt'),'User-agent: *\nDisallow: /\n');
   await writeFile(resolve(target,'release.json'),JSON.stringify({ release, sourceCommit, builtAt: new Date().toISOString() },null,2)+'\n');
 }

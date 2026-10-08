@@ -37,36 +37,50 @@ test('fake SSH receives apostrophes literally; hostile identifiers never reach a
 });
 
 test('staging HTML prevents indexing and keeps all local navigation under the capability prefix',()=>{
-  const input='<html><head><meta name="robots" content="index, follow"><link rel="canonical" href="https://ivaikin.com/ru/"><link rel="stylesheet" href="/assets/home/home.css"></head><body><a href="/ru/">RU</a><a href="https://ivaikin.com/en/interviews/tai-chi-business/">Interview</a><img src="/assets/home/timothy-ivaikin.jpg"><a href="https://t.me/timothyivaikin">Contact</a></body></html>';
+  const input='<html><head><meta name="robots" content="index, follow"><link rel="canonical" href="https://ivaikin.com/ru/about/"><link rel="stylesheet" href="/assets/home/home.css"></head><body><a href="/ru/about/">RU</a><a href="https://ivaikin.com/en/interviews/tai-chi-business/">Interview</a><img src="/assets/home/timothy-ivaikin.jpg"><a href="https://t.me/timothyivaikin">Contact</a></body></html>';
   const html=transformHtml(input,prefix,'test-release');
   assert.match(html,/name="robots" content="noindex, nofollow, noarchive"/);
   assert.match(html,/name="referrer" content="no-referrer"/);
-  assert.ok(html.includes(`href="${prefix}ru/"`));
+  assert.ok(html.includes(`href="${prefix}ru/about/"`));
   assert.ok(html.includes(`href="${prefix}en/interviews/tai-chi-business/"`));
   assert.ok(html.includes(`src="${prefix}assets/home/timothy-ivaikin.jpg"`));
-  assert.ok(html.includes('rel="canonical" href="https://ivaikin.com/ru/"'));
+  assert.ok(html.includes('rel="canonical" href="https://ivaikin.com/ru/about/"'));
   assert.ok(html.includes('href="https://t.me/timothyivaikin"'));
 });
 
-test('legacy language redirects stay inside staging and preserve query and target',async()=>{
+test('child language redirects stay inside staging and preserve query and target',async()=>{
   const source=await readFile(new URL('../assets/home/home.js',import.meta.url),'utf8');
   const output=transformScript(source,prefix);
   const redirects=[];
-  runInNewContext(output,{URL,window:{location:{href:`https://staging.edgefocus.io${prefix}?lang=ru&utm_source=test#apply`,replace:url=>redirects.push(url)}}});
-  assert.deepEqual(redirects,[`https://staging.edgefocus.io${prefix}ru/?utm_source=test#contact`]);
+  runInNewContext(output,{URL,window:{location:{href:`https://staging.edgefocus.io${prefix}about/?lang=ru&utm_source=test#apply`,replace:url=>redirects.push(url)}}});
+  assert.deepEqual(redirects,[`https://staging.edgefocus.io${prefix}ru/about/?utm_source=test#contact`]);
 });
 
-test('staging package contains public artifacts only and retains both interviews',async()=>{
+test('staging package includes parent and child pages, preserves interviews and excludes private sources',async()=>{
   const target=await mkdtemp(resolve(tmpdir(),"ivaikin's-staging-test-"));
   try {
     const release='20261008-test';
     await packageSite(resolve(import.meta.dirname,'..'),target,validateConfig(config),release,'0123456');
     const roots=await readdir(target);
     for(const forbidden of ['content','scripts','tests','.git','CNAME','sitemap.xml','README.md','.staging']) assert.ok(!roots.includes(forbidden),forbidden);
-    for(const path of ['index.html','ru/index.html','es/index.html','zh/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html']) {
+    for(const path of ['index.html','about/index.html','ru/about/index.html','es/about/index.html','zh/about/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html']) {
       const text=await readFile(resolve(target,path),'utf8');
       assert.ok(text.includes('noindex, nofollow, noarchive'),path);
       assert.ok(!/(?:href|src)="\/(?!previews\/)/.test(text),path+' leaked a root URL');
+    }
+    for (const path of ['style.css', 'main.js', 'i18n.js', 'assets/home/home.css', 'assets/home/home.js']) {
+      assert.ok((await readFile(resolve(target,path))).length > 0, `Missing staged asset: ${path}`);
+    }
+    const parent=await readFile(resolve(target,'index.html'),'utf8');
+    assert.ok(!parent.includes('/assets/home/home.js'), 'Staging parent must keep its original language behavior');
+    assert.doesNotMatch(parent, /googletagmanager\.com|google-analytics\.com|<script\b[^>]*src=["'][^"']*analytics\.js/i,
+      'Reviewing the staged parent must not fire production analytics');
+    assert.doesNotMatch(parent, /<form\b[^>]*action=["']https?:/i,
+      'Staged parent forms must not submit to production endpoints');
+    for (const lang of ['ru','es','zh']) {
+      const redirect=await readFile(resolve(target,lang,'index.html'),'utf8');
+      assert.ok(redirect.includes(`${prefix}${lang}/about/`), `Legacy staging /${lang}/ must lead to its child page`);
+      assert.ok(redirect.includes('noindex'), 'Staging compatibility pages must remain non-indexable');
     }
     const meta=JSON.parse(await readFile(resolve(target,'release.json'),'utf8'));
     assert.equal(meta.release,release);

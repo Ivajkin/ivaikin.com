@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, mkdtempSync, cpSync, writeFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { execFileSync } from 'node:child_process';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { runInNewContext } from 'node:vm';
@@ -8,11 +10,11 @@ import { runInNewContext } from 'node:vm';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://ivaikin.com';
 const PERSON_ID = `${ORIGIN}/#person`;
-const HOMES = [
-  { lang: 'en', path: '/' },
-  { lang: 'ru', path: '/ru/' },
-  { lang: 'es', path: '/es/' },
-  { lang: 'zh', path: '/zh/' },
+const LANDINGS = [
+  { lang: 'en', path: '/about/' },
+  { lang: 'ru', path: '/ru/about/' },
+  { lang: 'es', path: '/es/about/' },
+  { lang: 'zh', path: '/zh/about/' },
 ];
 const INTERVIEWS = [
   { lang: 'en', path: '/en/interviews/tai-chi-business/' },
@@ -114,7 +116,7 @@ function checkAlternates(html, routes, fallback) {
   assert.ok(Object.keys(actual).every(lang => routes.some(route => route.lang === lang) || lang === 'x-default'), 'No stale language variants');
 }
 
-for (const route of HOMES) {
+for (const route of LANDINGS) {
   test(`${route.path}: complete localized profile remains readable without JavaScript`, () => {
     const html = page(route.path);
     const main = blocks(html, 'main');
@@ -131,9 +133,9 @@ for (const route of HOMES) {
   test(`${route.path}: metadata and reciprocal language URLs describe this static page`, () => {
     const html = page(route.path);
     checkMetadata(html, route);
-    checkAlternates(html, HOMES, '/');
+    checkAlternates(html, LANDINGS, '/about/');
     const hrefs = tags(blocks(html, 'body')[0]?.content ?? '', 'a').map(tag => absolute(tag.href ?? '', route.path));
-    for (const home of HOMES.filter(home => home.lang !== route.lang)) {
+    for (const home of LANDINGS.filter(home => home.lang !== route.lang)) {
       assert.ok(hrefs.includes(`${ORIGIN}${home.path}`), `${home.lang} switch must be a crawlable link`);
     }
   });
@@ -202,16 +204,64 @@ for (const route of INTERVIEWS) {
   });
 }
 
-test('sitemap advertises all six canonical pages, without stale query-language URLs', () => {
+function upstream(path) {
+  return execFileSync('git', ['show', `origin/main:${path}`], { cwd: ROOT, encoding: 'utf8' });
+}
+
+const PRESERVED = [
+  'index.html', 'main.js', 'i18n.js', 'style.css', 'analytics.js',
+  'en/interviews/tai-chi-business/index.html', 'ru/interviews/tai-chi-business/index.html',
+];
+
+test('the existing homepage, language behavior and interview pages remain byte-identical to origin/main', () => {
+  for (const path of PRESERVED) assert.equal(read(path), upstream(path), `Existing public artifact changed: ${path}`);
+  assert.ok(!tags(page('/'), 'script').some(script => script.src === '/assets/home/home.js'),
+    'The child-page redirect script must not replace legacy homepage behavior');
+  for (const lang of ['ru', 'es', 'zh']) assert.ok(!existsSync(resolve(ROOT, lang, 'index.html')),
+    `The child landing must not introduce or replace the /${lang}/ parent route`);
+});
+
+test('sitemap adds child landing URLs without removing or rewriting existing public entries', () => {
   const sitemap = read('sitemap.xml');
   assert.match(sitemap, /<urlset\b[^>]*xmlns=["']http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9["']/);
-  const locations = blocks(sitemap, 'loc').map(block => decode(block.content.trim()));
-  assert.deepEqual(locations.sort(), [...HOMES, ...INTERVIEWS].map(route => `${ORIGIN}${route.path}`).sort());
-  assert.doesNotMatch(sitemap, /[?&](?:amp;)?lang=/, 'Sitemap alternates must also use static language URLs');
-  for (const block of blocks(sitemap, 'lastmod')) {
-    assert.ok(Number.isFinite(Date.parse(block.content.trim())), 'lastmod must be a valid date');
-    assert.ok(Date.parse(block.content.trim()) <= Date.now(), 'lastmod cannot be in the future');
+  const owned = new Set(LANDINGS.map(route => ORIGIN + route.path));
+  const oldEntries = blocks(upstream('sitemap.xml'), 'url')
+    .filter(entry => !owned.has(decode(blocks(entry.content, 'loc')[0]?.content.trim())));
+  const currentEntries = blocks(sitemap, 'url');
+  const locations = currentEntries.map(entry => decode(blocks(entry.content, 'loc')[0]?.content.trim()));
+  const oldLocations = oldEntries.map(entry => decode(blocks(entry.content, 'loc')[0]?.content.trim()));
+  assert.deepEqual(locations.sort(), [...oldLocations, ...LANDINGS.map(route => `${ORIGIN}${route.path}`)].sort());
+  assert.equal(new Set(locations).size, locations.length, 'Every canonical URL must occur once');
+  for (const old of oldEntries) assert.ok(currentEntries.some(entry => entry.content === old.content),
+    'Previously published sitemap entries and their query-language alternates must remain unchanged');
+  for (const route of LANDINGS) {
+    const entry = currentEntries.find(entry => blocks(entry.content, 'loc')[0]?.content.trim() === ORIGIN + route.path);
+    const alternates = tags(entry.content, 'xhtml:link');
+    for (const sibling of LANDINGS) assert.ok(alternates.some(link => link.hreflang === sibling.lang && link.href === ORIGIN + sibling.path));
+    assert.ok(alternates.some(link => link.hreflang === 'x-default' && link.href === ORIGIN + '/about/'));
+    assert.doesNotMatch(entry.content, /[?&](?:amp;)?lang=/, 'New child URLs must be static');
   }
+});
+
+test('the generator preserves the parent page and existing sitemap records across repeated builds', () => {
+  const target = mkdtempSync(resolve(tmpdir(), 'ivaikin-child-build-'));
+  try {
+    for (const directory of ['scripts', 'content']) cpSync(resolve(ROOT, directory), resolve(target, directory), { recursive: true });
+    const parent = '<!doctype html><html><body>Existing parent remains owned by its own workflow.</body></html>\n';
+    const record = '<url><loc>https://ivaikin.com/existing-independent-page/</loc><lastmod>2026-01-01</lastmod></url>';
+    writeFileSync(resolve(target, 'index.html'), parent);
+    writeFileSync(resolve(target, 'sitemap.xml'), `<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${record}</urlset>`);
+    for (let run = 0; run < 2; run++) {
+      execFileSync(process.execPath, ['scripts/build.mjs'], { cwd: target, encoding: 'utf8' });
+      assert.equal(readFileSync(resolve(target, 'index.html'), 'utf8'), parent, 'Build overwrote the existing homepage');
+      const sitemap = readFileSync(resolve(target, 'sitemap.xml'), 'utf8');
+      assert.ok(sitemap.includes(record), 'Build lost an independently maintained sitemap entry');
+      const locations = blocks(sitemap, 'loc').map(block => block.content);
+      assert.equal(locations.length, 5, 'Repeat builds must add four child routes exactly once');
+      for (const route of LANDINGS) assert.ok(existsSync(resolve(target, '.' + route.path, 'index.html')));
+      for (const lang of ['ru', 'es', 'zh']) assert.ok(!existsSync(resolve(target, lang, 'index.html')));
+    }
+  } finally { rmSync(target, { recursive: true, force: true }); }
 });
 
 function robotsGroups(source) {
@@ -249,30 +299,30 @@ test('robots permits search discovery separately from any training policy', () =
   assert.match(source, /^Sitemap:\s*https:\/\/ivaikin\.com\/sitemap\.xml\s*$/mi);
   const groups = robotsGroups(source);
   for (const agent of ['Googlebot', 'Bingbot', 'OAI-SearchBot']) {
-    for (const route of [...HOMES, ...INTERVIEWS]) {
+    for (const route of [...LANDINGS, ...INTERVIEWS]) {
       assert.ok(permitted(groups, agent, route.path), `${agent} cannot crawl ${route.path}`);
     }
   }
 });
 
-test('legacy language URLs reach static pages without losing campaign parameters or section links', () => {
-  const script = blocks(page('/'), 'script')
+test('child language compatibility stays within the child landing and preserves campaign parameters and anchors', () => {
+  const script = blocks(page('/about/'), 'script')
     .find(script => script.attrs.src && new URL(script.attrs.src, ORIGIN).pathname === '/assets/home/home.js');
   assert.ok(script, 'Publish the legacy URL compatibility script');
   const path = new URL(script.attrs.src, ORIGIN).pathname;
   for (const [input, expected] of [
-    ['/?lang=en', '/'],
-    ['/?lang=ru', '/ru/'],
-    ['/?lang=es&utm_source=legacy#contact', '/es/?utm_source=legacy#contact'],
-    ['/?lang=zh', '/zh/'],
-    ['/?lang=ru#apply', '/ru/#contact'],
-    ['/#community', '/#contact'],
-    ['/ru/#pillars', '/ru/#work'],
-    ['/?lang=en#track-record', '/#work'],
-    ['/?lang=unknown', null],
-    ['/?lang=__proto__', null],
-    ['/?lang=https%3A%2F%2Fexample.com', null],
-    ['/?utm_source=direct', null],
+    ['/about/?lang=en', '/about/'],
+    ['/about/?lang=ru', '/ru/about/'],
+    ['/about/?lang=es&utm_source=legacy#contact', '/es/about/?utm_source=legacy#contact'],
+    ['/about/?lang=zh', '/zh/about/'],
+    ['/about/?lang=ru#apply', '/ru/about/#contact'],
+    ['/about/#community', '/about/#contact'],
+    ['/ru/about/#pillars', '/ru/about/#work'],
+    ['/about/?lang=en#track-record', '/about/#work'],
+    ['/about/?lang=unknown', null],
+    ['/about/?lang=__proto__', null],
+    ['/about/?lang=https%3A%2F%2Fexample.com', null],
+    ['/about/?utm_source=direct', null],
   ]) {
     const redirects = [];
     const location = { href: `${ORIGIN}${input}`, replace: value => redirects.push(new URL(value, ORIGIN).href) };

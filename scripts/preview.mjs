@@ -23,4 +23,4 @@ const server = http.createServer(async (request,response) => {
     response.end(body);
   } catch { response.writeHead(404, { 'Content-Type':'text/plain; charset=utf-8' }); response.end('Not found'); }
 });
-server.listen(4187, '127.0.0.1', () => console.log('Private local preview: http://127.0.0.1:4187/ru/'));
+server.listen(4187, '127.0.0.1', () => console.log('Private local preview: http://127.0.0.1:4187/ru/about/'));

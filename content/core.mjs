@@ -14,7 +14,7 @@ export const identity = {
 
 export const coreLocales = {
   en: {
-    name: 'Timothy Ivaikin', nativeName: 'English', path: '/', locale: 'en_US',
+    name: 'Timothy Ivaikin', nativeName: 'English', path: '/about/', locale: 'en_US',
     title: 'Timothy Ivaikin — Founder of Edge Ecosystem & EdgeFocus',
     description: 'Entrepreneur and founder of Edge Ecosystem. Timothy Ivaikin brings software, IT infrastructure and teams together to launch digital products and services.',
     skip: 'Skip to content', navLabel: 'Main navigation', languageLabel: 'Choose language',
@@ -29,7 +29,7 @@ export const coreLocales = {
     workEyebrow: 'What I build', workTitle: 'Business, technology and people. Connected.',
     workIntro: 'I lead technical delivery: from understanding the business need and assembling the team to implementation and acceptance of an agreed result.',
     ecosystemCategory: 'Company', ecosystemTitle: 'Edge Ecosystem',
-    ecosystemBody: 'Software, infrastructure and delivery for digital services. With my team, I build customer portals, internal systems and automation.',
+    ecosystemBody: 'With my team, I build customer portals, internal systems and automation so customers can access services online, staff can work without repeated data entry and manual handoffs, and leaders can see the status of operations.',
     ecosystemExamples: ['Customer-facing services', 'Internal business systems', 'Integration & automation'],
     ecosystemLink: 'Explore Edge Ecosystem',
     focusCategory: 'Product', focusTitle: 'EdgeFocus',
@@ -65,7 +65,7 @@ export const coreLocales = {
     footerNote: 'Technology. Leadership. Human possibility.', backTop: 'Back to top',
   },
   ru: {
-    name: 'Тимофей Ивайкин', nativeName: 'Русский', path: '/ru/', locale: 'ru_RU',
+    name: 'Тимофей Ивайкин', nativeName: 'Русский', path: '/ru/about/', locale: 'ru_RU',
     title: 'Тимофей Ивайкин — основатель Edge Ecosystem и EdgeFocus',
     description: 'Предприниматель и основатель Edge Ecosystem Тимофей Ивайкин. Объединяю программное обеспечение, IT-инфраструктуру и команду для запуска цифровых продуктов и услуг.',
     skip: 'Перейти к содержанию', navLabel: 'Основная навигация', languageLabel: 'Выбрать язык',
@@ -80,7 +80,7 @@ export const coreLocales = {
     workEyebrow: 'Мои проекты', workTitle: 'Бизнес, технологии и люди. Вместе.',
     workIntro: 'Руковожу технической реализацией: от разбора бизнес-задачи и подбора команды до внедрения и приёмки согласованного результата.',
     ecosystemCategory: 'Компания', ecosystemTitle: 'Edge Ecosystem',
-    ecosystemBody: 'Программное обеспечение, инфраструктура и внедрение цифровых услуг. Вместе с командой создаю клиентские порталы, внутренние системы и автоматизацию.',
+    ecosystemBody: 'Вместе с командой создаю клиентские порталы, внутренние системы и автоматизацию: чтобы клиенты могли получать услуги онлайн, сотрудники — выполнять операции без повторного ввода и ручной передачи данных, а руководители — видеть состояние работы.',
     ecosystemExamples: ['Клиентские онлайн-сервисы', 'Внутренние бизнес-системы', 'Интеграции и автоматизация'],
     ecosystemLink: 'О компании Edge Ecosystem',
     focusCategory: 'Продукт', focusTitle: 'EdgeFocus',

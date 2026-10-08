@@ -1,8 +1,8 @@
-// Keep previously shared language URLs working. Never infer a visitor's language.
+// Language query support for child pages only. Never loaded by the parent homepage.
 (() => {
   const url = new URL(window.location.href);
   const language = url.searchParams.get('lang');
-  const paths = { en: '/', ru: '/ru/', es: '/es/', zh: '/zh/' };
+  const paths = { en: '/about/', ru: '/ru/about/', es: '/es/about/', zh: '/zh/about/' };
   const anchors = { '#apply': '#contact', '#community': '#contact', '#pillars': '#work', '#track-record': '#work' };
   let changed = false;
   if (Object.hasOwn(paths, language)) {

@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 import { identity, coreLocales } from '../content/core.mjs';
@@ -6,7 +6,7 @@ import { extraLocales } from '../content/extra.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const locales = { ...coreLocales, ...extraLocales };
-const paths = { en: '/', ru: '/ru/', es: '/es/', zh: '/zh/' };
+const paths = { en: '/about/', ru: '/ru/about/', es: '/es/about/', zh: '/zh/about/' };
 const esc = (text) => String(text).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 const arrow = '<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.5"/></svg>';
 const links = [
@@ -45,7 +45,7 @@ function render(lang, c) {
 <meta name="theme-color" content="#edf2f7">
 <link rel="canonical" href="${canonical}">
 ${alternates}
-<link rel="alternate" hreflang="x-default" href="${identity.url}/">
+<link rel="alternate" hreflang="x-default" href="${identity.url}/about/">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Timothy Ivaikin">
 <meta property="og:title" content="${esc(c.title)}">
@@ -71,7 +71,7 @@ ${Object.values(locales).filter(l => l.locale !== c.locale).map(l => `<meta prop
 <body id="top">
 <a class="skip-link" href="#main">${esc(c.skip)}</a>
 <header class="site-header wrap">
-  <a class="wordmark" href="${c.path}" aria-label="${esc(c.name)}"><span class="monogram" aria-hidden="true">ti.</span><span>${esc(c.name)}</span></a>
+  <a class="wordmark" href="/" aria-label="${esc(c.name)} — ivaikin.com"><span class="monogram" aria-hidden="true">ti.</span><span>${esc(c.name)}<small>ivaikin.com ↗</small></span></a>
   <nav class="main-nav" aria-label="${esc(c.navLabel)}"><a href="#work">${esc(c.nav[0])}</a><a href="#ideas">${esc(c.nav[1])}</a><a href="#contact">${esc(c.nav[2])}</a></nav>
   <nav class="language-nav" aria-label="${esc(c.languageLabel)}">${langNav}</nav>
 </header>
@@ -131,8 +131,15 @@ for (const [lang, c] of Object.entries(locales)) {
   await writeFile(resolve(target, 'index.html'), render(lang, c));
 }
 const localized = Object.entries(paths).map(([lang,path]) => `<xhtml:link rel="alternate" hreflang="${lang}" href="${identity.url}${path}"/>`).join('\n    ');
-const homeUrls = Object.values(paths).map(path => `  <url><loc>${identity.url}${path}</loc>\n    ${localized}\n    <xhtml:link rel="alternate" hreflang="x-default" href="${identity.url}/"/>\n  </url>`);
-const interviewPaths = ['/en/interviews/tai-chi-business/', '/ru/interviews/tai-chi-business/'];
-const interviewUrls = interviewPaths.map(path => `  <url><loc>${identity.url}${path}</loc>\n    <xhtml:link rel="alternate" hreflang="en" href="${identity.url}${interviewPaths[0]}"/>\n    <xhtml:link rel="alternate" hreflang="ru" href="${identity.url}${interviewPaths[1]}"/>\n    <xhtml:link rel="alternate" hreflang="x-default" href="${identity.url}${interviewPaths[0]}"/>\n  </url>`);
-await writeFile(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${[...homeUrls,...interviewUrls].join('\n')}\n</urlset>\n`);
-console.log(`Built ${Object.keys(locales).length} language pages and sitemap. Interview pages preserved.`);
+const landingUrls = Object.values(paths).map(path => `  <url><loc>${identity.url}${path}</loc>\n    ${localized}\n    <xhtml:link rel="alternate" hreflang="x-default" href="${identity.url}/about/"/>\n  </url>`);
+// Own only the four child entries. Preserve every existing URL and its metadata.
+const sitemapPath = resolve(root, 'sitemap.xml');
+const ownedUrls = new Set(Object.values(paths).map(path => identity.url + path));
+let sitemap = await readFile(sitemapPath, 'utf8');
+if (!sitemap.includes('</urlset>') || !sitemap.includes('xmlns:xhtml=')) throw new Error('Unexpected sitemap structure');
+sitemap = sitemap.replace(/[ \t]*<url\b[^>]*>[\s\S]*?<\/url>\r?\n?/g, block => {
+  const location = block.match(/<loc>\s*([^<]+)\s*<\/loc>/)?.[1].trim();
+  return ownedUrls.has(location) ? '' : block;
+});
+await writeFile(sitemapPath, sitemap.replace('</urlset>', landingUrls.join('\n') + '\n</urlset>'));
+console.log(`Built ${Object.keys(locales).length} child landing pages. Existing homepage and sitemap entries preserved.`);
