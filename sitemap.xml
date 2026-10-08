@@ -11,4 +11,16 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/?lang=zh"/>
   </url>
+  <url>
+    <loc>https://ivaikin.com/ru/interviews/tai-chi-business/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/interviews/tai-chi-business/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/en/interviews/tai-chi-business/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/en/interviews/tai-chi-business/"/>
+  </url>
+  <url>
+    <loc>https://ivaikin.com/en/interviews/tai-chi-business/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/interviews/tai-chi-business/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/en/interviews/tai-chi-business/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/en/interviews/tai-chi-business/"/>
+  </url>
 </urlset>
