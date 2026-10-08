@@ -56,3 +56,15 @@ After deployment, inspect the real URLs and submit the sitemap through Search Co
 The existing GitHub Pages setup serves `main` using `CNAME` (`ivaikin.com`). A push to `main` publishes the committed website. Do not change DNS or existing subdomains for this redesign. Review public copy, run build and tests, then verify the published pages.
 
 The new homepage uses direct Telegram and email links, with no form backend, embedded players or third-party tracking requests on load. Old homepage JS/CSS files remain at their existing paths but are not loaded by the new pages. Interview functionality is unchanged.
+
+## Remote staging
+
+`npm run staging` publishes the committed website to the existing HTTPS staging server. It builds, tests, packages an allowlist of public files, uploads an immutable release, atomically switches the preview, and checks all language pages, interviews, response headers and the live revision. It also verifies that the production homepage has not changed. No GitHub push or production deployment is involved.
+
+The persistent preview address and SSH configuration live only in ignored `.staging/config.json`; the latest verified address and revision are in `.staging/latest.json`. The URL contains a random 192-bit capability: anyone given the full link can open it, so do not put it in this public repository. It works without the laptop or a local server. Search indexing and caching are disabled, outgoing referrers are suppressed, and preview access paths are excluded from the shared Caddy log. Those measures supplement the secret link; they do not make it an account-based login system.
+
+The initial configuration has `sshHost`, `sshUser`, `sshKeyPath`, `origin` and a 32-character base64url `token`. It is stored with owner-only access. Keep the token stable across updates. The installer refuses an unexpected host configuration or silent token replacement. Preview artifacts never include source files, `.git`, private configuration, production DNS configuration or the production sitemap.
+
+Server releases are stored at `/opt/static-sites/ivaikin-staging/releases/`; `current` points to the active version. The first installation validates and gracefully reloads Caddy while preserving all unrelated configuration. Further releases switch the symlink without restarting or reloading the shared server. The installer rolls back the pointer and configuration if installation fails.
+
+Additional installer tests: `python3 -m unittest discover -s tests -p 'test_staging_install.py'`. `tests/staging.test.mjs` covers prefix adaptation, old language links and shell-argument safety using a fake SSH executable. Review the actual HTTPS page before production promotion.
