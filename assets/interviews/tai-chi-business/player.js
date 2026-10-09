@@ -4,7 +4,7 @@
   let player = document.getElementById('interview-player');
   const status = document.getElementById('selected-passage');
   if (!player || !status) return;
-  const MAX_START = 2853;
+  const MAX_START = 2835;
   function validStart(value) {
     if (typeof value !== 'string' || !/^\d{1,4}$/.test(value)) return null;
     const n = Number(value);
