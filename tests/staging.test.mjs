@@ -63,24 +63,26 @@ test('staging package includes parent and child pages, preserves interviews and 
     await packageSite(resolve(import.meta.dirname,'..'),target,validateConfig(config),release,'0123456');
     const roots=await readdir(target);
     for(const forbidden of ['content','scripts','tests','.git','CNAME','sitemap.xml','README.md','.staging']) assert.ok(!roots.includes(forbidden),forbidden);
-    for(const path of ['index.html','about/index.html','ru/about/index.html','es/about/index.html','zh/about/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html']) {
+    for(const path of ['index.html','ru/index.html','es/index.html','zh/index.html','about/index.html','ru/about/index.html','es/about/index.html','zh/about/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html']) {
       const text=await readFile(resolve(target,path),'utf8');
       assert.ok(text.includes('noindex, nofollow, noarchive'),path);
       assert.ok(!/(?:href|src)="\/(?!previews\/)/.test(text),path+' leaked a root URL');
     }
-    for (const path of ['style.css', 'main.js', 'i18n.js', 'assets/home/home.css', 'assets/home/home.js']) {
+    for (const path of ['assets/front/home.css', 'assets/front/home.js', 'assets/front/portrait.webp', 'assets/front/systems.webp', 'assets/front/social.jpg', 'assets/home/home.css', 'assets/home/home.js']) {
       assert.ok((await readFile(resolve(target,path))).length > 0, `Missing staged asset: ${path}`);
     }
     const parent=await readFile(resolve(target,'index.html'),'utf8');
-    assert.ok(!parent.includes('/assets/home/home.js'), 'Staging parent must keep its original language behavior');
+    assert.ok(!parent.includes('/assets/home/home.js'), 'Homepage must use its own language navigation');
     assert.doesNotMatch(parent, /googletagmanager\.com|google-analytics\.com|<script\b[^>]*src=["'][^"']*analytics\.js/i,
       'Reviewing the staged parent must not fire production analytics');
     assert.doesNotMatch(parent, /<form\b[^>]*action=["']https?:/i,
       'Staged parent forms must not submit to production endpoints');
     for (const lang of ['ru','es','zh']) {
-      const redirect=await readFile(resolve(target,lang,'index.html'),'utf8');
-      assert.ok(redirect.includes(`${prefix}${lang}/about/`), `Legacy staging /${lang}/ must lead to its child page`);
-      assert.ok(redirect.includes('noindex'), 'Staging compatibility pages must remain non-indexable');
+      const home=await readFile(resolve(target,lang,'index.html'),'utf8');
+      assert.ok(home.includes(`<html lang="${lang}">`));
+      assert.ok(home.includes('<main id="main">'), `/${lang}/ must serve the full localized homepage`);
+      assert.ok(home.includes(`href="${prefix}${lang}/about/"`), 'The profile must remain reachable from the homepage');
+      assert.ok(home.includes('noindex'), 'Staging homepages must remain non-indexable');
     }
     const meta=JSON.parse(await readFile(resolve(target,'release.json'),'utf8'));
     assert.equal(meta.release,release);

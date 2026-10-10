@@ -56,20 +56,13 @@ export async function packageSite(root, target, rawConfig, release, sourceCommit
   const config = validateConfig(rawConfig);
   validateRelease(release);
   await mkdir(target, { recursive: true });
-  const pages = ['index.html','about/index.html','ru/about/index.html','es/about/index.html','zh/about/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html'];
+  const pages = ['index.html','ru/index.html','es/index.html','zh/index.html','about/index.html','ru/about/index.html','es/about/index.html','zh/about/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html'];
   for (const file of pages) {
     await mkdir(dirname(resolve(target,file)), { recursive:true });
     await writeFile(resolve(target,file), transformHtml(await readFile(resolve(root,file),'utf8'), config.prefix, release));
   }
-  for (const file of ['assets/home','assets/interviews/tai-chi-business','favicon.svg','images','style.css','main.js','i18n.js']) await copyTree(resolve(root,file),resolve(target,file));
+  for (const file of ['assets/front','assets/home','assets/interviews/tai-chi-business','favicon.svg','images','style.css','main.js','i18n.js']) await copyTree(resolve(root,file),resolve(target,file));
   await writeFile(resolve(target,'assets/home/home.js'),transformScript(await readFile(resolve(root,'assets/home/home.js'),'utf8'),config.prefix));
-  // Compatibility for previously shared staging links only, never public routes.
-  for (const lang of ['ru','es','zh']) {
-    const path = `${config.prefix}${lang}/about/`;
-    const redirect = `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><title>Preview moved</title></head><body><a href="${path}">Open preview</a><script>const target=new URL(${JSON.stringify(path)},window.location.origin);target.search=window.location.search;target.hash=window.location.hash;window.location.replace(target.href);</script></body></html>`;
-    // The target already contains the capability prefix; do not prefix it twice.
-    await writeFile(resolve(target,lang,'index.html'),transformHtml(redirect,'/',release));
-  }
   await writeFile(resolve(target,'robots.txt'),'User-agent: *\nDisallow: /\n');
   await writeFile(resolve(target,'release.json'),JSON.stringify({ release, sourceCommit, builtAt: new Date().toISOString() },null,2)+'\n');
 }

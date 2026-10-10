@@ -2,16 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ivaikin.com/</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/?lang=ru"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/?lang=zh"/>
-  </url>
-  <url>
     <loc>https://ivaikin.com/ru/interviews/tai-chi-business/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/interviews/tai-chi-business/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/en/interviews/tai-chi-business/"/>
@@ -50,5 +40,33 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/about/"/>
     <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/about/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/about/"/>
+  </url>
+  <url><loc>https://ivaikin.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/"/>
+  </url>
+  <url><loc>https://ivaikin.com/ru/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/"/>
+  </url>
+  <url><loc>https://ivaikin.com/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/"/>
+  </url>
+  <url><loc>https://ivaikin.com/zh/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/"/>
   </url>
 </urlset>

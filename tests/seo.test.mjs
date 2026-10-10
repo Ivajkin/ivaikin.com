@@ -209,31 +209,30 @@ function upstream(path) {
 }
 
 const PRESERVED = [
-  'index.html', 'main.js', 'i18n.js', 'style.css', 'analytics.js',
+  'main.js', 'i18n.js', 'style.css', 'analytics.js',
   'en/interviews/tai-chi-business/index.html', 'ru/interviews/tai-chi-business/index.html',
 ];
 
-test('the existing homepage, language behavior and interview pages remain byte-identical to origin/main', () => {
+test('the legacy assets and interview pages remain byte-identical to origin/main', () => {
   for (const path of PRESERVED) assert.equal(read(path), upstream(path), `Existing public artifact changed: ${path}`);
   assert.ok(!tags(page('/'), 'script').some(script => script.src === '/assets/home/home.js'),
     'The child-page redirect script must not replace legacy homepage behavior');
-  for (const lang of ['ru', 'es', 'zh']) assert.ok(!existsSync(resolve(ROOT, lang, 'index.html')),
-    `The child landing must not introduce or replace the /${lang}/ parent route`);
 });
 
-test('sitemap adds child landing URLs without removing or rewriting existing public entries', () => {
+test('sitemap keeps child profiles and independent interview entries alongside new homepages', () => {
   const sitemap = read('sitemap.xml');
   assert.match(sitemap, /<urlset\b[^>]*xmlns=["']http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9["']/);
-  const owned = new Set(LANDINGS.map(route => ORIGIN + route.path));
+  const homes = ['/', '/ru/', '/es/', '/zh/'];
+  const owned = new Set([...LANDINGS.map(route => ORIGIN + route.path), ...homes.map(path => ORIGIN + path)]);
   const oldEntries = blocks(upstream('sitemap.xml'), 'url')
     .filter(entry => !owned.has(decode(blocks(entry.content, 'loc')[0]?.content.trim())));
   const currentEntries = blocks(sitemap, 'url');
   const locations = currentEntries.map(entry => decode(blocks(entry.content, 'loc')[0]?.content.trim()));
   const oldLocations = oldEntries.map(entry => decode(blocks(entry.content, 'loc')[0]?.content.trim()));
-  assert.deepEqual(locations.sort(), [...oldLocations, ...LANDINGS.map(route => `${ORIGIN}${route.path}`)].sort());
+  assert.deepEqual(locations.sort(), [...oldLocations, ...owned].sort());
   assert.equal(new Set(locations).size, locations.length, 'Every canonical URL must occur once');
   for (const old of oldEntries) assert.ok(currentEntries.some(entry => entry.content === old.content),
-    'Previously published sitemap entries and their query-language alternates must remain unchanged');
+    'Previously published independent sitemap entries must remain unchanged');
   for (const route of LANDINGS) {
     const entry = currentEntries.find(entry => blocks(entry.content, 'loc')[0]?.content.trim() === ORIGIN + route.path);
     const alternates = tags(entry.content, 'xhtml:link');

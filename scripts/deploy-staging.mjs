@@ -29,6 +29,7 @@ try {
   catch(error) {throw new Error(`Configure .staging/config.json before deployment. ${error.message}`);}
   if(run('git',['status','--porcelain'])) throw new Error('Commit the scoped website changes before staging; deployment requires a clean tree.');
   run(process.execPath,['scripts/build.mjs']);
+  run(process.execPath,['scripts/build-home.mjs']);
   const tests=(await readdir(resolve(root,'tests'))).filter(p=>p.endsWith('.test.mjs')).map(p=>'tests/'+p);
   console.log(run(process.execPath,['--test',...tests]));
   if(run('git',['status','--porcelain'])) throw new Error('Build changed tracked output; commit generated pages before staging.');
@@ -46,7 +47,7 @@ try {
   const result=JSON.parse(run('ssh',sshArgs(config,`python3 - ${config.token} ${release}`),{input:installer}));
   if(result.status!=='deployed' || result.revision!==release) throw new Error('Remote installer did not confirm the requested release');
   const base=config.origin+config.prefix;
-  for(const path of ['','about/','ru/about/','es/about/','zh/about/','ru/','es/','zh/','en/interviews/tai-chi-business/','ru/interviews/tai-chi-business/','style.css','main.js','i18n.js','assets/home/home.css','assets/home/home.js']) await checked(base+path);
+  for(const path of ['','about/','ru/about/','es/about/','zh/about/','ru/','es/','zh/','en/interviews/tai-chi-business/','ru/interviews/tai-chi-business/','assets/front/home.css','assets/front/home.js','assets/front/portrait.webp','assets/front/systems.webp','assets/front/social.jpg','assets/home/home.css','assets/home/home.js']) await checked(base+path);
   const live=await (await checked(base+'release.json')).json();
   if(live.release!==release || live.sourceCommit!==sourceCommit) throw new Error('Running staging revision differs from uploaded release');
   const hidden=await fetch(config.origin+'/previews/ivaikin/not-a-valid-preview/ru/',{signal:AbortSignal.timeout(20000)});
@@ -54,7 +55,7 @@ try {
   const productionAfter=await fetch('https://ivaikin.com/',{signal:AbortSignal.timeout(20000)});
   const after=createHash('sha256').update(await productionAfter.text()).digest('hex');
   if(!productionAfter.ok || after!==baseline) throw new Error('Production baseline changed during staging; inspect before reporting completion');
-  const report={release,sourceCommit,url:base+'ru/about/',verifiedAt:new Date().toISOString(),productionUnchanged:true};
+  const report={release,sourceCommit,url:base+'ru/',verifiedAt:new Date().toISOString(),productionUnchanged:true};
   await mkdir(privateRoot,{recursive:true});
   await writeFile(resolve(privateRoot,'latest.json'),JSON.stringify(report,null,2)+'\n',{mode:0o600});
   console.log(JSON.stringify(report,null,2));
