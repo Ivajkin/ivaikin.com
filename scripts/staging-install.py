@@ -74,6 +74,9 @@ def managed_block_in_staging(original, block_start):
             quote = char
         elif char == 92:
             escaped = True
+        elif char == 60 and original[offset:offset + 2] == b'<<':
+            # Heredocs need a full lexer; refuse ambiguous placement instead.
+            return False
         elif char == 123:
             if depth == 0:
                 outer_open = offset

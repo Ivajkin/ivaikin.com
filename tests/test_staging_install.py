@@ -34,14 +34,20 @@ class InstallerTests(unittest.TestCase):
             self.mod.candidate_config(candidate, 'B' * 32)
 
     def test_independent_preview_before_owned_block_is_preserved(self):
-        independent = b'''  # independent preview { kept unchanged
+        independent = b'''  # independent preview { <<HTML kept unchanged
   handle /previews/other/* {
-    header X-Note "}"
-    respond `{literal}`
+    header X-Note "} <<HTML"
+    respond `{literal} <<HTML`
   }
 '''
         candidate = ORIGINAL.replace(HEADER, HEADER + independent + self.mod.owned_block(TOKEN))
         self.assertEqual(self.mod.candidate_config(candidate, TOKEN), candidate)
+
+    def test_managed_block_inside_heredoc_fails_closed(self):
+        block = self.mod.owned_block(TOKEN)
+        candidate = ORIGINAL.replace(HEADER, HEADER + b'  respond <<HTML\n' + block + b'HTML\n')
+        with self.assertRaises(self.mod.InstallError):
+            self.mod.candidate_config(candidate, TOKEN)
 
     def test_exact_managed_block_outside_staging_server_or_nested_fails_closed(self):
         block = self.mod.owned_block(TOKEN)
