@@ -33,6 +33,35 @@ class InstallerTests(unittest.TestCase):
         with self.assertRaises(self.mod.InstallError):
             self.mod.candidate_config(candidate, 'B' * 32)
 
+    def test_independent_preview_before_owned_block_is_preserved(self):
+        independent = b'''  # independent preview { kept unchanged
+  handle /previews/other/* {
+    header X-Note "}"
+    respond `{literal}`
+  }
+'''
+        candidate = ORIGINAL.replace(HEADER, HEADER + independent + self.mod.owned_block(TOKEN))
+        self.assertEqual(self.mod.candidate_config(candidate, TOKEN), candidate)
+
+    def test_exact_managed_block_outside_staging_server_or_nested_fails_closed(self):
+        block = self.mod.owned_block(TOKEN)
+        candidates = (
+            block + ORIGINAL,
+            ORIGINAL + block,
+            ORIGINAL.replace(b'last.example {\n', b'last.example {\n' + block),
+            ORIGINAL.replace(HEADER, HEADER + b'  route {\n' + block + b'  }\n'),
+        )
+        for candidate in candidates:
+            with self.subTest(candidate=candidate[:30]):
+                with self.assertRaises(self.mod.InstallError):
+                    self.mod.candidate_config(candidate, TOKEN)
+
+    def test_reordered_modified_managed_block_still_fails_closed(self):
+        block = self.mod.owned_block(TOKEN).replace(b'Not found', b'Not fou\nnd')
+        candidate = ORIGINAL.replace(HEADER, HEADER + b'  # independent addition\n' + block)
+        with self.assertRaises(self.mod.InstallError):
+            self.mod.candidate_config(candidate, TOKEN)
+
     def test_ambiguous_or_modified_configuration_fails_closed(self):
         for data in (ORIGINAL.replace(HEADER, b'other {\n'), ORIGINAL + HEADER,
                      self.mod.candidate_config(ORIGINAL, TOKEN).replace(b'log_skip', b'changed')):

@@ -47,12 +47,52 @@ def owned_block(token):
 '''.encode() + END
 
 
+def managed_block_in_staging(original, block_start):
+    """Verify placement without treating quoted/comment braces as Caddy blocks."""
+    server_open = original.index(ANCHOR) + len(ANCHOR) - 2
+    depth = 0
+    outer_open = None
+    quote = None
+    comment = escaped = False
+    for offset, char in enumerate(original[:block_start]):
+        if comment:
+            if char == 10:
+                comment = False
+            continue
+        if escaped:
+            escaped = False
+            continue
+        if quote is not None:
+            if char == quote:
+                quote = None
+            elif quote == 34 and char == 92:
+                escaped = True
+            continue
+        if char == 35:
+            comment = True
+        elif char in (34, 96):
+            quote = char
+        elif char == 92:
+            escaped = True
+        elif char == 123:
+            if depth == 0:
+                outer_open = offset
+            depth += 1
+        elif char == 125:
+            depth -= 1
+            if depth < 0:
+                return False
+    return depth == 1 and outer_open == server_open and quote is None and not comment and not escaped
+
+
 def candidate_config(original, token):
     block = owned_block(token)
     if original.count(ANCHOR) != 1:
         raise InstallError('staging_server_ambiguous')
     if BEGIN in original or END in original:
-        if original.count(BEGIN) != 1 or original.count(END) != 1 or ANCHOR + block not in original:
+        if original.count(BEGIN) != 1 or original.count(END) != 1 or block not in original:
+            raise InstallError('managed_config_mismatch')
+        if not managed_block_in_staging(original, original.index(BEGIN)):
             raise InstallError('managed_config_mismatch')
         return original
     if b'/previews/ivaikin/' in original:
