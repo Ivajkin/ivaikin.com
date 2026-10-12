@@ -1,5 +1,7 @@
 # Deep Analysis: Timothy Ivaikin — Personal Brand & Value Perception
 
+> **Historical research, not current claims or pricing.** Retained for provenance from the original March 2026 site. Willingness-to-pay statements, marketing figures, quotes and scores below are historical inputs; they are not evidence of paid demand, measured conversion, audited delivery results or present permission to republish. See the [legacy homepage history and reuse record](history/legacy-homepage-2026-10.md) for source revisions, current dispositions and verified reuse. The original text below is preserved unchanged.
+
 ## Data Sources
 1. **Перезагрузка September 2025** — 20+ participants from two cohorts (Sept 11-15 and Sept 18-22) answered: "What would you come to me for?"
 2. **October 2025 Deep Research** — Detailed follow-up with 3 respondents including willingness-to-pay data

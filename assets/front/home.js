@@ -5,7 +5,7 @@
   const root = new URL('../../', script.src);
   const url = new URL(window.location.href);
   const paths = { en: '', ru: 'ru/', es: 'es/', zh: 'zh/' };
-  const anchors = { '#hero': '#top', '#apply': '#contact', '#community': '#contact', '#pillars': '#work', '#track-record': '#work', '#testimonials': '#work' };
+  const anchors = { '#hero': '#top', '#apply': '#contact', '#community': '#contact', '#pillars': '#work', '#track-record': '#work' };
   const language = url.searchParams.get('lang');
   let changed = false;
   if (Object.hasOwn(paths, language)) {

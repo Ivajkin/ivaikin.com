@@ -46,6 +46,8 @@ Homepage and profile language links work without JavaScript. Legacy homepage `?l
 
 The homepage layout and introductions are newly authored; project, publication, method and FAQ copy reuse the existing localized profiles. Public project names, publication titles and interview assets retain their provenance. The homepage supersedes the previous homepage layout and forms; the profiles and interviews remain in force. The business focus is not an exhaustive account of Timothy’s identity, relationships or life purpose. Book monograms and the abstract systems visual are illustrations, not book covers or evidence of a delivered client system. No claims about corporate legal continuity are introduced.
 
+The [homepage history and reuse record](docs/history/legacy-homepage-2026-10.md) preserves the previous version through an annotated Git tag, exact source revision, checksums and a recovery command. The follow-up reuses two source-checked professional recommendation excerpts and the old qualification questions in an optional project brief. Recommendation dates describe the original feedback. These changes introduce no measured conversion or cash-flow claim. The `#testimonials` anchor now reaches the restored recommendations; the remaining legacy anchors retain their existing mappings.
+
 ## Search and AI discovery
 
 Each homepage and profile has indexable HTML, a self-canonical URL, reciprocal `hreflang`, localized title and description, social metadata and a `ProfilePage` identifying the same `Person`. Verified profile links appear visibly and in structured data. `robots.txt` permits crawlers and points to the sitemap, which includes four homepages, four profiles and both interviews.

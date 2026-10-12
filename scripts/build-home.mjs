@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 import { identity } from '../content/core.mjs';
-import { homeLocales as locales, homePaths as paths } from '../content/home.mjs';
+import { homeLocales as locales, homePaths as paths, recommendations, recommendationSource } from '../content/home.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const esc = text => String(text).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
@@ -96,6 +96,11 @@ gtag('js', new Date());
       <article class="work-card focus"><p class="card-eyebrow">${esc(c.focusCategory)}</p><h3>${esc(c.focusTitle)}</h3><p>${esc(c.focusBody)}</p><ul class="tags">${c.focusExamples.map(s => `<li>${esc(s)}</li>`).join('')}</ul><a class="text-link" href="https://landing.edgefocus.ru/">${esc(c.focusLink)}${arrow}</a></article>
     </div>
   </div></section>
+  <section id="testimonials" class="section proof-section" aria-labelledby="proof-title"><div class="wrap">
+    <div class="section-heading"><p class="eyebrow">${esc(c.proofEyebrow)}</p><h2 id="proof-title">${esc(c.proofTitle)}</h2><p class="section-intro">${esc(c.proofNote)}</p></div>
+    <div class="work-grid">${recommendations.map(r => `<figure class="recommendation"><blockquote lang="en" cite="${esc(recommendationSource)}"><p>${esc(r.quote)}</p></blockquote><figcaption><strong>${esc(r.name)}</strong><time datetime="${r.date}">${new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(r.date))}</time></figcaption></figure>`).join('')}</div>
+    <a class="text-link proof-source" href="${esc(recommendationSource)}">${esc(c.proofLink)}${arrow}</a><p class="proof-access">${esc(c.proofAccess)}</p>
+  </div></section>
   <section class="section approach-section" aria-labelledby="approach-title"><div class="wrap approach-grid">
     <div class="approach-copy"><p class="eyebrow">${esc(c.methodEyebrow)}</p><h2 id="approach-title">${esc(c.methodTitle)}</h2><div class="approach-list">${c.methods.map(([title,body]) => `<article class="approach-item"><h3>${esc(title)}</h3><p>${esc(body)}</p></article>`).join('')}</div></div>
     <div class="approach-visual" aria-hidden="true"><img src="/assets/front/systems.webp" width="1536" height="1024" loading="lazy" decoding="async" alt=""></div>
@@ -109,7 +114,7 @@ gtag('js', new Date());
   </div></section>
   <section class="section faq-section" aria-labelledby="faq-title"><div class="wrap faq-layout"><h2 id="faq-title">${esc(c.faqTitle)}</h2><div class="faq-list">${c.faqs.map(([q,a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div></div></section>
   <section id="contact" class="contact-section" aria-labelledby="contact-title"><div class="wrap contact-grid">
-    <div class="contact-copy"><p class="eyebrow">${esc(c.contactEyebrow)}</p><h2 id="contact-title">${esc(c.contactTitle)}</h2><div class="contact-intents">${c.intents.map((s,i) => `<a href="mailto:${identity.email}?subject=${encodeURIComponent(c.intentSubjects[i])}&amp;body=${encodeURIComponent(c.intentBodies[i])}">${esc(s)}</a>`).join('')}</div><p>${esc(c.contactBody)}</p></div>
+    <div class="contact-copy"><p class="eyebrow">${esc(c.contactEyebrow)}</p><h2 id="contact-title">${esc(c.contactTitle)}</h2><div class="contact-intents">${c.intents.map((s,i) => `<a href="mailto:${identity.email}?subject=${encodeURIComponent(c.intentSubjects[i])}&amp;body=${encodeURIComponent(c.intentBodies[i])}">${esc(s)}</a>`).join('')}</div><p>${esc(c.contactBody)}</p><details class="project-brief"><summary>${esc(c.briefTitle)}</summary><p>${esc(c.briefNote)}</p><ul>${c.projectBrief.map(label => `<li>${esc(label)}</li>`).join('')}</ul></details></div>
     <div class="contact-actions"><a class="button primary" href="${identity.telegram}">${esc(c.telegramLabel)}${arrow}</a><a class="email-link" href="mailto:${identity.email}" aria-label="${esc(c.emailLabel)}: ${identity.email}">${identity.email}</a><p>${esc(c.contactNote)}</p></div>
   </div></section>
 </main>

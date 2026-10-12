@@ -21,6 +21,11 @@ test('language query remains in isolated staging preview',()=>{
   const result=run('https://preview.example/previews/ivaikin/test/?lang=zh#pillars','https://preview.example/previews/ivaikin/test/assets/front/home.js');
   assert.deepEqual(result.redirects,['https://preview.example/previews/ivaikin/test/zh/#work']);
 });
+test('legacy testimonial links reach the restored recommendations in every locale',()=>{
+  assert.deepEqual(run('https://ivaikin.com/ru/#testimonials').redirects,[]);
+  assert.deepEqual(run('https://ivaikin.com/?lang=ru&utm_source=reference#testimonials').redirects,['https://ivaikin.com/ru/?utm_source=reference#testimonials']);
+  assert.deepEqual(run('https://preview.example/previews/ivaikin/test/?lang=zh#testimonials','https://preview.example/previews/ivaikin/test/assets/front/home.js').redirects,['https://preview.example/previews/ivaikin/test/zh/#testimonials']);
+});
 test('contact click records intent only, without reporting a submitted lead or personal content',()=>{
   const calls=[];const result=run('https://ivaikin.com/ru/',undefined,(...args)=>calls.push(args));
   const link={getAttribute:()=> 'mailto:hello@edgeivaikin.com?body=private%20message',closest:()=>({id:'contact'})};

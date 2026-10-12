@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "repository_url": "https://github.com/Ivajkin/ivaikin.com",
+  "source_commit": "748dda8caa11d1a82e2be42a6c2718ac7ffab415",
+  "source_commit_url": "https://github.com/Ivajkin/ivaikin.com/commit/748dda8caa11d1a82e2be42a6c2718ac7ffab415",
+  "source_tree_sha": "8ce7c42b95f8c95c6614fd3a0daa0a8b4a2a5ad4",
+  "homepage_equivalent_commit": "a16c7789277a9b96c28b1d62d5ab0ab4187f480b",
+  "archive_tag": "homepage-before-2026-10-redesign",
+  "file_checksum_algorithm": "SHA-256",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 21700,
+      "sha256": "71862908ecdbcf16ee1063a5c810d2afd11e53071018ae47bd6523663347e1e7",
+      "git_blob_sha": "ff4d2a1c1bf0ab4ec80beff832680fd0cdaef24d"
+    },
+    {
+      "path": "i18n.js",
+      "bytes": 27730,
+      "sha256": "7d0fa17fdd11f62dfab69f673ea7388bc0b2b48c104ddbbb077bb68bbff484e7",
+      "git_blob_sha": "a22c0f8426d800154c0f19a9dafc2626be9b69bd"
+    },
+    {
+      "path": "style.css",
+      "bytes": 14852,
+      "sha256": "5fd53d458c259cefeb515614a787a4357ce0c374615ead4b0e6426bd13a6fceb",
+      "git_blob_sha": "6fa95132db0475b0bdaab83994352c1fa3b861c6"
+    },
+    {
+      "path": "main.js",
+      "bytes": 3442,
+      "sha256": "2a1ccbb3a1c627443a3aa8a1c6930a69a543177eade7d620c297cdef71641d08",
+      "git_blob_sha": "13bfc70c998a69475669b0c6c8759e0160d67e33"
+    },
+    {
+      "path": "analytics.js",
+      "bytes": 9368,
+      "sha256": "b52b0b010ed879d5e2ecbc8c37208f26e03f9f837248c5855ba558bcd674a6cd",
+      "git_blob_sha": "dd9031a3c13ba63772f871ca50d7ae87715c595e"
+    },
+    {
+      "path": "images/og-image.png",
+      "bytes": 139598,
+      "sha256": "23c5178a1bd17089a72d391967803ca9a36450dc6e1374275992eb95947d4544",
+      "git_blob_sha": "65a921141793d490a0cbf3aa1bfc8d9eb9080518"
+    },
+    {
+      "path": "docs/analysis.md",
+      "bytes": 11555,
+      "sha256": "003ad9c6d02eb6e659ee1ab4c7566340d81b621eb76543344d13ce5776a419ee",
+      "git_blob_sha": "405c69ee5b451a375add8dc8155738cad2b9a4f4"
+    }
+  ]
+}

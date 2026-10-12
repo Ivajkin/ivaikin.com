@@ -66,6 +66,17 @@ p{max-width:68ch}
 .text-link{font-size:.85rem;font-weight:700;display:inline-flex;gap:12px;align-items:center;text-decoration:none;padding-block:8px;min-height:44px}
 .text-link:hover{text-decoration:underline}
 .work-card .text-link{margin-top:auto}
+.proof-section{background:#edf1f7}
+.recommendation{margin:0;padding:30px 0;border-top:1px solid var(--line);min-width:0}
+.recommendation blockquote{margin:0;font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.6}
+.recommendation figcaption{margin-top:22px;font-size:.85rem}
+.recommendation time{display:block;color:var(--muted);font-size:.75rem;margin-top:4px}
+.proof-source{margin-top:12px}
+.proof-access{color:var(--muted);font-size:.75rem}
+.project-brief{margin-top:22px;font-size:.88rem;line-height:1.7}
+.project-brief summary{cursor:pointer;font-weight:700;padding-block:10px}
+.project-brief p{margin-top:10px;color:var(--muted)}
+.project-brief ul{padding-left:20px;margin-top:12px}
 .ecosystem a:hover{color:#b8d0ff}
 .approach-grid{display:grid;grid-template-columns:1fr 1fr;gap:7%;align-items:center}
 .approach-copy>.eyebrow{margin-bottom:16px}
