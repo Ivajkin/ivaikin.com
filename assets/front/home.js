@@ -19,6 +19,28 @@
   }
   if (changed && url.href !== window.location.href) window.location.replace(url.href);
 
+  const copyButton = document.querySelector('[data-copy-brief]');
+  const briefTemplate = document.querySelector('#project-brief-template');
+  const copyStatus = document.querySelector('#brief-copy-status');
+  if (copyButton && briefTemplate && copyStatus) {
+    copyButton.hidden = false;
+    copyButton.addEventListener('click', async () => {
+      copyButton.disabled = true;
+      copyStatus.textContent = '';
+      try {
+        if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+        await navigator.clipboard.writeText(briefTemplate.value);
+        copyStatus.textContent = copyButton.dataset.success;
+      } catch {
+        briefTemplate.focus();
+        briefTemplate.select();
+        copyStatus.textContent = copyButton.dataset.error;
+      } finally {
+        copyButton.disabled = false;
+      }
+    });
+  }
+
   // A click is an intent to contact, never proof of a submitted or qualified lead.
   document.addEventListener('click', event => {
     const link = event.target.closest?.('a[href]');
