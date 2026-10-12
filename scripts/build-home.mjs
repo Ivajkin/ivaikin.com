@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
+import { createHash } from 'node:crypto';
 import { identity } from '../content/core.mjs';
 import { homeLocales as locales, homePaths as paths, recommendations, recommendationSource } from '../content/home.mjs';
 
@@ -9,6 +10,13 @@ const esc = text => String(text).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&
 const arrow = '<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.5"/></svg>';
 const languageLabels = { en: 'EN', ru: 'RU', es: 'ES', zh: '中文' };
 const bookUrls = ['https://www.goodwillbooks.com/good-results-art-of-efficiency-for-power-765-9781795182980.html', 'https://play.google.com/store/books/details/Timothy_Ivaikin_Shattering_Limits_Self_Improvement?id=2NuiEAAAQBAJ'];
+// Returning visitors must receive the runtime and styles that match this HTML.
+const assetUrls = {};
+for (const name of ['home.js', 'home.css']) {
+  const path = `assets/front/${name}`;
+  const version = createHash('sha256').update(await readFile(resolve(root, path))).digest('hex').slice(0,12);
+  assetUrls[name] = `/${path}?v=${version}`;
+}
 
 function render(lang, c) {
   const canonical = identity.url + c.path;
@@ -55,8 +63,8 @@ ${Object.values(locales).filter(l => l.locale !== c.locale).map(l => `<meta prop
 <meta name="twitter:image:alt" content="${esc(c.socialAlt)}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/home/fonts/manrope-bold.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="stylesheet" href="/assets/front/home.css">
-<script src="/assets/front/home.js" defer></script>
+<link rel="stylesheet" href="${assetUrls['home.css']}">
+<script src="${assetUrls['home.js']}" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Z5VJ13B20"></script>
 <script>
 window.dataLayer = window.dataLayer || [];

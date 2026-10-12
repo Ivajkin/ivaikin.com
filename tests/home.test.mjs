@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync, mkdtempSync, cpSync, rmSync } from 'node:fs';
+import { readFileSync, existsSync, mkdtempSync, cpSync, rmSync, appendFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { execFileSync } from 'node:child_process';
@@ -62,9 +62,9 @@ for (const [lang, path] of ROUTES) {
       assert.ok(existsSync(resolve(ROOT, image.src.slice(1))), `Missing image: ${image.src}`);
     }
     for (const link of tags(html, 'link').filter(x => ['stylesheet', 'icon', 'preload'].includes(x.rel))) {
-      if (link.href.startsWith('/')) assert.ok(existsSync(resolve(ROOT, link.href.slice(1))), `Missing asset: ${link.href}`);
+      if (link.href.startsWith('/')) assert.ok(existsSync(resolve(ROOT, new URL(link.href, ORIGIN).pathname.slice(1))), `Missing asset: ${link.href}`);
     }
-    for (const script of tags(html, 'script').filter(x => x.src?.startsWith('/'))) assert.ok(existsSync(resolve(ROOT, script.src.slice(1))), `Missing script: ${script.src}`);
+    for (const script of tags(html, 'script').filter(x => x.src?.startsWith('/'))) assert.ok(existsSync(resolve(ROOT, new URL(script.src, ORIGIN).pathname.slice(1))), `Missing script: ${script.src}`);
     const intentions = tags(html, 'a').filter(a => a.href?.startsWith('mailto:hello@edgeivaikin.com?'));
     assert.equal(intentions.length, 3, 'Three distinct contact paths need useful message starters');
     for (const intent of intentions) {
@@ -79,7 +79,7 @@ for (const [lang, path] of ROUTES) {
 test('homepage build is repeatable and retains the profile and interview pages', () => {
   const target = mkdtempSync(resolve(tmpdir(), 'ivaikin-home-build-'));
   try {
-    for (const path of ['scripts', 'content', 'about', 'ru', 'es', 'zh', 'en', 'sitemap.xml']) cpSync(resolve(ROOT, path), resolve(target, path), { recursive: true });
+    for (const path of ['scripts', 'content', 'assets', 'about', 'ru', 'es', 'zh', 'en', 'sitemap.xml']) cpSync(resolve(ROOT, path), resolve(target, path), { recursive: true });
     const preserved = ['about/index.html', 'ru/about/index.html', 'es/about/index.html', 'zh/about/index.html', 'en/interviews/tai-chi-business/index.html', 'ru/interviews/tai-chi-business/index.html'];
     for (let run = 0; run < 2; run++) {
       execFileSync(process.execPath, ['scripts/build-home.mjs'], { cwd: target });
@@ -90,4 +90,26 @@ test('homepage build is repeatable and retains the profile and interview pages',
       for (const [, path] of ROUTES) assert.ok(locations.includes(ORIGIN + path));
     }
   } finally { rmSync(target, { recursive: true, force: true }); }
+});
+
+test('changing a homepage asset changes its cache URL without invalidating the other asset', () => {
+  const target = mkdtempSync(resolve(tmpdir(), 'ivaikin-asset-cache-'));
+  try {
+    for (const path of ['scripts', 'content', 'assets', 'sitemap.xml']) cpSync(resolve(ROOT, path), resolve(target, path), {recursive:true});
+    const build = () => {
+      execFileSync(process.execPath, ['scripts/build-home.mjs'], {cwd:target});
+      const html = readFileSync(resolve(target, 'index.html'), 'utf8');
+      return [tags(html, 'script').find(x=>x.src?.includes('/assets/front/home.js')).src, tags(html, 'link').find(x=>x.rel==='stylesheet').href];
+    };
+    const initial = build();
+    assert.deepEqual(build(), initial, 'Unchanged assets keep stable URLs');
+    appendFileSync(resolve(target, 'assets/front/home.js'), '\n// A changed runtime\n');
+    const scriptChanged = build();
+    assert.notEqual(scriptChanged[0], initial[0], 'A returning visitor must request the changed runtime');
+    assert.equal(scriptChanged[1], initial[1]);
+    appendFileSync(resolve(target, 'assets/front/home.css'), '\n/* A changed stylesheet */\n');
+    const styleChanged = build();
+    assert.notEqual(styleChanged[1], scriptChanged[1], 'A returning visitor must request the changed styles');
+    assert.equal(styleChanged[0], scriptChanged[0]);
+  } finally { rmSync(target, {recursive:true,force:true}); }
 });
