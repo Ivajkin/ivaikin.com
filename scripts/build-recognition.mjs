@@ -64,14 +64,14 @@ ${styles.map(path => `<link rel="stylesheet" href="${path}">`).join('\n')}
 <header class="site-header"><div class="wrap header-inner"><a class="wordmark" href="${home}" aria-label="${esc(profile.name)} — ivaikin.com">ti.</a><nav class="main-nav" aria-label="${esc(profile.navLabel)}"><a href="${profile.path}">${esc(c.profileLink)}</a><a href="${home}#ideas">${esc(c.booksLink)}</a></nav><nav class="language-nav" aria-label="${esc(profile.languageLabel)}">${Object.entries(paths).map(([code,path]) => `<a href="${path}" lang="${code}" hreflang="${code}" aria-label="${esc(coreLocales[code].nativeName)}"${code === lang ? ' aria-current="page"' : ''}>${code.toUpperCase()}</a>`).join('')}</nav></div></header>
 <main id="main" class="wrap">
   <article aria-labelledby="recognition-title">
-    <header class="recognition-header"><p class="eyebrow">${esc(c.eyebrow)}</p><h1 id="recognition-title">${esc(c.title)}</h1><p class="recognition-intro">${esc(c.intro)}</p></header>
-    <section class="recognition-documents" aria-labelledby="documents-title"><h2 id="documents-title">${esc(c.documentsTitle)}</h2><p>${esc(c.documentsIntro)}</p>
+    <header class="recognition-header"><p class="eyebrow">${esc(c.eyebrow)}</p><h1 id="recognition-title">${esc(c.heading)}</h1><p class="recognition-intro">${esc(c.intro)}</p></header>
+    <section class="recognition-documents" aria-label="${esc(c.documentsTitle)}">
       <div class="document-grid">
-        <section class="document-card" aria-labelledby="diploma-title"><h3 id="diploma-title">${esc(c.diplomaTitle)}</h3><p class="document-date">2026</p>${figure('diploma')}<blockquote class="document-quote"><p>${esc(c.diplomaQuote)}</p></blockquote><p class="document-attribution">${esc(c.diplomaAttribution)}</p></section>
-        <section class="document-card" aria-labelledby="appreciation-title"><h3 id="appreciation-title">${esc(c.appreciationTitle)}</h3><p class="document-date"><time datetime="2026-10-07">${esc(c.appreciationDate)}</time></p>${figure('appreciation')}<blockquote class="document-quote"><p>${esc(c.appreciationQuote)}</p></blockquote><p class="document-attribution">${esc(c.appreciationAttribution)}</p></section>
+        <section class="document-card" aria-labelledby="diploma-title"><h2 id="diploma-title">${esc(c.diplomaTitle)}</h2><p class="document-date">2026</p>${figure('diploma')}<blockquote class="document-quote"><p>${esc(c.diplomaQuote)}</p></blockquote><p class="document-attribution">${esc(c.diplomaAttribution)}</p></section>
+        <section class="document-card" aria-labelledby="appreciation-title"><h2 id="appreciation-title">${esc(c.appreciationTitle)}</h2><p class="document-date"><time datetime="2026-10-07">${esc(c.appreciationDate)}</time></p>${figure('appreciation')}<blockquote class="document-quote"><p>${esc(c.appreciationQuote)}</p></blockquote><p class="document-attribution">${esc(c.appreciationAttribution)}</p></section>
       </div>
     </section>
-    <aside class="recognition-issuer"><p><span>${esc(c.issuerLabel)}</span>${esc(c.issuerName)}</p><a href="${issuer.url}">${esc(c.issuerLink)}</a></aside>
+    <aside class="recognition-issuer"><a href="${issuer.url}">${esc(c.issuerLink)}</a></aside>
     <section class="recognition-related" aria-labelledby="related-title"><div><h2 id="related-title">${esc(c.relatedTitle)}</h2><p>${esc(c.relatedBody)}</p><nav aria-label="${esc(c.relatedTitle)}"><a href="${home}#ideas">${esc(c.booksLink)}</a><a href="${profile.path}">${esc(c.profileLink)}</a></nav></div><div class="recognition-contact"><p>${esc(c.contactBody)}</p><a href="mailto:${identity.email}">${esc(c.contactLink)} ↗</a></div></section>
   </article>
 </main>
