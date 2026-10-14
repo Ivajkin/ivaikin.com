@@ -23,13 +23,17 @@ The private preview is at `http://127.0.0.1:4187/ru/`. It binds only to loopback
 - `content/core.mjs`: identity, English and Russian copy.
 - `content/extra.mjs`: Spanish and Chinese copy.
 - `content/home.mjs`: localized homepage introductions and contact prompts, reusing established profile copy.
+- `content/recognition.mjs`: English and Russian recognition copy and original-photograph references.
 - `scripts/build.mjs`: profile HTML and sitemap generator.
 - `scripts/build-home.mjs`: homepage HTML and sitemap generator.
+- `scripts/build-recognition.mjs`: bilingual recognition article and sitemap generator.
 - `assets/front/`: homepage styles, language compatibility, images and contact-click measurement.
 - `assets/home/`: profile-page CSS, language-query support, portrait and local fonts.
+- `assets/recognition/`: recognition-page CSS and two unchanged source photographs.
 - `tests/home.test.mjs` and `tests/seo.test.mjs`: static content, metadata, identity, navigation, linked assets and preserved-page checks.
+- `tests/recognition.test.mjs`: bilingual article metadata, distinct evidence photographs, stable identity, internal discovery and reproducible builds.
 
-Run `npm run build` after editing copy. It generates the four homepages and four profiles, each with its own canonical URL and language alternates. The two generators own separate sitemap entries; both preserve independent entries, including the interviews. Repeated builds do not duplicate URLs. Interview files and legacy JS/CSS are preserved.
+Run `npm run build` after editing copy. It generates the four homepages, four profiles and two recognition articles, each with its own canonical URL and language alternates. The three generators own separate sitemap entries and preserve independent entries, including the interviews. Repeated builds do not duplicate URLs. Interview files and legacy JS/CSS are preserved.
 
 Homepage and profile language links work without JavaScript. Legacy homepage `?lang=en|ru|es|zh` URLs are handled by the homepage compatibility script. On profile pages, the query navigates to the corresponding static profile while retaining other parameters and the fragment. Profile pages do not infer language from location or browser settings, and their wordmark links back to the homepage.
 
@@ -42,6 +46,7 @@ Homepage and profile language links work without JavaScript. Legacy homepage `?l
 - `assets/front/systems.webp` is a generated conceptual illustration. `assets/front/social.jpg` is an AI-assisted sharing composition based on the authorized portrait. Neither image documents a real client project; the visible homepage portrait remains a photographic derivative.
 - Authorship: [Good Results catalog](https://www.goodwillbooks.com/good-results-art-of-efficiency-for-power-765-9781795182980.html) and [Shattering Limits on Google Play Books](https://play.google.com/store/books/details/Timothy_Ivaikin_Shattering_Limits_Self_Improvement?id=2NuiEAAAQBAJ).
 - Existing [English interview](https://ivaikin.com/en/interviews/tai-chi-business/) and [Russian interview](https://ivaikin.com/ru/interviews/tai-chi-business/), including the thumbnail.
+- The Nasledie Mira recognition articles at `/en/recognition/nasledie-mira-2026/` and `/ru/recognition/nasledie-mira-2026/` use two user-supplied photographs: a diploma marked 2026 and a separate letter of appreciation dated 7 October 2026. The photographs are byte-identical to the supplied JPEGs. Their metadata contains orientation, resolution, color-space and dimension fields only, with empty IPTC data; no location or capture-time data. CSS rotates the displayed originals upright. The document excerpts, captions and English translations are newly authored from these sources; evaluative wording is attributed to the publisher. Existing identity and book references are reused as separate context. The articles add a recognition record and supersede no earlier page.
 - Manrope uses the SIL Open Font License, included in `assets/home/fonts/OFL.txt`.
 
 The homepage layout and introductions are newly authored; project, publication, method and FAQ copy reuse the existing localized profiles. Public project names, publication titles and interview assets retain their provenance. The homepage supersedes the previous homepage layout and forms; the profiles and interviews remain in force. The business focus is not an exhaustive account of Timothy’s identity, relationships or life purpose. Book monograms and the abstract systems visual are illustrations, not book covers or evidence of a delivered client system. No claims about corporate legal continuity are introduced.
@@ -50,7 +55,7 @@ The [homepage history and reuse record](docs/history/legacy-homepage-2026-10.md)
 
 ## Search and AI discovery
 
-Each homepage and profile has indexable HTML, a self-canonical URL, reciprocal `hreflang`, localized title and description, social metadata and a `ProfilePage` identifying the same `Person`. Verified profile links appear visibly and in structured data. `robots.txt` permits crawlers and points to the sitemap, which includes four homepages, four profiles and both interviews.
+Each homepage and profile has indexable HTML, a self-canonical URL, reciprocal `hreflang`, localized title and description, social metadata and a `ProfilePage` identifying the same `Person`. Verified profile links appear visibly and in structured data. The recognition articles use `Article` with that same `Person` as their subject and the issuing publisher as a mentioned `Organization`; document dates are not article publication dates. Their language alternatives include only English, Russian and the English default. `robots.txt` permits crawlers and points to the sitemap, which includes four homepages, four profiles, both interviews and both recognition articles.
 
 This is preparation for discovery, not a claim of indexing, ranking or AI citation. Google says no special AI file or schema is required for its AI features; `llms.txt` is not used as an invented ranking mechanism. The existing allow-all robots policy is unchanged.
 
@@ -72,7 +77,7 @@ Before calling measurement operational after deployment, verify an actual page v
 
 ## Remote staging
 
-`npm run staging` publishes the committed website to the existing HTTPS staging server. It builds, tests, packages an allowlist of public files, uploads an immutable release, atomically switches the preview, and checks all language pages, interviews, response headers and the live revision. It also verifies that the production homepage has not changed. No GitHub push or production deployment is involved.
+`npm run staging` publishes the committed website to the existing HTTPS staging server. It builds, tests, packages an allowlist of public files, uploads an immutable release, atomically switches the preview, and checks all language pages, interviews, recognition articles and photographs, response headers and the live revision. It also verifies that the production homepage has not changed. No GitHub push or production deployment is involved.
 
 The persistent preview address and SSH configuration live only in ignored `.staging/config.json`; the latest verified address and revision are in `.staging/latest.json`. The URL contains a random 192-bit capability: anyone given the full link can open it, so do not put it in this public repository. It works without the laptop or a local server. The review URL ends in `/ru/`; the preview root serves the English homepage, language roots serve their own pages, and all `/about/` profiles remain accessible. In the staged copy only, production analytics and form submission are disabled. Search indexing and caching are disabled, outgoing referrers are suppressed, and preview access paths are excluded from the shared Caddy log. Those measures supplement the secret link; they do not make it an account-based login system.
 

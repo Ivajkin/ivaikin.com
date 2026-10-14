@@ -5,6 +5,8 @@ import { createHash } from 'node:crypto';
 import { identity } from '../content/core.mjs';
 import { homeLocales as locales, homePaths as paths, recommendations, recommendationSource } from '../content/home.mjs';
 
+import { recognitionPaths, recognitionLocales } from '../content/recognition.mjs';
+
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const esc = text => String(text).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 const arrow = '<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.5"/></svg>';
@@ -117,7 +119,7 @@ gtag('js', new Date());
     <div class="section-heading"><p class="eyebrow">${esc(c.ideasEyebrow)}</p><h2 id="ideas-title">${esc(c.ideasTitle)}</h2></div>
     <div class="ideas-grid">
       <article class="interview-card"><a href="${c.interviewPath}" class="interview-image" aria-label="${esc(c.interviewTitle)}"><img src="/assets/interviews/tai-chi-business/B-red.jpg" width="1672" height="941" loading="lazy" decoding="async" alt=""></a><div class="interview-copy"><p class="card-eyebrow">${esc(c.interviewTag)}</p><h3><a href="${c.interviewPath}">${esc(c.interviewTitle)}</a></h3><p>${esc(c.interviewBody)}</p><p class="meta">${esc(c.interviewMeta)}</p><a class="text-link" href="${c.interviewPath}">${esc(c.interviewLink)}${arrow}</a></div></article>
-      <div class="books-list"><p class="card-eyebrow">${esc(c.booksLabel)}</p>${[['Good Results',c.bookOneBody,'GR'],['Shattering Limits',c.bookTwoBody,'SL']].map(([title,body,mark], i) => `<article class="book-item"><span class="book-mark" aria-hidden="true">${mark}</span><div><h3 lang="en">${title}</h3><p${lang === 'ru' ? ' lang="en"' : ''}>${esc(body)}</p><a class="text-link" href="${bookUrls[i]}" aria-label="${esc(c.bookLink)}: ${title}">${esc(c.bookLink)}${arrow}</a></div></article>`).join('')}<a class="writing-link text-link" href="https://ivaikin.medium.com/">${esc(c.writingLink)}${arrow}</a></div>
+      <div class="books-list"><p class="card-eyebrow">${esc(c.booksLabel)}</p>${[['Good Results',c.bookOneBody,'GR'],['Shattering Limits',c.bookTwoBody,'SL']].map(([title,body,mark], i) => `<article class="book-item"><span class="book-mark" aria-hidden="true">${mark}</span><div><h3 lang="en">${title}</h3><p${lang === 'ru' ? ' lang="en"' : ''}>${esc(body)}</p><a class="text-link" href="${bookUrls[i]}" aria-label="${esc(c.bookLink)}: ${title}">${esc(c.bookLink)}${arrow}</a></div></article>`).join('')}<a class="writing-link text-link" href="https://ivaikin.medium.com/">${esc(c.writingLink)}${arrow}</a>${recognitionLocales[lang] ? `<p class="writing-link"><a class="text-link" href="${recognitionPaths[lang]}">${esc(recognitionLocales[lang].link)}${arrow}</a></p>` : ''}</div>
     </div>
   </div></section>
   <section class="section faq-section" aria-labelledby="faq-title"><div class="wrap faq-layout"><h2 id="faq-title">${esc(c.faqTitle)}</h2><div class="faq-list">${c.faqs.map(([q,a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div></div></section>

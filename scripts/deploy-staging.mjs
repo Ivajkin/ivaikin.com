@@ -30,6 +30,7 @@ try {
   if(run('git',['status','--porcelain'])) throw new Error('Commit the scoped website changes before staging; deployment requires a clean tree.');
   run(process.execPath,['scripts/build.mjs']);
   run(process.execPath,['scripts/build-home.mjs']);
+  run(process.execPath,['scripts/build-recognition.mjs']);
   const tests=(await readdir(resolve(root,'tests'))).filter(p=>p.endsWith('.test.mjs')).map(p=>'tests/'+p);
   console.log(run(process.execPath,['--test',...tests]));
   if(run('git',['status','--porcelain'])) throw new Error('Build changed tracked output; commit generated pages before staging.');
@@ -47,7 +48,7 @@ try {
   const result=JSON.parse(run('ssh',sshArgs(config,`python3 - ${config.token} ${release}`),{input:installer}));
   if(result.status!=='deployed' || result.revision!==release) throw new Error('Remote installer did not confirm the requested release');
   const base=config.origin+config.prefix;
-  for(const path of ['','about/','ru/about/','es/about/','zh/about/','ru/','es/','zh/','en/interviews/tai-chi-business/','ru/interviews/tai-chi-business/','assets/front/home.css','assets/front/home.js','assets/front/portrait.webp','assets/front/systems.webp','assets/front/social.jpg','assets/home/home.css','assets/home/home.js']) await checked(base+path);
+  for(const path of ['','about/','ru/about/','es/about/','zh/about/','ru/','es/','zh/','en/interviews/tai-chi-business/','ru/interviews/tai-chi-business/','assets/front/home.css','assets/front/home.js','assets/front/portrait.webp','assets/front/systems.webp','assets/front/social.jpg','assets/home/home.css','assets/home/home.js','en/recognition/nasledie-mira-2026/','ru/recognition/nasledie-mira-2026/','assets/recognition/recognition.css','assets/recognition/nasledie-mira-2026/diploma-original.jpg','assets/recognition/nasledie-mira-2026/appreciation-original.jpg']) await checked(base+path);
   const live=await (await checked(base+'release.json')).json();
   if(live.release!==release || live.sourceCommit!==sourceCommit) throw new Error('Running staging revision differs from uploaded release');
   const hidden=await fetch(config.origin+'/previews/ivaikin/not-a-valid-preview/ru/',{signal:AbortSignal.timeout(20000)});

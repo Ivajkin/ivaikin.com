@@ -69,4 +69,14 @@
     <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/"/>
   </url>
+  <url><loc>https://ivaikin.com/en/recognition/nasledie-mira-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/en/recognition/nasledie-mira-2026/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/recognition/nasledie-mira-2026/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/en/recognition/nasledie-mira-2026/"/>
+  </url>
+  <url><loc>https://ivaikin.com/ru/recognition/nasledie-mira-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/en/recognition/nasledie-mira-2026/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/recognition/nasledie-mira-2026/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/en/recognition/nasledie-mira-2026/"/>
+  </url>
 </urlset>

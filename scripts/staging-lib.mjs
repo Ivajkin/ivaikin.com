@@ -56,12 +56,12 @@ export async function packageSite(root, target, rawConfig, release, sourceCommit
   const config = validateConfig(rawConfig);
   validateRelease(release);
   await mkdir(target, { recursive: true });
-  const pages = ['index.html','ru/index.html','es/index.html','zh/index.html','about/index.html','ru/about/index.html','es/about/index.html','zh/about/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html'];
+  const pages = ['index.html','ru/index.html','es/index.html','zh/index.html','about/index.html','ru/about/index.html','es/about/index.html','zh/about/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html','en/recognition/nasledie-mira-2026/index.html','ru/recognition/nasledie-mira-2026/index.html'];
   for (const file of pages) {
     await mkdir(dirname(resolve(target,file)), { recursive:true });
     await writeFile(resolve(target,file), transformHtml(await readFile(resolve(root,file),'utf8'), config.prefix, release));
   }
-  for (const file of ['assets/front','assets/home','assets/interviews/tai-chi-business','favicon.svg','images','style.css','main.js','i18n.js']) await copyTree(resolve(root,file),resolve(target,file));
+  for (const file of ['assets/front','assets/home','assets/recognition','assets/interviews/tai-chi-business','favicon.svg','images','style.css','main.js','i18n.js']) await copyTree(resolve(root,file),resolve(target,file));
   await writeFile(resolve(target,'assets/home/home.js'),transformScript(await readFile(resolve(root,'assets/home/home.js'),'utf8'),config.prefix));
   await writeFile(resolve(target,'robots.txt'),'User-agent: *\nDisallow: /\n');
   await writeFile(resolve(target,'release.json'),JSON.stringify({ release, sourceCommit, builtAt: new Date().toISOString() },null,2)+'\n');

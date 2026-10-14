@@ -63,12 +63,12 @@ test('staging package includes parent and child pages, preserves interviews and 
     await packageSite(resolve(import.meta.dirname,'..'),target,validateConfig(config),release,'0123456');
     const roots=await readdir(target);
     for(const forbidden of ['content','scripts','tests','.git','CNAME','sitemap.xml','README.md','.staging']) assert.ok(!roots.includes(forbidden),forbidden);
-    for(const path of ['index.html','ru/index.html','es/index.html','zh/index.html','about/index.html','ru/about/index.html','es/about/index.html','zh/about/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html']) {
+    for(const path of ['index.html','ru/index.html','es/index.html','zh/index.html','about/index.html','ru/about/index.html','es/about/index.html','zh/about/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html','en/recognition/nasledie-mira-2026/index.html','ru/recognition/nasledie-mira-2026/index.html']) {
       const text=await readFile(resolve(target,path),'utf8');
       assert.ok(text.includes('noindex, nofollow, noarchive'),path);
       assert.ok(!/(?:href|src)="\/(?!previews\/)/.test(text),path+' leaked a root URL');
     }
-    for (const path of ['assets/front/home.css', 'assets/front/home.js', 'assets/front/portrait.webp', 'assets/front/systems.webp', 'assets/front/social.jpg', 'assets/home/home.css', 'assets/home/home.js']) {
+    for (const path of ['assets/front/home.css', 'assets/front/home.js', 'assets/front/portrait.webp', 'assets/front/systems.webp', 'assets/front/social.jpg', 'assets/home/home.css', 'assets/home/home.js', 'assets/recognition/recognition.css', 'assets/recognition/nasledie-mira-2026/diploma-original.jpg', 'assets/recognition/nasledie-mira-2026/appreciation-original.jpg']) {
       assert.ok((await readFile(resolve(target,path))).length > 0, `Missing staged asset: ${path}`);
     }
     const parent=await readFile(resolve(target,'index.html'),'utf8');

@@ -4,6 +4,8 @@ import { dirname, resolve } from 'node:path';
 import { identity, coreLocales } from '../content/core.mjs';
 import { extraLocales } from '../content/extra.mjs';
 
+import { recognitionPaths, recognitionLocales } from '../content/recognition.mjs';
+
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const locales = { ...coreLocales, ...extraLocales };
 const paths = { en: '/about/', ru: '/ru/about/', es: '/es/about/', zh: '/zh/about/' };
@@ -113,7 +115,7 @@ ${Object.values(locales).filter(l => l.locale !== c.locale).map(l => `<meta prop
   <section id="ideas" class="section ideas wrap" aria-labelledby="ideas-title"><div class="section-heading"><div><p class="eyebrow">${esc(c.ideasEyebrow)}</p><h2 id="ideas-title">${esc(c.ideasTitle)}</h2></div></div>
     <div class="ideas-grid">
       <article class="interview"><a href="${c.interviewPath}" class="interview-image" aria-label="${esc(c.interviewTitle)}"><img src="/assets/interviews/tai-chi-business/B-red.jpg" width="1536" height="1024" loading="lazy" alt=""></a><div class="interview-copy"><p class="eyebrow">${esc(c.interviewTag)}</p><h3><a href="${c.interviewPath}">${esc(c.interviewTitle)}</a></h3><p>${esc(c.interviewBody)}</p><p class="meta">${esc(c.interviewMeta)}</p><a class="text-link" href="${c.interviewPath}">${esc(c.interviewLink)}${arrow}</a></div></article>
-      <div class="books"><p class="eyebrow">${esc(c.booksLabel)}</p><article><span class="book-spine" aria-hidden="true">GR</span><div><h3>Good Results</h3><p lang="${lang === 'ru' ? 'en' : lang}">${esc(c.bookOneBody)}</p><a class="text-link" href="https://www.goodwillbooks.com/good-results-art-of-efficiency-for-power-765-9781795182980.html" aria-label="${esc(c.bookLink)}: Good Results">${esc(c.bookLink)}${arrow}</a></div></article><article><span class="book-spine second" aria-hidden="true">SL</span><div><h3>Shattering Limits</h3><p lang="${lang === 'ru' ? 'en' : lang}">${esc(c.bookTwoBody)}</p><a class="text-link" href="https://play.google.com/store/books/details/Timothy_Ivaikin_Shattering_Limits_Self_Improvement?id=2NuiEAAAQBAJ" aria-label="${esc(c.bookLink)}: Shattering Limits">${esc(c.bookLink)}${arrow}</a></div></article><a class="writing-link text-link" href="https://ivaikin.medium.com/">${esc(c.writingLink)}${arrow}</a></div>
+      <div class="books"><p class="eyebrow">${esc(c.booksLabel)}</p><article><span class="book-spine" aria-hidden="true">GR</span><div><h3>Good Results</h3><p lang="${lang === 'ru' ? 'en' : lang}">${esc(c.bookOneBody)}</p><a class="text-link" href="https://www.goodwillbooks.com/good-results-art-of-efficiency-for-power-765-9781795182980.html" aria-label="${esc(c.bookLink)}: Good Results">${esc(c.bookLink)}${arrow}</a></div></article><article><span class="book-spine second" aria-hidden="true">SL</span><div><h3>Shattering Limits</h3><p lang="${lang === 'ru' ? 'en' : lang}">${esc(c.bookTwoBody)}</p><a class="text-link" href="https://play.google.com/store/books/details/Timothy_Ivaikin_Shattering_Limits_Self_Improvement?id=2NuiEAAAQBAJ" aria-label="${esc(c.bookLink)}: Shattering Limits">${esc(c.bookLink)}${arrow}</a></div></article><a class="writing-link text-link" href="https://ivaikin.medium.com/">${esc(c.writingLink)}${arrow}</a>${recognitionLocales[lang] ? `<p class="writing-link"><a class="text-link" href="${recognitionPaths[lang]}">${esc(recognitionLocales[lang].link)}${arrow}</a></p>` : ''}</div>
     </div>
   </section>
   <section class="faq wrap" aria-labelledby="faq-title"><h2 id="faq-title">${esc(c.faqTitle)}</h2><div>${faqRows}</div></section>
