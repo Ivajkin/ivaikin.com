@@ -210,11 +210,16 @@ function upstream(path) {
 
 const PRESERVED = [
   'main.js', 'i18n.js', 'style.css', 'analytics.js',
-  'en/interviews/tai-chi-business/index.html', 'ru/interviews/tai-chi-business/index.html',
 ];
 
-test('the legacy assets and interview pages remain byte-identical to origin/main', () => {
+test('legacy assets and interview content are preserved while the isolated analytics integration can change', () => {
   for (const path of PRESERVED) assert.equal(read(path), upstream(path), `Existing public artifact changed: ${path}`);
+  const withoutInterviewAnalytics = html => html.replace(/<script src="\.\.\/\.\.\/\.\.\/assets\/interviews\/tai-chi-business\/interview-analytics\.js" defer><\/script>\n/g, '');
+  for (const { path } of INTERVIEWS) {
+    const file = path.slice(1) + 'index.html';
+    assert.equal(withoutInterviewAnalytics(read(file)), withoutInterviewAnalytics(upstream(file)),
+      `Interview content, player or metadata changed: ${file}`);
+  }
   assert.ok(!tags(page('/'), 'script').some(script => script.src === '/assets/home/home.js'),
     'The child-page redirect script must not replace legacy homepage behavior');
 });
