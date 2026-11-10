@@ -100,7 +100,7 @@ gtag('js', new Date());
   <section id="work" class="section work-section" aria-labelledby="work-title"><div class="wrap">
     <div class="section-heading"><p class="eyebrow">${esc(c.workEyebrow)}</p><h2 id="work-title">${esc(c.workTitle)}</h2><p class="section-intro">${esc(c.workIntro)}</p></div>
     <div class="work-grid">
-      <article class="work-card ecosystem"><p class="card-eyebrow">${esc(c.ecosystemCategory)}</p><h3>${esc(c.ecosystemTitle)}</h3><p>${esc(c.ecosystemBody)}</p><ul class="tags">${c.ecosystemExamples.map(s => `<li>${esc(s)}</li>`).join('')}</ul><a class="text-link" href="https://edgeivaikin.com/">${esc(c.ecosystemLink)}${arrow}</a></article>
+      <article class="work-card ecosystem"><p class="card-eyebrow">${esc(c.ecosystemCategory)}</p><h3>${esc(c.ecosystemTitle)}</h3><p>${esc(c.ecosystemBody)}</p><ul class="tags">${c.ecosystemExamples.map(s => `<li>${esc(s)}</li>`).join('')}</ul><a class="text-link" href="https://edgeivaikin.com/">${esc(c.ecosystemLink)}${arrow}</a><a class="text-link" href="${esc(c.portfolioUrl)}">${esc(c.portfolioLink)}${arrow}</a></article>
       <article class="work-card focus"><p class="card-eyebrow">${esc(c.focusCategory)}</p><h3>${esc(c.focusTitle)}</h3><p>${esc(c.focusBody)}</p><ul class="tags">${c.focusExamples.map(s => `<li>${esc(s)}</li>`).join('')}</ul><a class="text-link" href="https://landing.edgefocus.ru/">${esc(c.focusLink)}${arrow}</a></article>
     </div>
   </div></section>

@@ -98,6 +98,7 @@ ${Object.values(locales).filter(l => l.locale !== c.locale).map(l => `<meta prop
         <h3>${esc(c.ecosystemTitle)}</h3><p>${esc(c.ecosystemBody)}</p>
         <ul class="project-capabilities">${c.ecosystemExamples.map(s => `<li>${esc(s)}</li>`).join('')}</ul>
         <a class="project-link" href="https://edgeivaikin.com/">${esc(c.ecosystemLink)}${arrow}</a>
+        <a class="project-link" href="${esc(c.portfolioUrl)}">${esc(c.portfolioLink)}${arrow}</a>
       </article>
       <article class="project focus">
         <div class="project-top"><span class="project-type">${esc(c.focusCategory)}</span>${focusMark}</div>
