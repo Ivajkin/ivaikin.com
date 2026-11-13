@@ -48,11 +48,16 @@
     const href = link.getAttribute('href');
     const channel = href.startsWith('mailto:') ? 'email' : href.startsWith('https://t.me/timothyivaikin') ? 'telegram' : null;
     if (!channel) return;
+    // Only explicit site-owned labels are collected; never derive intent from
+    // a mail subject, message body, URL query, or other visitor-supplied content.
+    const selectedIntent = link.getAttribute('data-contact-intent');
+    const intent = ['project', 'partnership', 'media'].includes(selectedIntent) ? selectedIntent : 'general';
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'contact_click', {
         channel,
         page_language: document.documentElement.lang,
         section: link.closest('section')?.id || 'other',
+        intent,
       });
     }
   });

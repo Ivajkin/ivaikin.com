@@ -66,6 +66,23 @@ p{max-width:68ch}
 .text-link{font-size:.85rem;font-weight:700;display:inline-flex;gap:12px;align-items:center;text-decoration:none;padding-block:8px;min-height:44px}
 .text-link:hover{text-decoration:underline}
 .work-card .text-link{margin-top:auto}
+.case-examples{margin-top:48px;padding-top:36px;border-top:1px solid var(--line)}
+.case-examples>h3{font-size:1.65rem}
+.case-examples-intro{margin-top:14px;font-size:.92rem;color:var(--muted);max-width:72ch}
+.case-example-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:30px}
+.case-example{min-width:0;display:flex;flex-direction:column;border-top:2px solid var(--line);padding-top:20px}
+.case-period{font-size:.75rem;color:var(--muted);margin-bottom:12px}
+.case-example h4{font-size:1.3rem;line-height:1.25;letter-spacing:-.025em;margin:0}
+.case-role{font-size:.76rem;color:var(--muted);line-height:1.65;margin-top:12px}
+.case-example dl{margin:22px 0 20px;font-size:.86rem;line-height:1.75}
+.case-example dl>div+div{margin-top:16px}
+.case-example dt{font-size:.72rem;color:var(--muted);font-weight:700;margin-bottom:5px}
+.case-example dd{margin:0}
+.case-links{margin-top:auto;display:flex;flex-wrap:wrap;align-items:center;column-gap:18px}
+.case-links .text-link{font-size:.79rem}
+.case-proof{min-height:44px;display:inline-flex;align-items:center;gap:8px;font-size:.76rem;color:var(--muted)}
+.case-proof svg{width:14px;height:14px}
+.recommendation-context{font-size:.8rem;line-height:1.75;color:var(--muted);margin-block:12px}
 .proof-section{background:#edf1f7;padding-block:64px}
 .proof-heading{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:30px}
 .proof-heading h2{font-size:clamp(1.8rem,3vw,2.7rem)}
@@ -113,6 +130,10 @@ p{max-width:68ch}
 .book-item{display:grid;grid-template-columns:72px 1fr;gap:22px;padding:26px 0;border-bottom:1px solid var(--line);align-items:start}
 .book-cover{display:block;width:72px;height:auto;border-radius:2px;box-shadow:0 2px 8px #142c4514}
 .book-item h3{font-size:1.15rem;margin-bottom:10px}
+.book-item h3 a{text-decoration:none}
+.book-item h3 a:hover{text-decoration:underline}
+.book-cover-link{display:block;width:fit-content}
+.book-item .book-edition-note{font-size:.73rem;margin-bottom:10px}
 .book-item p{font-size:.87rem;color:var(--muted);line-height:1.6}
 .book-item .text-link{font-size:.77rem;margin-top:10px}
 .writing-link{margin-top:24px}
@@ -127,6 +148,9 @@ p{max-width:68ch}
 .contact-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:10%;align-items:center}
 .contact-copy>.eyebrow{margin-bottom:16px}
 .contact-copy>p:not(.eyebrow){font-size:.95rem;color:var(--muted);margin-top:24px}
+.contact-next{margin-top:24px;border-top:1px solid #c8d3e3;padding-top:20px}
+.contact-next h3{font-size:.95rem;line-height:1.5}
+.contact-next p{font-size:.88rem;line-height:1.8;color:var(--muted);margin-top:10px}
 .contact-intents{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:24px;font-size:.85rem;font-weight:700}
 .contact-intents a{min-height:44px;display:inline-flex;align-items:center}
 .contact-actions{display:flex;align-items:flex-start;flex-direction:column;gap:20px}
@@ -141,6 +165,8 @@ p{max-width:68ch}
 .social-links a{padding-block:12px}
 .back-top{font-size:.75rem;white-space:nowrap;display:flex;gap:14px;align-items:center;min-height:44px;text-decoration:none}
 @media(min-width:1500px){.hero{padding-block:70px}.hero-name{font-size:7rem}}
+@media(max-width:1000px){.case-example-grid{gap:22px}.case-example h4{font-size:1.2rem}}
+@media(max-width:740px){.case-examples{margin-top:36px;padding-top:28px}.case-example-grid{grid-template-columns:1fr;gap:28px}.case-example{padding-top:18px}.case-example dl{margin-top:18px}.case-example dl>div+div{margin-top:12px}.case-example h4{font-size:1.35rem}}
 @media(max-width:1000px){.wrap{width:calc(100% - 56px)}.hero-grid{gap:5%}.hero-name{font-size:clamp(3.2rem,7.2vw,5rem)}.hero-portrait img{border-top-left-radius:110px}.main-nav{gap:20px}.header-inner{gap:20px}.language-nav{padding-left:12px}.work-card{padding:28px}.ideas-grid{gap:32px}.contact-grid{gap:6%}.hero-identity{font-size:.72rem}.hero-actions{gap:8px}.button{font-size:.8rem;padding-inline:15px;gap:15px}}
 @media(max-width:740px){.wrap{width:calc(100% - 40px)}.header-inner{min-height:78px;gap:14px}.wordmark{font-size:2.3rem}.main-nav{gap:15px}.main-nav a{font-size:.75rem}.main-nav a:nth-child(2){display:none}.language-nav{gap:0;padding-left:8px}.language-nav a{font-size:.73rem;min-width:30px;padding:0 3px}.hero{padding:34px 0 45px}.hero-grid{gap:30px;grid-template-columns:1fr}.hero-name{font-size:clamp(3.5rem,12.5vw,5.8rem);line-height:1.03;margin-bottom:22px}.hero-name span{display:inline}.hero-copy>.eyebrow{margin-bottom:22px;font-size:.76rem}.hero-heading{font-size:1.62rem;max-width:27ch;margin-bottom:16px}.hero-intro{font-size:.93rem}.hero-actions{margin-top:24px}.button{min-height:52px;font-size:.8rem;padding:13px 16px}.hero-identity{font-size:.74rem;margin-top:22px}.hero-portrait{width:100%;max-width:520px;margin-inline:auto}.hero-portrait img{aspect-ratio:4/3;object-position:50% 33%;border-radius:70px 4px 4px 4px}.hero-portrait figcaption{padding-top:10px}.section{padding:56px 0}.section-heading{margin-bottom:28px}.section-heading .eyebrow{margin-bottom:12px}.section-intro{font-size:.94rem;margin-top:18px}.work-grid,.approach-grid,.ideas-grid,.faq-layout,.contact-grid{grid-template-columns:1fr}.work-grid{gap:18px}.work-card{padding:28px}.work-card h3{font-size:1.8rem}.work-card .card-eyebrow{margin-bottom:24px}.work-card p:not(.card-eyebrow){font-size:.9rem}.tags{margin-block:20px}.approach-grid{gap:24px}.approach-visual{grid-row:2;max-width:560px}.approach-copy h2{max-width:20ch}.approach-list{margin-top:26px}.ideas-grid{gap:36px}.book-item{grid-template-columns:64px 1fr}.book-cover{width:64px}.faq-layout{gap:28px}.faq-layout h2{max-width:none}.faq-list details{padding:20px 0}.contact-section{padding:50px 0}.contact-grid{gap:30px}.contact-actions{gap:18px}.contact-intents{gap:6px 16px}.email-link{font-size:1.15rem}.contact-actions>p{max-width:none}.footer-inner{display:grid;grid-template-columns:1fr auto;gap:22px}.social-links{grid-column:1/-1;grid-row:2;gap:20px}.footer-note{font-size:.68rem}.site-footer{padding:30px 0}}
 @media(max-width:740px){.proof-section{padding-block:48px}.proof-heading{display:block;margin-bottom:24px}.proof-intro{margin-top:12px;max-width:none}.proof-grid{grid-template-columns:1fr;gap:28px}.proof-footer{margin-top:22px;gap:0}.proof-access{width:100%}.recommendation figcaption{margin-top:18px}.brief-template{font-size:16px}}

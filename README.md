@@ -22,18 +22,23 @@ The private preview is at `http://127.0.0.1:4187/ru/`. It binds only to loopback
 
 - `content/core.mjs`: identity, English and Russian copy.
 - `content/extra.mjs`: Spanish and Chinese copy.
+- `content/home-evidence.mjs`: sourced cases, recommendation context and first-contact copy.
+- `content/books.mjs`: catalog identities, localized book copy, excerpts and edition links.
 - `content/home.mjs`: localized homepage introductions and contact prompts, reusing established profile copy.
 - `content/recognition.mjs`: English and Russian recognition copy and original-photograph references.
 - `scripts/build.mjs`: profile HTML and sitemap generator.
 - `scripts/build-home.mjs`: homepage HTML and sitemap generator.
+- `scripts/build-books.mjs`: eight owned book pages, language alternates and sitemap entries.
+- `scripts/book-cards.mjs`: shared linked book cards for homepages and profiles.
 - `scripts/build-recognition.mjs`: bilingual recognition article and sitemap generator.
 - `assets/front/`: homepage styles, language compatibility, images and contact-click measurement.
 - `assets/home/`: profile-page CSS, language-query support, portrait and local fonts.
+- `assets/books/`: published covers and book-page styles.
 - `assets/recognition/`: recognition-page CSS and two unchanged source photographs.
 - `tests/home.test.mjs` and `tests/seo.test.mjs`: static content, metadata, identity, navigation, linked assets and preserved-page checks.
 - `tests/recognition.test.mjs`: bilingual article metadata, distinct evidence photographs, stable identity, internal discovery and reproducible builds.
 
-Run `npm run build` after editing copy. It generates the four homepages, four profiles and two recognition articles, each with its own canonical URL and language alternates. The three generators own separate sitemap entries and preserve independent entries, including the interviews. Repeated builds do not duplicate URLs. Interview files and legacy JS/CSS are preserved.
+Run `npm run build` after editing copy. It generates four homepages, four profiles, two recognition articles and eight book pages, each with its own canonical URL and language alternates. The four generators own separate sitemap entries and preserve independent entries, including the interviews. Repeated builds do not duplicate URLs. Interview files and legacy JS/CSS are preserved.
 
 Homepage and profile language links work without JavaScript. Legacy homepage `?lang=en|ru|es|zh` URLs are handled by the homepage compatibility script. On profile pages, the query navigates to the corresponding static profile while retaining other parameters and the fragment. Profile pages do not infer language from location or browser settings, and their wordmark links back to the homepage.
 
@@ -53,6 +58,8 @@ The homepage layout and introductions are newly authored; project, publication, 
 
 The [homepage history and reuse record](docs/history/legacy-homepage-2026-10.md) preserves the previous version through an annotated Git tag, exact source revision, checksums and a recovery command. The follow-up reuses two source-checked professional recommendation excerpts and the old qualification questions in an optional project brief. The Russian, Spanish and Chinese pages display labelled translations with expandable English originals. The brief offers a copy button and selectable text for email or Telegram, including a manual fallback when clipboard access is denied. Recommendation dates describe the original feedback. These changes introduce no measured conversion or cash-flow claim. The `#testimonials` anchor now reaches the restored recommendations; the remaining legacy anchors retain their existing mappings.
 
+The [November books and evidence record](docs/history/site-evidence-and-books-2026-11.md) identifies source checks, attribution boundaries, owned book routes and contact-intent measurement.
+
 ## Search and AI discovery
 
 Each homepage and profile has indexable HTML, a self-canonical URL, reciprocal `hreflang`, localized title and description, social metadata and a `ProfilePage` identifying the same `Person`. Verified profile links appear visibly and in structured data. The recognition articles use `Article` with that same `Person` as their subject and the issuing publisher as a mentioned `Organization`; document dates are not article publication dates. Their language alternatives include only English, Russian and the English default. `robots.txt` permits crawlers and points to the sitemap, which includes four homepages, four profiles, both interviews and both recognition articles.
@@ -67,7 +74,7 @@ After deployment, inspect the real URLs and submit the sitemap through Search Co
 
 The existing GitHub Pages setup serves `main` using `CNAME` (`ivaikin.com`). A push to `main` publishes the committed website. No DNS or subdomain changes are needed. Review public copy, run build and tests, verify the HTTPS staging site, then verify the published pages after production promotion.
 
-The homepages and profiles use direct Telegram and email links. Homepage contact paths provide optional project, partnership and media email starters; they do not submit anything automatically. The homepages retain the existing GA4 property for page views and contact clicks, with query/hash-free page locations and Google signals disabled. A contact click is not a submitted inquiry, qualified lead or sale. Profiles make no third-party tracking requests on load.
+The homepages and profiles use direct Telegram and email links. Homepage contact paths provide optional project, partnership and media email starters; they do not submit anything automatically. The homepages retain the existing GA4 property for page views and contact clicks, with query/hash-free page locations and Google signals disabled. Contact events preserve channel, language and section, and add an allowlisted intent from explicitly labelled links; generic contacts remain general. A contact click is not a submitted inquiry, qualified lead or sale. Profiles make no third-party tracking requests on load.
 
 The two interview pages use that same GA4 stream through the isolated `assets/interviews/tai-chi-business/interview-analytics.js`. It initializes only on their canonical production URLs. One `config` enables the initial page view; the script does not send an additional manual page view. The contact button emits `contact_click`, never a submitted-lead event. The implementation sends a query/hash-free page location, the referrer origin only, the page language and fixed public campaign labels. Google signals and advertising personalization signals are disabled. This does not remove GA4 cookies or identifiers and is not a claim of cookie-free measurement.
 

@@ -30,8 +30,26 @@ test('contact click records intent only, without reporting a submitted lead or p
   const calls=[];const result=run('https://ivaikin.com/ru/',undefined,(...args)=>calls.push(args));
   const link={getAttribute:()=> 'mailto:hello@edgeivaikin.com?body=private%20message',closest:()=>({id:'contact'})};
   result.handlers.click({target:{closest:()=>link}});
-  assert.deepEqual(JSON.parse(JSON.stringify(calls)),[['event','contact_click',{channel:'email',page_language:'ru',section:'contact'}]]);
+  assert.deepEqual(JSON.parse(JSON.stringify(calls)),[['event','contact_click',{channel:'email',page_language:'ru',section:'contact',intent:'general'}]]);
   assert.equal(JSON.stringify(calls).includes('private'),false);
+});
+test('contact intents come only from explicit allowlisted markup; message data never becomes an event parameter',()=>{
+  for(const supplied of ['project','partnership','media',null,'private message','project&private=value']){
+    const calls=[];
+    const result=run('https://ivaikin.com/ru/?intent=private',undefined,(...args)=>calls.push(args));
+    const link={getAttribute:name=>name==='href'?'mailto:hello@edgeivaikin.com?subject=private&body=secret':supplied,closest:()=>({id:'contact'})};
+    result.handlers.click({target:{closest:()=>link}});
+    const expected=['project','partnership','media'].includes(supplied)?supplied:'general';
+    assert.deepEqual(JSON.parse(JSON.stringify(calls)),[['event','contact_click',{channel:'email',page_language:'ru',section:'contact',intent:expected}]]);
+    assert.doesNotMatch(JSON.stringify(calls),/private|secret/);
+  }
+});
+test('generic Telegram contacts are recorded as general rather than an inferred project or lead',()=>{
+  const calls=[];
+  const result=run('https://ivaikin.com/ru/#contact',undefined,(...args)=>calls.push(args));
+  const link={getAttribute:name=>name==='href'?'https://t.me/timothyivaikin':null,closest:()=>({id:'contact'})};
+  result.handlers.click({target:{closest:()=>link}});
+  assert.deepEqual(JSON.parse(JSON.stringify(calls)),[['event','contact_click',{channel:'telegram',page_language:'ru',section:'contact',intent:'general'}]]);
 });
 test('contact navigation works when analytics is blocked or absent',()=>{
   const result=run('https://ivaikin.com/ru/');

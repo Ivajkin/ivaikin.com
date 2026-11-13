@@ -57,6 +57,7 @@ export async function packageSite(root, target, rawConfig, release, sourceCommit
   validateRelease(release);
   await mkdir(target, { recursive: true });
   const pages = ['index.html','ru/index.html','es/index.html','zh/index.html','about/index.html','ru/about/index.html','es/about/index.html','zh/about/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html','en/recognition/nasledie-mira-2026/index.html','ru/recognition/nasledie-mira-2026/index.html'];
+  for (const lang of ['','ru/','es/','zh/']) for (const slug of ['good-results','shattering-limits']) pages.push(`${lang}books/${slug}/index.html`);
   for (const file of pages) {
     await mkdir(dirname(resolve(target,file)), { recursive:true });
     await writeFile(resolve(target,file), transformHtml(await readFile(resolve(root,file),'utf8'), config.prefix, release));

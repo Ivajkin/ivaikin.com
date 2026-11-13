@@ -5,13 +5,15 @@ import { createHash } from 'node:crypto';
 import { identity } from '../content/core.mjs';
 import { homeLocales as locales, homePaths as paths, recommendations, recommendationSource } from '../content/home.mjs';
 
+import {renderBookCards} from './book-cards.mjs';
+import {homeEvidence} from '../content/home-evidence.mjs';
+
 import { recognitionPaths, recognitionLocales } from '../content/recognition.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const esc = text => String(text).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 const arrow = '<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.5"/></svg>';
 const languageLabels = { en: 'EN', ru: 'RU', es: 'ES', zh: '中文' };
-const bookUrls = ['https://www.goodwillbooks.com/good-results-art-of-efficiency-for-power-765-9781795182980.html', 'https://play.google.com/store/books/details/Timothy_Ivaikin_Shattering_Limits_Self_Improvement?id=2NuiEAAAQBAJ'];
 // Returning visitors must receive the runtime and styles that match this HTML.
 const assetUrls = {};
 for (const name of ['home.js', 'home.css']) {
@@ -20,7 +22,8 @@ for (const name of ['home.js', 'home.css']) {
   assetUrls[name] = `/${path}?v=${version}`;
 }
 
-function render(lang, c) {
+function render(lang, base) {
+  const c={...base,...homeEvidence[lang]};
   const canonical = identity.url + c.path;
   const schema = {
     '@context': 'https://schema.org', '@type': 'ProfilePage',
@@ -105,10 +108,11 @@ gtag('js', new Date());
       <article class="work-card ecosystem"><p class="card-eyebrow">${esc(c.ecosystemCategory)}</p><h3>${esc(c.ecosystemTitle)}</h3><p>${esc(c.ecosystemBody)}</p><ul class="tags">${c.ecosystemExamples.map(s => `<li>${esc(s)}</li>`).join('')}</ul><a class="text-link" href="https://edgeivaikin.com/">${esc(c.ecosystemLink)}${arrow}</a><a class="text-link" href="${esc(c.portfolioUrl)}">${esc(c.portfolioLink)}${arrow}</a></article>
       <article class="work-card focus"><p class="card-eyebrow">${esc(c.focusCategory)}</p><h3>${esc(c.focusTitle)}</h3><p>${esc(c.focusBody)}</p><ul class="tags">${c.focusExamples.map(s => `<li>${esc(s)}</li>`).join('')}</ul><a class="text-link" href="https://landing.edgefocus.ru/">${esc(c.focusLink)}${arrow}</a></article>
     </div>
+    <div class="case-examples" aria-labelledby="case-examples-title"><h3 id="case-examples-title">${esc(c.casesTitle)}</h3><p class="case-examples-intro">${esc(c.casesIntro)}</p><div class="case-example-grid">${c.cases.map(item=>`<article class="case-example"><p class="case-period">${esc(item.period||item.entity)}</p><h4>${esc(item.title)}</h4><p class="case-role">${esc(item.entity)} · ${esc(item.role)}</p><dl>${['situation','contribution','result'].map((key,i)=>`<div><dt>${esc(c.caseLabels[i])}</dt><dd>${esc(item[key])}</dd></div>`).join('')}</dl><div class="case-links"><a class="text-link" href="${item.details}">${esc(c.caseDetails)}${arrow}</a><a class="case-proof" href="${item.proof}">${esc(item.proofLabel)}${arrow}</a></div></article>`).join('')}</div></div>
   </div></section>
   <section id="testimonials" class="section proof-section" aria-labelledby="proof-title"><div class="wrap">
     <div class="proof-heading"><h2 id="proof-title">${esc(c.proofTitle)}</h2><p class="proof-intro">${esc(c.proofNote)}</p></div>
-    <div class="proof-grid">${recommendations.map(r => `<figure class="recommendation"><blockquote lang="${lang}" cite="${esc(recommendationSource)}"><p>${esc(r.translations?.[lang] ?? r.quote)}</p></blockquote><figcaption><strong>${esc(r.name)}</strong><time datetime="${r.date}">${new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(r.date))}</time></figcaption>${lang === 'en' ? '' : `<details class="quote-original"><summary>${esc(c.proofOriginal)}</summary><p lang="en">${esc(r.quote)}</p></details>`}</figure>`).join('')}</div>
+    <div class="proof-grid">${recommendations.map((r,i) => `<figure class="recommendation"><blockquote lang="${lang}" cite="${esc(recommendationSource)}"><p>${esc(lang === 'en' ? r.quote : c.recommendationTranslations[i])}</p></blockquote><figcaption><strong>${esc(r.name)}</strong><p class="recommendation-context">${esc(c.recommendationContexts[i])}</p><time datetime="${r.date}">${new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(r.date))}</time></figcaption>${lang === 'en' ? '' : `<details class="quote-original"><summary>${esc(c.proofOriginal)}</summary><p lang="en">${esc(r.quote)}</p></details>`}</figure>`).join('')}</div>
     <div class="proof-footer"><a class="text-link" href="${esc(recommendationSource)}">${esc(c.proofLink)}${arrow}</a><p class="proof-access">${esc(c.proofAccess)}</p></div>
   </div></section>
   <section class="section approach-section" aria-labelledby="approach-title"><div class="wrap approach-grid">
@@ -119,12 +123,12 @@ gtag('js', new Date());
     <div class="section-heading"><p class="eyebrow">${esc(c.ideasEyebrow)}</p><h2 id="ideas-title">${esc(c.ideasTitle)}</h2></div>
     <div class="ideas-grid">
       <article class="interview-card"><a href="${c.interviewPath}" class="interview-image" aria-label="${esc(c.interviewTitle)}"><img src="/assets/interviews/tai-chi-business/B-red.jpg" width="1672" height="941" loading="lazy" decoding="async" alt=""></a><div class="interview-copy"><p class="card-eyebrow">${esc(c.interviewTag)}</p><h3><a href="${c.interviewPath}">${esc(c.interviewTitle)}</a></h3><p>${esc(c.interviewBody)}</p><p class="meta">${esc(c.interviewMeta)}</p><a class="text-link" href="${c.interviewPath}">${esc(c.interviewLink)}${arrow}</a></div></article>
-      <div class="books-list"><p class="card-eyebrow">${esc(c.booksLabel)}</p>${[['Good Results',c.bookOneBody,'good-results',333,500],['Shattering Limits',c.bookTwoBody,'shattering-limits',587,900]].map(([title,body,slug,width,height], i) => `<article class="book-item"><img class="book-cover" src="/assets/books/${slug}.jpg" width="${width}" height="${height}" loading="lazy" decoding="async" alt="${title}"><div><h3 lang="en">${title}</h3><p${lang === 'ru' ? ' lang="en"' : ''}>${esc(body)}</p><a class="text-link" href="${bookUrls[i]}" aria-label="${esc(c.bookLink)}: ${title}">${esc(c.bookLink)}${arrow}</a></div></article>`).join('')}<a class="writing-link text-link" href="https://ivaikin.medium.com/">${esc(c.writingLink)}${arrow}</a>${recognitionLocales[lang] ? `<p class="writing-link"><a class="text-link" href="${recognitionPaths[lang]}">${esc(recognitionLocales[lang].link)}${arrow}</a></p>` : ''}</div>
+      <div class="books-list"><p class="card-eyebrow">${esc(c.booksLabel)}</p>${renderBookCards(lang,arrow)}<a class="writing-link text-link" href="https://ivaikin.medium.com/">${esc(c.writingLink)}${arrow}</a>${recognitionLocales[lang] ? `<p class="writing-link"><a class="text-link" href="${recognitionPaths[lang]}">${esc(recognitionLocales[lang].link)}${arrow}</a></p>` : ''}</div>
     </div>
   </div></section>
   <section class="section faq-section" aria-labelledby="faq-title"><div class="wrap faq-layout"><h2 id="faq-title">${esc(c.faqTitle)}</h2><div class="faq-list">${c.faqs.map(([q,a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div></div></section>
   <section id="contact" class="contact-section" aria-labelledby="contact-title"><div class="wrap contact-grid">
-    <div class="contact-copy"><p class="eyebrow">${esc(c.contactEyebrow)}</p><h2 id="contact-title">${esc(c.contactTitle)}</h2><div class="contact-intents">${c.intents.map((s,i) => `<a href="mailto:${identity.email}?subject=${encodeURIComponent(c.intentSubjects[i])}&amp;body=${encodeURIComponent(c.intentBodies[i])}">${esc(s)}</a>`).join('')}</div><p>${esc(c.contactBody)}</p><p><a class="text-link" href="https://edgeivaikin.com/${lang === 'ru' ? 'ru/partners/' : 'partners/'}?utm_source=ivaikin&amp;utm_medium=website&amp;utm_campaign=edge-partners-202610&amp;utm_content=page">${esc(c.partnershipLink)}</a></p><details class="project-brief"><summary>${esc(c.briefTitle)}</summary><p>${esc(c.briefNote)}</p><div class="brief-tools"><button class="button secondary brief-copy" type="button" data-copy-brief data-success="${esc(c.copySuccess)}" data-error="${esc(c.copyError)}" hidden>${esc(c.copyBrief)}</button><p id="brief-copy-status" role="status" aria-live="polite"></p></div><textarea id="project-brief-template" class="brief-template" rows="10" readonly aria-label="${esc(c.briefTitle)}" spellcheck="false">${esc(c.intentBodies[0])}</textarea></details></div>
+    <div class="contact-copy"><p class="eyebrow">${esc(c.contactEyebrow)}</p><h2 id="contact-title">${esc(c.contactTitle)}</h2><div class="contact-intents">${c.intents.map((s,i) => `<a data-contact-intent="${['project','partnership','media'][i]}" href="mailto:${identity.email}?subject=${encodeURIComponent(c.intentSubjects[i])}&amp;body=${encodeURIComponent(c.intentBodies[i])}">${esc(s)}</a>`).join('')}</div><p>${esc(c.contactBody)}</p><div class="contact-next"><h3>${esc(c.contactNextTitle)}</h3><p>${esc(c.contactNext)}</p></div><p><a class="text-link" href="https://edgeivaikin.com/${lang === 'ru' ? 'ru/partners/' : 'partners/'}?utm_source=ivaikin&amp;utm_medium=website&amp;utm_campaign=edge-partners-202610&amp;utm_content=page">${esc(c.partnershipLink)}</a></p><details class="project-brief"><summary>${esc(c.briefTitle)}</summary><p>${esc(c.briefNote)}</p><div class="brief-tools"><button class="button secondary brief-copy" type="button" data-copy-brief data-success="${esc(c.copySuccess)}" data-error="${esc(c.copyError)}" hidden>${esc(c.copyBrief)}</button><p id="brief-copy-status" role="status" aria-live="polite"></p></div><textarea id="project-brief-template" class="brief-template" rows="10" readonly aria-label="${esc(c.briefTitle)}" spellcheck="false">${esc(c.intentBodies[0])}</textarea></details></div>
     <div class="contact-actions"><a class="button primary" href="${identity.telegram}">${esc(c.telegramLabel)}${arrow}</a><a class="email-link" href="mailto:${identity.email}" aria-label="${esc(c.emailLabel)}: ${identity.email}">${identity.email}</a><p>${esc(c.contactNote)}</p></div>
   </div></section>
 </main>

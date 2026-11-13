@@ -71,7 +71,7 @@ ${styles.map(path => `<link rel="stylesheet" href="${path}">`).join('\n')}
         <section class="document-card" aria-labelledby="appreciation-title"><h2 id="appreciation-title">${esc(c.appreciationTitle)}</h2><p class="document-date"><time datetime="2026-10-07">${esc(c.appreciationDate)}</time></p>${figure('appreciation')}<blockquote class="document-quote"><p>${esc(c.appreciationQuote)}</p></blockquote><p class="document-attribution">${esc(c.appreciationAttribution)}</p></section>
       </div>
     </section>
-    <aside class="recognition-issuer"><a href="${issuer.url}">${esc(c.issuerLink)}</a></aside>
+    <p class="recognition-issuer"><a href="${issuer.url}">${esc(c.issuerLink)}</a></p>
     <section class="recognition-related" aria-labelledby="related-title"><div><h2 id="related-title">${esc(c.relatedTitle)}</h2><p>${esc(c.relatedBody)}</p><nav aria-label="${esc(c.relatedTitle)}"><a href="${home}#ideas">${esc(c.booksLink)}</a><a href="${profile.path}">${esc(c.profileLink)}</a></nav></div><div class="recognition-contact"><p>${esc(c.contactBody)}</p><a href="mailto:${identity.email}">${esc(c.contactLink)} ↗</a></div></section>
   </article>
 </main>

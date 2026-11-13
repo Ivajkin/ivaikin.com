@@ -79,4 +79,60 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/recognition/nasledie-mira-2026/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/en/recognition/nasledie-mira-2026/"/>
   </url>
+  <url><loc>https://ivaikin.com/books/good-results/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/books/good-results/"/>
+  </url>
+  <url><loc>https://ivaikin.com/ru/books/good-results/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/books/good-results/"/>
+  </url>
+  <url><loc>https://ivaikin.com/es/books/good-results/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/books/good-results/"/>
+  </url>
+  <url><loc>https://ivaikin.com/zh/books/good-results/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/books/good-results/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/books/good-results/"/>
+  </url>
+  <url><loc>https://ivaikin.com/books/shattering-limits/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/books/shattering-limits/"/>
+  </url>
+  <url><loc>https://ivaikin.com/ru/books/shattering-limits/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/books/shattering-limits/"/>
+  </url>
+  <url><loc>https://ivaikin.com/es/books/shattering-limits/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/books/shattering-limits/"/>
+  </url>
+  <url><loc>https://ivaikin.com/zh/books/shattering-limits/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/books/shattering-limits/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/books/shattering-limits/"/>
+  </url>
 </urlset>

@@ -3,10 +3,11 @@ import { extraLocales } from './extra.mjs';
 
 export const homePaths = { en: '/', ru: '/ru/', es: '/es/', zh: '/zh/' };
 // Exact excerpts checked against the authors' received LinkedIn recommendations
-// on 2026-10-12. Dates belong to the recommendations, not to current job titles.
+// on 2026-10-12; expanded excerpts and relationships rechecked signed-in on
+// 2026-11-13. Dates belong to the recommendations, not to current job titles.
 export const recommendations = [
-  { name: 'Oleg Nozhichkin', date: '2024-12-10', quote: '…transform complexity into strategic opportunity…', translations: { ru: '…превращать сложность в стратегические возможности…', es: '…transformar la complejidad en una oportunidad estratégica…', zh: '……将复杂性转化为战略机遇……' } },
-  { name: 'Mark Beseliya', date: '2024-12-08', quote: '…we built a high-performing team entirely from scratch and delivered innovative solutions on tight deadlines.', translations: { ru: '…мы с нуля создали высокоэффективную команду и реализовали инновационные решения в сжатые сроки.', es: '…creamos desde cero un equipo de alto rendimiento y entregamos soluciones innovadoras en plazos ajustados.', zh: '……我们从零开始组建了一支高绩效团队，并在紧迫的期限内交付了创新解决方案。' } },
+  { name: 'Oleg Nozhichkin', date: '2024-12-10', quote: 'When shifting priorities and tight timelines might derail a project, Timothy is already anticipating scenarios, orchestrating globally distributed teams…' },
+  { name: 'Mark Beseliya', date: '2024-12-08', quote: 'Under his leadership, we built a high-performing team entirely from scratch and delivered innovative solutions on tight deadlines.' },
 ];
 export const recommendationSource = 'https://www.linkedin.com/in/timothyivaikin/details/recommendations/?detailScreenTabIndex=0';
 const additions = {
