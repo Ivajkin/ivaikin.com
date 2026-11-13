@@ -61,7 +61,7 @@ export async function packageSite(root, target, rawConfig, release, sourceCommit
     await mkdir(dirname(resolve(target,file)), { recursive:true });
     await writeFile(resolve(target,file), transformHtml(await readFile(resolve(root,file),'utf8'), config.prefix, release));
   }
-  for (const file of ['assets/front','assets/home','assets/recognition','assets/interviews/tai-chi-business','favicon.svg','images','style.css','main.js','i18n.js']) await copyTree(resolve(root,file),resolve(target,file));
+  for (const file of ['assets/books','assets/front','assets/home','assets/recognition','assets/interviews/tai-chi-business','favicon.svg','images','style.css','main.js','i18n.js']) await copyTree(resolve(root,file),resolve(target,file));
   await writeFile(resolve(target,'assets/home/home.js'),transformScript(await readFile(resolve(root,'assets/home/home.js'),'utf8'),config.prefix));
   await writeFile(resolve(target,'robots.txt'),'User-agent: *\nDisallow: /\n');
   await writeFile(resolve(target,'release.json'),JSON.stringify({ release, sourceCommit, builtAt: new Date().toISOString() },null,2)+'\n');
