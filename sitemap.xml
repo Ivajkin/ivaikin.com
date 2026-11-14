@@ -13,7 +13,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/en/interviews/tai-chi-business/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/en/interviews/tai-chi-business/"/>
   </url>
-  <url><loc>https://ivaikin.com/about/</loc>
+<url><loc>https://ivaikin.com/about/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/about/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/about/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/about/"/>
@@ -135,4 +135,10 @@
     <xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/books/shattering-limits/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ivaikin.com/books/shattering-limits/"/>
   </url>
+<url><loc>https://ivaikin.com/press/</loc><xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/press/"/><xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/press/"/><xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/press/"/><xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/press/"/></url>
+<url><loc>https://ivaikin.com/ru/press/</loc><xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/press/"/><xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/press/"/><xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/press/"/><xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/press/"/></url>
+<url><loc>https://ivaikin.com/es/press/</loc><xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/press/"/><xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/press/"/><xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/press/"/><xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/press/"/></url>
+<url><loc>https://ivaikin.com/zh/press/</loc><xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/press/"/><xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/press/"/><xhtml:link rel="alternate" hreflang="es" href="https://ivaikin.com/es/press/"/><xhtml:link rel="alternate" hreflang="zh" href="https://ivaikin.com/zh/press/"/></url>
+<url><loc>https://ivaikin.com/press/corporate-culture-2026-11-13/</loc><xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/press/corporate-culture-2026-11-13/"/><xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/press/corporate-culture-2026-11-13/"/></url>
+<url><loc>https://ivaikin.com/ru/press/corporate-culture-2026-11-13/</loc><xhtml:link rel="alternate" hreflang="en" href="https://ivaikin.com/press/corporate-culture-2026-11-13/"/><xhtml:link rel="alternate" hreflang="ru" href="https://ivaikin.com/ru/press/corporate-culture-2026-11-13/"/></url>
 </urlset>

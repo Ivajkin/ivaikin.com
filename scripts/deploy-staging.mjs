@@ -32,6 +32,7 @@ try {
   run(process.execPath,['scripts/build-home.mjs']);
   run(process.execPath,['scripts/build-recognition.mjs']);
   run(process.execPath,['scripts/build-books.mjs']);
+  run(process.execPath,['scripts/build-press.mjs']);
   const tests=(await readdir(resolve(root,'tests'))).filter(p=>p.endsWith('.test.mjs')).map(p=>'tests/'+p);
   console.log(run(process.execPath,['--test',...tests]));
   if(run('git',['status','--porcelain'])) throw new Error('Build changed tracked output; commit generated pages before staging.');

@@ -1,0 +1,233 @@
+{
+  "site": "https://ivaikin.com",
+  "brand": "Timothy Ivaikin",
+  "kind": "person",
+  "paths": {
+    "en": "/press/",
+    "ru": "/ru/press/",
+    "es": "/es/press/",
+    "zh": "/zh/press/"
+  },
+  "locales": {
+    "en": {
+      "name": "English",
+      "title": "Press & media",
+      "intro": "Verified background, releases and editorial contacts for Timothy Ivaikin.",
+      "contact": "For interviews, comments and source requests",
+      "request": "Please include your outlet, topic, format, deadline and publication language.",
+      "email": "Contact for media",
+      "bio": "Short biography",
+      "bioText": "Timothy Ivaikin is an entrepreneur, founder of Edge Ecosystem and author of Good Results and Shattering Limits. His work spans market and customer needs, business models, processes, team coordination and implementation.",
+      "topics": "Topics for an editorial conversation",
+      "topicList": [
+        "Entrepreneurship and business models",
+        "Teams, accountability and implementation",
+        "AI in business workflows",
+        "Authorship and personal practice"
+      ],
+      "archive": "Releases and source material",
+      "fact": "Official personal materials",
+      "photo": "Photographs and additional comments are available on request. Event images are supplied with their source and context.",
+      "downloads": "Download biography",
+      "home": "Home",
+      "company": "Edge Ecosystem press room",
+      "archiveNote": "Releases on this site are issued by Timothy Ivaikin. External publications retain their own attribution.",
+      "news": [
+        "Corporate Culture intensive in Moscow",
+        "Recognition from the Nasledie Mira publishing house"
+      ],
+      "newsDeck": [
+        "Participation on 13 November 2026; the organisers introduced Ivaikin as a panel speaker.",
+        "Original diploma and letter of appreciation, with dated context."
+      ],
+      "newsDate": [
+        "Event: 13 Nov 2026 · Release: 14 Nov 2026",
+        "Documents: 7 Oct 2026 · Published: 13 Nov 2026"
+      ],
+      "more": "Read the material",
+      "related": "Books and interviews",
+      "bioEN": "Biography in English · TXT",
+      "bioRU": "Biography in Russian · TXT",
+      "updated": "Updated 14 November 2026",
+      "brand": "Official brand materials",
+      "releaseLabel": "Press release · issued by Timothy Ivaikin",
+      "eventLabel": "Event date: 13 November 2026",
+      "publishedLabel": "Published 14 November 2026",
+      "back": "Back to press room",
+      "portraitCaption": "Portrait from the previously published archive. Not a photograph from the intensive.",
+      "portraitDownload": "Download portrait · WebP"
+    },
+    "ru": {
+      "name": "Русский",
+      "title": "Для СМИ",
+      "intro": "Проверенная справка о Тимофее Ивайкине, релизы и контакт для редакций.",
+      "contact": "Интервью, комментарии и запросы источников",
+      "request": "Укажите издание, тему, формат, срок подготовки и язык публикации.",
+      "email": "Связаться по вопросам СМИ",
+      "bio": "Короткая биография",
+      "bioText": "Тимофей Ивайкин — предприниматель, основатель Edge Ecosystem и автор книг Good Results и Shattering Limits. Его работа объединяет исследование рынка и потребностей клиентов, бизнес-модели, процессы, координацию команды и организацию реализации.",
+      "topics": "Темы для редакционного разговора",
+      "topicList": [
+        "Предпринимательство и бизнес-модели",
+        "Команды, ответственность и реализация",
+        "ИИ в рабочих процессах бизнеса",
+        "Авторская работа и личная практика"
+      ],
+      "archive": "Релизы и материалы",
+      "fact": "Официальные личные материалы",
+      "photo": "Фотографии и дополнительные комментарии предоставляются по запросу. Для событийных снимков указываются источник и контекст.",
+      "downloads": "Скачать биографию",
+      "home": "Главная",
+      "company": "Пресс-раздел Edge Ecosystem",
+      "archiveNote": "Релизы на этом сайте публикуются от имени Тимофея Ивайкина. Внешние публикации сохраняют собственную атрибуцию.",
+      "news": [
+        "Участие в интенсиве о корпоративной культуре в Москве",
+        "Признание от издательского дома «Наследие мира»"
+      ],
+      "newsDeck": [
+        "Событие 13 ноября 2026 года; организаторы представили Ивайкина как спикера панели.",
+        "Оригиналы диплома и благодарности с датированным контекстом."
+      ],
+      "newsDate": [
+        "Событие: 13.11.2026 · Релиз: 14.11.2026",
+        "Документы: 07.10.2026 · Публикация: 13.11.2026"
+      ],
+      "more": "Читать материал",
+      "related": "Книги и интервью",
+      "bioEN": "Биография на английском · TXT",
+      "bioRU": "Биография на русском · TXT",
+      "updated": "Обновлено 14 ноября 2026",
+      "brand": "Официальные материалы бренда",
+      "releaseLabel": "Пресс-релиз от имени Тимофея Ивайкина",
+      "eventLabel": "Дата события: 13 ноября 2026",
+      "publishedLabel": "Опубликовано 14 ноября 2026",
+      "back": "Вернуться в раздел для СМИ",
+      "portraitCaption": "Портрет из ранее опубликованного архива. Не фотография с интенсива.",
+      "portraitDownload": "Скачать портрет · WebP"
+    },
+    "es": {
+      "name": "Español",
+      "title": "Prensa y medios",
+      "intro": "Información verificada, comunicados y contacto editorial de Timothy Ivaikin.",
+      "contact": "Entrevistas, comentarios y fuentes",
+      "request": "Indique el medio, el tema, el formato, el plazo y el idioma de publicación.",
+      "email": "Contacto para medios",
+      "bio": "Biografía breve",
+      "bioText": "Timothy Ivaikin es empresario, fundador de Edge Ecosystem y autor de Good Results y Shattering Limits. Su trabajo abarca las necesidades del mercado y de los clientes, los modelos de negocio, los procesos, la coordinación de equipos y la ejecución.",
+      "topics": "Temas para una conversación editorial",
+      "topicList": [
+        "Emprendimiento y modelos de negocio",
+        "Equipos, responsabilidad y ejecución",
+        "IA en procesos empresariales",
+        "Escritura y práctica personal"
+      ],
+      "archive": "Comunicados y fuentes",
+      "fact": "Materiales personales oficiales",
+      "photo": "Las fotografías y los comentarios adicionales se facilitan bajo petición, con su fuente y contexto.",
+      "downloads": "Descargar biografía",
+      "home": "Inicio",
+      "company": "Prensa de Edge Ecosystem · inglés",
+      "archiveNote": "Los comunicados de este sitio se publican en nombre de Timothy Ivaikin. Las publicaciones externas conservan su atribución. Los materiales completos están disponibles en inglés y ruso.",
+      "news": [
+        "Participación en un encuentro sobre cultura corporativa · inglés",
+        "Reconocimiento de Nasledie Mira · inglés"
+      ],
+      "newsDeck": [
+        "Encuentro del 13 de noviembre de 2026.",
+        "Diploma y carta de agradecimiento originales."
+      ],
+      "newsDate": [
+        "Encuentro: 13.11.2026 · Comunicado: 14.11.2026",
+        "Documentos: 07.10.2026 · Publicación: 13.11.2026"
+      ],
+      "more": "Leer el material",
+      "related": "Libros y entrevistas",
+      "bioEN": "Biografía en inglés · TXT",
+      "bioRU": "Biografía en ruso · TXT",
+      "updated": "Actualizado el 14 de noviembre de 2026",
+      "brand": "Materiales oficiales de marca",
+      "portraitCaption": "Retrato del archivo publicado anteriormente. No corresponde al encuentro.",
+      "portraitDownload": "Descargar retrato · WebP"
+    },
+    "zh": {
+      "name": "中文",
+      "title": "媒体资料",
+      "intro": "Timothy Ivaikin 的已核实简介、新闻稿及媒体联系信息。",
+      "contact": "采访、评论与资料查询",
+      "request": "请注明媒体名称、主题、形式、截止时间和发布语言。",
+      "email": "媒体联系",
+      "bio": "简短介绍",
+      "bioText": "Timothy Ivaikin 是企业家、Edge Ecosystem 创始人，也是 Good Results 和 Shattering Limits 的作者。他的工作涵盖市场与客户需求、商业模式、流程、团队协调和实施。",
+      "topics": "可交流的话题",
+      "topicList": [
+        "创业与商业模式",
+        "团队、责任与实施",
+        "企业工作流程中的人工智能",
+        "写作与个人实践"
+      ],
+      "archive": "新闻稿与资料",
+      "fact": "官方个人资料",
+      "photo": "照片及补充评论可按需提供，并注明来源和拍摄背景。",
+      "downloads": "下载简介",
+      "home": "首页",
+      "company": "Edge Ecosystem 媒体资料 · 英文",
+      "archiveNote": "本网站新闻稿由 Timothy Ivaikin 发布；外部报道保留各自的署名与归属。完整材料提供英文和俄文版本。",
+      "news": [
+        "参加莫斯科企业文化活动 · 英文",
+        "获 Nasledie Mira 出版机构表彰 · 英文"
+      ],
+      "newsDeck": [
+        "活动日期为 2026 年 11 月 13 日。",
+        "证书及感谢信原件。"
+      ],
+      "newsDate": [
+        "活动：2026.11.13 · 发布：2026.11.14",
+        "文件：2026.10.07 · 发布：2026.11.13"
+      ],
+      "more": "阅读资料",
+      "related": "书籍与访谈",
+      "bioEN": "英文简介 · TXT",
+      "bioRU": "俄文简介 · TXT",
+      "updated": "更新于 2026 年 11 月 14 日",
+      "brand": "官方品牌资料",
+      "portraitCaption": "来自此前已公开的存档肖像，并非本次活动照片。",
+      "portraitDownload": "下载肖像 · WebP"
+    }
+  },
+  "styles": [
+    "/assets/front/home.css",
+    "/assets/press/press.css"
+  ],
+  "logo": null,
+  "archiveURLs": [
+    "/press/corporate-culture-2026-11-13/",
+    "/en/recognition/nasledie-mira-2026/"
+  ],
+  "archiveURLsRU": [
+    "/ru/press/corporate-culture-2026-11-13/",
+    "/ru/recognition/nasledie-mira-2026/"
+  ],
+  "downloadPrefix": "biography",
+  "articles": {
+    "ru": [
+      "Тимофей Ивайкин принял участие в интенсиве «Корпоративная культура, или Искусство видеть людей»",
+      "В центре программы — управленческие решения, ответственность и поведение команды в период изменений.",
+      "Москва. 13 ноября предприниматель, основатель Edge Ecosystem и автор Тимофей Ивайкин принял участие в интенсиве «Корпоративная культура, или Искусство видеть людей». Организаторы представили его в составе спикеров панельной дискуссии. Программа включала обсуждение корпоративной культуры и игру-симуляцию «Совет директоров».",
+      "В подготовке к панели Ивайкин выделил два управленческих вопроса: как строить организацию, в которой новые лидеры способны брать ответственность за результат, и какие принципы помогают сохранять устойчивость при расширении команды и запуске проектов.",
+      "Учебные материалы интенсива предлагали рассматривать повторяющиеся сценарии поведения в конкретной управленческой ситуации: переходить от догадок к наблюдению, обсуждать действия без перехода на личности и замечать условия, при которых решения откладываются или исполняются поспешно.",
+      "Практическая ценность такого разбора — возможность проверить устройство работы до выводов о качествах человека. Понятен ли ожидаемый результат? Есть ли у исполнителя полномочия, данные и ресурсы? Как принимается решение при разногласиях? Ответы позволяют обсуждать ответственность предметно и сохранять уважение к участникам команды.",
+      "Ивайкин работает на пересечении предпринимательства, бизнес-моделей, процессов и реализации. В этой рамке корпоративная культура связана с повседневными решениями: как согласуется работа, передаются полномочия и проверяется результат. Цифровые продукты и автоматизация поддерживают эти договорённости, когда их содержание уже понятно.",
+      "Тимофей Ивайкин — предприниматель, основатель Edge Ecosystem и автор книг Good Results и Shattering Limits. Его работа объединяет исследование рынка и потребностей, бизнес-модели, процессы и организацию реализации. Для редакций и деловых контактов: https://ivaikin.com/ru/ · https://t.me/TIMOTHYIVAIKIN"
+    ],
+    "en": [
+      "Timothy Ivaikin attends the Corporate Culture intensive in Moscow",
+      "The programme explored management decisions, accountability and team behaviour during organisational change.",
+      "Moscow. Entrepreneur, Edge Ecosystem founder and author Timothy Ivaikin attended “Corporate Culture, or the Art of Seeing People” on 13 November 2026. The organisers introduced him as a panel speaker. The programme combined a discussion of corporate culture with a Board of Directors simulation.",
+      "During preparation, Ivaikin identified two management questions: how to build an organisation in which new leaders can take responsibility for outcomes, and which principles help a growing team remain effective as new projects begin.",
+      "The workshop materials examined recurring management behaviours and the conditions in which they arise. A useful practical distinction is between observing a person's actions and assuming their motives. Before drawing conclusions, a manager can check whether the expected outcome is clear and whether the person has the information, authority and resources needed to deliver it.",
+      "This connects corporate culture to everyday decisions: how work is agreed, authority is delegated and results are accepted. Technology and automation can support those arrangements when their substance is clear.",
+      "Timothy Ivaikin is an entrepreneur, founder of Edge Ecosystem and author of Good Results and Shattering Limits. His work spans market needs, business models, processes and implementation.",
+      "Media and business contact: https://ivaikin.com/ · https://t.me/TIMOTHYIVAIKIN"
+    ]
+  }
+}

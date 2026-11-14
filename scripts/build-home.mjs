@@ -132,7 +132,7 @@ gtag('js', new Date());
     <div class="contact-actions"><a class="button primary" href="${identity.telegram}">${esc(c.telegramLabel)}${arrow}</a><a class="email-link" href="mailto:${identity.email}" aria-label="${esc(c.emailLabel)}: ${identity.email}">${identity.email}</a><p>${esc(c.contactNote)}</p></div>
   </div></section>
 </main>
-<footer class="site-footer"><div class="wrap footer-inner"><div><a class="footer-brand" href="${c.path}">${esc(c.name)}</a><p class="footer-note">${esc(c.role)}</p></div><nav class="social-links" aria-label="${esc(c.profileLabel)}">${identity.profiles.map(([label,url]) => `<a href="${url}" rel="me">${esc(label)}</a>`).join('')}</nav><a class="back-top" href="#top">${esc(c.backTop)}<span aria-hidden="true">↑</span></a></div></footer>
+<footer class="site-footer"><div class="wrap footer-inner"><div><a class="footer-brand" href="${c.path}">${esc(c.name)}</a><p class="footer-note">${esc(c.role)}</p></div><nav class="social-links" aria-label="${esc(c.profileLabel)}"><a href="${lang === 'en' ? '/press/' : `/${lang}/press/`}">${esc(({en:'Press & media',ru:'Для СМИ',es:'Prensa',zh:'媒体资料'})[lang])}</a>${identity.profiles.map(([label,url]) => `<a href="${url}" rel="me">${esc(label)}</a>`).join('')}</nav><a class="back-top" href="#top">${esc(c.backTop)}<span aria-hidden="true">↑</span></a></div></footer>
 </body>
 </html>
 `;

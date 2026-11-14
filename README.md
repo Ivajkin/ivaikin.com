@@ -93,3 +93,9 @@ The initial configuration has `sshHost`, `sshUser`, `sshKeyPath`, `origin` and a
 Server releases are stored at `/opt/static-sites/ivaikin-staging/releases/`; `current` points to the active version. The first installation validates and gracefully reloads Caddy while preserving all unrelated configuration. Further releases switch the symlink without restarting or reloading the shared server. The installer rolls back the pointer and configuration if installation fails.
 
 Additional installer tests: `python3 -m unittest discover -s tests -p 'test_staging_install.py'`. `tests/staging.test.mjs` covers prefix adaptation, old language links and shell-argument safety using a fake SSH executable. Review the actual HTTPS page before production promotion.
+
+## Press room
+
+`/press/`, `/ru/press/`, `/es/press/` and `/zh/press/` provide media contacts, source-linked releases, short biographies and text downloads. Full releases are currently English/Russian; the Spanish/Chinese room labels their linked English materials. `content/press.json` and `scripts/build-press.mjs` own these pages. The corporate-culture release records the 13 November 2026 event separately from its 14 November publication date. It reuses the organiser-approved speaker introduction, event programme and first-party photographic record; explanatory paragraphs are new editorial synthesis, not recovered speech. The existing recognition articles and interview remain in force. No private review PDF, EdgeFocus source, unsupported quote or legal-continuity claim is published. Event photo selection remains separate: no unfinished or generatively reconstructed portrait is automatically added. The press room uses existing contact routes and adds no analytics.
+
+The press portrait reuses `assets/front/portrait.webp` unchanged from the existing public homepage. Its archive caption distinguishes it from an event photograph; no capture date or new likeness is invented.
