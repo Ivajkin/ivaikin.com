@@ -63,7 +63,7 @@ test('staging package includes parent and child pages, preserves interviews and 
     await packageSite(resolve(import.meta.dirname,'..'),target,validateConfig(config),release,'0123456');
     const roots=await readdir(target);
     for(const forbidden of ['content','scripts','tests','.git','CNAME','sitemap.xml','README.md','.staging']) assert.ok(!roots.includes(forbidden),forbidden);
-    for(const path of ['index.html','ru/index.html','es/index.html','zh/index.html','about/index.html','ru/about/index.html','es/about/index.html','zh/about/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html','en/recognition/nasledie-mira-2026/index.html','ru/recognition/nasledie-mira-2026/index.html']) {
+    for(const path of ['ru/blog/index.html','ru/blog/ai-enterprise-projects/index.html','index.html','ru/index.html','es/index.html','zh/index.html','about/index.html','ru/about/index.html','es/about/index.html','zh/about/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html','en/recognition/nasledie-mira-2026/index.html','ru/recognition/nasledie-mira-2026/index.html']) {
       const text=await readFile(resolve(target,path),'utf8');
       assert.ok(text.includes('noindex, nofollow, noarchive'),path);
       assert.ok(!/(?:href|src)="\/(?!previews\/)/.test(text),path+' leaked a root URL');

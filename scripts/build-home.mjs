@@ -124,7 +124,7 @@ gtag('js', new Date());
     <div class="ideas-grid">
       <article class="interview-card"><a href="${c.interviewPath}" class="interview-image" aria-label="${esc(c.interviewTitle)}"><img src="/assets/interviews/tai-chi-business/B-red.jpg" width="1672" height="941" loading="lazy" decoding="async" alt=""></a><div class="interview-copy"><p class="card-eyebrow">${esc(c.interviewTag)}</p><h3><a href="${c.interviewPath}">${esc(c.interviewTitle)}</a></h3><p>${esc(c.interviewBody)}</p><p class="meta">${esc(c.interviewMeta)}</p><a class="text-link" href="${c.interviewPath}">${esc(c.interviewLink)}${arrow}</a></div></article>
       <div class="books-list"><p class="card-eyebrow">${esc(c.booksLabel)}</p>${renderBookCards(lang,arrow)}<a class="writing-link text-link" href="https://ivaikin.medium.com/">${esc(c.writingLink)}${arrow}</a>${recognitionLocales[lang] ? `<p class="writing-link"><a class="text-link" href="${recognitionPaths[lang]}">${esc(recognitionLocales[lang].link)}${arrow}</a></p>` : ''}</div>
-    </div>
+    </div>${lang === 'ru' ? '\n    <p class="writing-link"><a class="text-link" href="/ru/blog/">Блог: AI и автоматизация предприятий ↗</a></p>' : ''}
   </div></section>
   <section class="section faq-section" aria-labelledby="faq-title"><div class="wrap faq-layout"><h2 id="faq-title">${esc(c.faqTitle)}</h2><div class="faq-list">${c.faqs.map(([q,a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div></div></section>
   <section id="contact" class="contact-section" aria-labelledby="contact-title"><div class="wrap contact-grid">

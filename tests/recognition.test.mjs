@@ -87,7 +87,8 @@ test('full build keeps recognition URLs unique, reciprocal and reproducible whil
       const sitemap = readFileSync(resolve(target, 'sitemap.xml'), 'utf8');
       const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
       assert.equal(new Set(locations).size, locations.length);
-      assert.equal(locations.length, 26);
+      assert.equal(locations.length, 28);
+      for (const route of ['/ru/blog/', '/ru/blog/ai-enterprise-projects/']) assert.ok(locations.includes(ORIGIN + route));
       for (const route of Object.values(routes)) {
         assert.ok(locations.includes(ORIGIN + route));
         const block = [...sitemap.matchAll(/<url\b[^>]*>([\s\S]*?)<\/url>/g)].find(m => m[1].includes(`<loc>${ORIGIN}${route}</loc>`))[1];

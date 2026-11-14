@@ -57,6 +57,7 @@ export async function packageSite(root, target, rawConfig, release, sourceCommit
   validateRelease(release);
   await mkdir(target, { recursive: true });
   const pages = ['index.html','ru/index.html','es/index.html','zh/index.html','about/index.html','ru/about/index.html','es/about/index.html','zh/about/index.html','en/interviews/tai-chi-business/index.html','ru/interviews/tai-chi-business/index.html','en/recognition/nasledie-mira-2026/index.html','ru/recognition/nasledie-mira-2026/index.html'];
+  pages.push('ru/blog/index.html','ru/blog/ai-enterprise-projects/index.html');
   for (const lang of ['','ru/','es/','zh/']) pages.push(`${lang}press/index.html`);
   for (const lang of ['','ru/']) pages.push(`${lang}press/corporate-culture-2026-11-13/index.html`);
   for (const lang of ['','ru/','es/','zh/']) for (const slug of ['good-results','shattering-limits']) pages.push(`${lang}books/${slug}/index.html`);
