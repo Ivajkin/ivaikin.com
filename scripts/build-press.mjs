@@ -24,7 +24,7 @@ if(Object.keys(cfg.articles).length){
  for(const[lang,parts]of Object.entries(cfg.articles)){
   const c=cfg.locales[lang];const[title,deck,...rest]=parts;
   const body=`<article class="release"><div class="release-meta"><span>${e(c.releaseLabel)}</span><time datetime="2026-11-14">${e(c.publishedLabel)}</time></div><h1>${e(title)}</h1><p class="press-lede">${e(deck)}</p><p class="press-note"><time datetime="2026-11-13">${e(c.eventLabel)}</time></p><div class="release-copy">${rest.map(p=>`<p>${e(p)}</p>`).join('')}</div><div class="release-bio"><a href="/assets/press/corporate-culture-2026-11-13-${lang}.txt" download>${lang==='ru'?'Скачать текст релиза · TXT':'Download release · TXT'}</a><p><a href="${cfg.paths[lang]}">${e(c.back)}</a></p></div></article>`;
-  const p=resolve(root,'.'+group[lang]);await mkdir(p,{recursive:true});await writeFile(resolve(p,'index.html'),shell(lang,title,deck,group[lang],body,group,true));await writeFile(resolve(root,`assets/press/corporate-culture-2026-11-13-${lang}.txt`),parts.join('\n\n')+'\n');owned.push(group[lang]);
+  const p=resolve(root,'.'+group[lang]);await mkdir(p,{recursive:true});await writeFile(resolve(p,'index.html'),shell(lang,title,deck,group[lang],body,group,true));await writeFile(resolve(root,`assets/press/corporate-culture-2026-11-13-${lang}.txt`),(lang==='ru'?'Дата события: 13 ноября 2026\nДата публикации: 14 ноября 2026\n\n':'Event date: 13 November 2026\nPublication date: 14 November 2026\n\n')+parts.join('\n\n')+'\n');owned.push(group[lang]);
  }
 }
 const sitemapPath=resolve(root,'sitemap.xml');let xml=await readFile(sitemapPath,'utf8');if(!xml.includes('</urlset>'))throw new Error('Invalid sitemap');
