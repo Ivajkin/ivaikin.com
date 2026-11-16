@@ -148,3 +148,31 @@ sitemap = sitemap.replace(/[ \t]*<url\b[^>]*>[\s\S]*?<\/url>\r?\n?/g, block => {
 });
 await writeFile(sitemapPath, sitemap.replace('</urlset>', landingUrls.join('\n') + '\n</urlset>'));
 console.log(`Built ${Object.keys(locales).length} child landing pages. Existing homepage and sitemap entries preserved.`);
+
+// Guessable /en and /en/about URLs 404 because English lives at / and /about/.
+// Keep these off the sitemap; the canonical pages stay at the unprefixed paths.
+const legacyEnglishRedirects = [
+  { from: 'en', to: '/' },
+  { from: 'en/about', to: '/about/' },
+];
+for (const { from, to } of legacyEnglishRedirects) {
+  const dest = `${identity.url}${to}`;
+  const html = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Redirecting</title>
+<link rel="canonical" href="${dest}">
+<meta http-equiv="refresh" content="0;url=${to}">
+<meta name="robots" content="noindex, follow">
+<script>location.replace(${JSON.stringify(to)});</script>
+</head>
+<body>
+<p>This page has moved to <a href="${to}">${dest}</a>.</p>
+</body>
+</html>
+`;
+  const target = resolve(root, from);
+  await mkdir(target, { recursive: true });
+  await writeFile(resolve(target, 'index.html'), html);
+}
