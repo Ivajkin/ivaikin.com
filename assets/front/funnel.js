@@ -47,10 +47,43 @@
       return 'referral';
     } catch { return 'unknown'; }
   };
+  // Campaign context for story / share / campaign traffic. Only the five utm_* keys, values limited to a safe
+  // character set and 64 characters, so no visitor input and no free text can pass. The first funnel page of the
+  // visit stores them for the next steps (links between steps drop the query string).
+  const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  const UTM_STORE_KEY = 'ivaikin_ladder_utm_v1';
+  const UTM_VALUE = /^[A-Za-z0-9_.\-]{1,64}$/;
+  const readUtm = () => {
+    const out = {};
+    try {
+      const params = new URLSearchParams(window.location.search || '');
+      for (const key of UTM_KEYS) {
+        const val = params.get(key);
+        if (val && UTM_VALUE.test(val)) out[key] = val;
+      }
+    } catch {}
+    if (Object.keys(out).length) {
+      try { window.sessionStorage.setItem(UTM_STORE_KEY, JSON.stringify(out)); } catch {}
+      return out;
+    }
+    try {
+      const saved = JSON.parse(window.sessionStorage.getItem(UTM_STORE_KEY) || 'null');
+      if (saved && typeof saved === 'object') {
+        for (const key of UTM_KEYS) if (typeof saved[key] === 'string' && UTM_VALUE.test(saved[key])) out[key] = saved[key];
+      }
+    } catch {}
+    return out;
+  };
+  // ab_cro is the CRO bundle variant ("a" control, "b" test); the inline head script sets window.edgeFunnelAB.
+  const ctx = () => {
+    const out = readUtm();
+    if (window.edgeFunnelAB === 'a' || window.edgeFunnelAB === 'b') out.ab_cro = window.edgeFunnelAB;
+    return out;
+  };
   const emit = (name, extra) => {
     try {
       if (typeof window.gtag !== 'function') return;
-      window.gtag('event', name, { page_language: document.documentElement.lang || 'und', entry: ENTRY, funnel_step: step, ...extra });
+      window.gtag('event', name, { page_language: document.documentElement.lang || 'und', entry: ENTRY, funnel_step: step, ...ctx(), ...extra });
     } catch {}
   };
   const send = (id, extra) => {
@@ -100,6 +133,24 @@
   };
   const guarded = setup => { try { setup(); } catch {} };
 
+  // Telegram share link of the checklist (t.me/share/url). It is a share, not a contact: no intent, no conversion.
+  const isShare = href => {
+    try {
+      const target = new URL(href, window.location.href);
+      const host = target.hostname.toLowerCase().replace(/^www\./, '');
+      return (host === 't.me' || host === 'telegram.me') && (target.pathname.toLowerCase().split('/')[1] || '') === 'share';
+    } catch { return false; }
+  };
+  // CRO variant B: the Telegram button opens the chat with the brief points already typed in.
+  guarded(() => {
+    if (window.edgeFunnelAB !== 'b') return;
+    for (const link of document.querySelectorAll('a[data-prefill]')) {
+      const text = link.getAttribute('data-prefill');
+      const href = link.getAttribute('href') || '';
+      if (text && href && !href.includes('?')) link.setAttribute('href', `${href}?text=${encodeURIComponent(text)}`);
+    }
+  });
+
   // First funnel page of the visit, whichever step it is. funnel_step tells where the visitor came in.
   guarded(() => send('ladder_1_landing', { source: sourceCategory(), landing: window.location.pathname }));
 
@@ -144,6 +195,7 @@
         const link = event.target?.closest?.('a[href]');
         if (!link) return;
         const href = link.getAttribute('href') || '';
+        if (isShare(href)) { send('ladder_aux_share'); return; }
         const channel = channelFor(href);
         if (channel) {
           const cta = ctaName(channel);
