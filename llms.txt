@@ -1,0 +1,31 @@
+# Timothy Ivaikin
+
+> Personal website of Timothy Ivaikin (Тимофей Ивайкин): entrepreneur, founder of Edge Ecosystem, creator of EdgeFocus with his team, author of the books Good Results and Shattering Limits. He leads technical delivery of digital products and services: software, AI, infrastructure and teams connected around a result that is agreed and accepted.
+
+The primary invitation is a project discussion. Interviews, speaking invitations and partnerships are also welcome; send the topic, audience, format and dates. Contact: https://t.me/timothyivaikin or hello@edgeivaikin.com.
+
+## Pages
+
+- [Home (EN)](https://ivaikin.com/): who Timothy is, sourced projects, books, contact
+- [Home (RU)](https://ivaikin.com/ru/)
+- [About (EN)](https://ivaikin.com/about/): profile of the founder of Edge Ecosystem and EdgeFocus
+- [About (RU)](https://ivaikin.com/ru/about/)
+- [Blog (RU)](https://ivaikin.com/ru/blog/): articles on AI, enterprise automation, business processes and digital products
+- [AI for industry and banks (RU)](https://ivaikin.com/ru/blog/ai-enterprise-projects/): how to take an AI project to implementation
+- [Interview: teams, systems and tai chi (EN)](https://ivaikin.com/en/interviews/tai-chi-business/)
+- [Recognition from Nasledie Mira, 2026 (EN)](https://ivaikin.com/en/recognition/nasledie-mira-2026/)
+- [Good Results (book)](https://ivaikin.com/books/good-results/): a practical system for goals, attention and everyday action
+- [Shattering Limits (book)](https://ivaikin.com/books/shattering-limits/): personal values, motivation, focus and communication
+- [Press and media (EN)](https://ivaikin.com/press/)
+- [Press and media (RU)](https://ivaikin.com/ru/press/)
+
+## Related
+
+- [Edge Ecosystem](https://edgeivaikin.com/): the company that builds CRM, internal portals and integrations
+- [Edge Ecosystem llms.txt](https://edgeivaikin.com/llms.txt)
+
+## Facts that can be quoted
+
+- Discover Culture (2023-2024), a platform to discover cultural events and book tickets in Saudi Arabia: Timothy took part as technical lead; the Ministry of Culture announced its beta launch on 23 November 2023 (Saudi Press Agency).
+- EdgeFocus is a working product for notes, goals, projects and actions, created with the Edge team.
+- Anything not listed here is not a claim of this site.

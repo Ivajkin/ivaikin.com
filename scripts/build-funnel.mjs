@@ -79,7 +79,7 @@ const C = {
       body: () => `<ol class="funnel-brief"><li>Business and your role</li><li>What is blocked, and why it matters now</li><li>The result you need, and who it is for</li><li>Current stage</li><li>Target date, if any</li><li>Budget range, if known</li><li>Who decides and accepts the result</li></ol>` },
     7: { title: 'What are you building?', lead: 'Tell me what needs to work, who it is for, and where you are now. For a partnership, interview or speaking invitation, include the topic and the people involved.',
       body: (l) => `<div class="funnel-intents"><a class="button secondary" data-contact-intent="project" href="${MAIL[l].project.href}">${esc(MAIL[l].project.label)}</a><a class="button secondary" data-contact-intent="partnership" href="${MAIL[l].partnership.href}">${esc(MAIL[l].partnership.label)}</a><a class="button secondary" data-contact-intent="media" href="${MAIL[l].media.href}">${esc(MAIL[l].media.label)}</a></div>
-        <div class="hero-actions"><a class="button primary" href="${TELEGRAM}">Message me on Telegram${arrow}</a><a class="email-link" href="mailto:${EMAIL}" aria-label="Email: ${EMAIL}">${EMAIL}</a></div>
+        <div class="hero-actions"><a class="button primary" href="${TELEGRAM}" data-prefill="${esc(PREFILL.en)}">Message me on Telegram${arrow}</a><a class="email-link" href="mailto:${EMAIL}" aria-label="Email: ${EMAIL}">${EMAIL}</a></div>
         <p class="funnel-meta">A short, specific introduction is a good place to start.</p>` },
   },
   ru: {
@@ -111,17 +111,115 @@ const C = {
       body: () => `<ol class="funnel-brief"><li>Компания и ваша роль</li><li>Что мешает и почему это важно сейчас</li><li>Нужный результат и для кого он</li><li>Текущий этап</li><li>Желаемый срок, если есть</li><li>Диапазон бюджета, если известен</li><li>Кто принимает решение и результат работы</li></ol>` },
     7: { title: 'Что вы хотите создать?', lead: 'Расскажите, что должно заработать, для кого и на каком этапе вы сейчас. Для партнёрства, интервью или выступления \u2014 укажите тему и участников.',
       body: (l) => `<div class="funnel-intents"><a class="button secondary" data-contact-intent="project" href="${MAIL[l].project.href}">${esc(MAIL[l].project.label)}</a><a class="button secondary" data-contact-intent="partnership" href="${MAIL[l].partnership.href}">${esc(MAIL[l].partnership.label)}</a><a class="button secondary" data-contact-intent="media" href="${MAIL[l].media.href}">${esc(MAIL[l].media.label)}</a></div>
-        <div class="hero-actions"><a class="button primary" href="${TELEGRAM}">Написать в Telegram${arrow}</a><a class="email-link" href="mailto:${EMAIL}" aria-label="Написать на почту: ${EMAIL}">${EMAIL}</a></div>
+        <div class="hero-actions"><a class="button primary" href="${TELEGRAM}" data-prefill="${esc(PREFILL.ru)}">Написать в Telegram${arrow}</a><a class="email-link" href="mailto:${EMAIL}" aria-label="Написать на почту: ${EMAIL}">${EMAIL}</a></div>
         <p class="funnel-meta">Короткое и конкретное знакомство \u2014 хорошее начало.</p>` },
   },
 };
+
+
+// ---------------------------------------------------------------------------------------------------------------
+// SEO / GEO / CRO layer (v2). Everything below is built from wording that already exists on this site.
+// ---------------------------------------------------------------------------------------------------------------
+// Indexing decision: the funnel pages stay noindex. Flip INDEXABLE to true (and add the 14 URLs to sitemap.xml) only
+// after the 7-day story A/B review; see docs/seo-funnel-v2.md.
+const INDEXABLE = false;
+// CRO bundle A/B. '' = random 50/50 per browser. Set 'a' to roll every visitor back to the control.
+const AB_FORCE = '';
+const AB_KEY = 'iv_funnel_ab_cro_v1';
+const OG_IMAGE = ORIGIN + '/assets/front/social.jpg';
+const PERSON_ID = ORIGIN + '/#person';
+const ORG_NAME = 'Edge Ecosystem';
+
+const SEO = {
+  en: {
+    1: ['Timothy Ivaikin: who will use the product, what must change?', 'Timothy Ivaikin, founder of Edge Ecosystem, brings software, AI, infrastructure and teams together to turn business needs into digital products and services.'],
+    2: ['Business, technology and people, connected | Timothy Ivaikin', 'Technical delivery from the business need and the team to implementation and acceptance of an agreed result. Edge Ecosystem and EdgeFocus.'],
+    3: ['How I work with a business need | Timothy Ivaikin', 'Understand the situation, connect the parts, put it into use: the result people need, delivered in bounded stages with agreed acceptance.'],
+    4: ['Examples and colleagues\u2019 words | Timothy Ivaikin', 'Discover Culture (technical lead, beta launch announced 23 November 2023), EdgeFocus, and excerpts from professional recommendations.'],
+    5: ['What we can discuss and how it starts | Timothy Ivaikin', 'Projects, interviews and partnerships: what to send and what happens after your message.'],
+    6: ['A brief for email or Telegram | Timothy Ivaikin', 'A few lines are enough: your business and role, what is blocked, the result you need, current stage, target date, budget range, who decides.'],
+    7: ['What are you building? Contact Timothy Ivaikin', 'Tell me what needs to work, who it is for and where you are now. For a partnership, interview or speaking invitation, include the topic and the people involved.'],
+  },
+  ru: {
+    1: ['Тимофей Ивайкин: кто будет пользоваться продуктом?', 'Тимофей Ивайкин, основатель Edge Ecosystem, соединяет программное обеспечение, AI, инфраструктуру и команду, чтобы превращать бизнес-задачи в цифровые продукты.'],
+    2: ['Бизнес, технологии и люди: вместе | Тимофей Ивайкин', 'Техническая реализация от бизнес-задачи и команды до внедрения и приемки согласованного результата. Edge Ecosystem и EdgeFocus.'],
+    3: ['Как я работаю с бизнес-задачей | Тимофей Ивайкин', 'Разобраться в ситуации, соединить части, довести до использования: нужный людям результат, поставка этапами и согласованная приемка.'],
+    4: ['Примеры и слова коллег | Тимофей Ивайкин', 'Discover Culture (технический руководитель, бета-запуск объявлен 23 ноября 2023 года), EdgeFocus и фрагменты профессиональных рекомендаций.'],
+    5: ['О чем можно поговорить и как это начинается | Тимофей Ивайкин', 'Проекты, интервью и партнерство: что прислать и что будет после вашего сообщения.'],
+    6: ['Бриф для письма или Telegram | Тимофей Ивайкин', 'Достаточно нескольких строк: компания и роль, что мешает, нужный результат, этап, срок, диапазон бюджета, кто принимает решение.'],
+    7: ['Что вы хотите создать? Связаться с Тимофеем Ивайкиным', 'Расскажите, что должно заработать, для кого и на каком этапе вы сейчас. Для партнерства, интервью или выступления укажите тему и участников.'],
+  },
+};
+
+const ANSWER = {
+  en: {
+    2: ['What does Timothy Ivaikin do?', 'He leads technical delivery: from understanding the business need and assembling the team to implementation and acceptance of an agreed result. With his team he builds customer portals, internal systems and automation at Edge Ecosystem, and the EdgeFocus workspace.'],
+    3: ['How does Timothy work with a business need?', 'In three steps: understand the situation (who will use the product, what needs to change), connect software, infrastructure and people into one delivery plan, and put the result into use by agreeing acceptance and delivering in bounded stages.'],
+    4: ['What can be checked?', 'Discover Culture, a platform to discover cultural events and book tickets: Saudi Arabia\u2019s Ministry of Culture announced its beta launch on 23 November 2023, with Timothy as technical lead. EdgeFocus is a working product for capturing a lead, developing a deal and managing project tasks.'],
+    6: ['What should the first message include?', 'A few lines: the business and your role, what is blocked and why it matters now, the result you need and who it is for. Anything not yet known can be left open.'],
+  },
+  ru: {
+    2: ['Чем занимается Тимофей Ивайкин?', 'Руководит технической реализацией: от разбора бизнес-задачи и подбора команды до внедрения и приемки согласованного результата. Вместе с командой создает клиентские порталы, внутренние системы и автоматизацию в Edge Ecosystem и рабочее пространство EdgeFocus.'],
+    3: ['Как Тимофей работает с бизнес-задачей?', 'В три шага: разобраться в ситуации (кто будет пользоваться продуктом, что должно измениться), соединить программное обеспечение, инфраструктуру и людей в один план реализации и довести до использования: согласовать приемку и поставлять этапами.'],
+    4: ['Что можно проверить?', 'Discover Culture, площадка для поиска культурных мероприятий и оформления билетов: министерство культуры Саудовской Аравии объявило о ее бета-запуске 23 ноября 2023 года, Тимофей был техническим руководителем. EdgeFocus: работающий продукт, в котором можно завести лид, вести сделку и управлять задачами проекта.'],
+    6: ['Что написать в первом сообщении?', 'Несколько строк: компания и ваша роль, что мешает и почему это важно сейчас, нужный результат и для кого он. Если что-то пока неизвестно, так и напишите.'],
+  },
+};
+
+const SHARE = {
+  en: { label: 'Share the checklist', text: 'A short brief for a first conversation about a digital project: business and role, what is blocked, the result needed, stage, date, budget range, who decides.' },
+  ru: { label: 'Переслать чек-лист коллеге', text: 'Короткий бриф к первому разговору о цифровом проекте: компания и роль, что мешает, нужный результат, этап, срок, бюджет, кто решает.' },
+};
+const PREFILL = {
+  en: 'Hello! My business and role: \nWhat is blocked: \nResult needed and for whom: \nStage and date: ',
+  ru: 'Здравствуйте! Моя компания и роль: \nЧто мешает: \nКакой результат нужен и для кого: \nЭтап и срок: ',
+};
+
+const plain = (h) => h.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
+const ldScript = (obj) => `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, '\\u003c')}</script>`;
+
+function jsonLd(lang, n, t, body, url, seoTitle, seoDesc) {
+  const person = {
+    '@type': 'Person', '@id': PERSON_ID, name: 'Timothy Ivaikin', alternateName: '\u0422\u0438\u043c\u043e\u0444\u0435\u0439 \u0418\u0432\u0430\u0439\u043a\u0438\u043d', url: ORIGIN + '/', image: ORIGIN + '/assets/front/portrait.webp',
+    jobTitle: lang === 'ru' ? '\u041e\u0441\u043d\u043e\u0432\u0430\u0442\u0435\u043b\u044c Edge Ecosystem' : 'Founder of Edge Ecosystem',
+    worksFor: { '@type': 'Organization', name: ORG_NAME, url: 'https://edgeivaikin.com/' },
+    sameAs: ['https://www.linkedin.com/in/timothyivaikin', 'https://www.youtube.com/@TimothyIvaikin', 'https://github.com/Ivajkin', 'https://ivaikin.medium.com/', 'https://t.me/timothyivaikin'],
+  };
+  const org = { '@type': 'Organization', '@id': 'https://edgeivaikin.com/#org', name: ORG_NAME, url: 'https://edgeivaikin.com/', founder: { '@id': PERSON_ID } };
+  const crumbs = {
+    '@type': 'BreadcrumbList', '@id': url + '#breadcrumb',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Timothy Ivaikin', item: ORIGIN + home(lang) },
+      { '@type': 'ListItem', position: 2, name: `${t.stepOf(n)}: ${t.stage[n - 1]}`, item: url },
+    ],
+  };
+  const page = { '@type': 'WebPage', '@id': url + '#webpage', url, name: seoTitle, description: seoDesc, inLanguage: lang, isPartOf: { '@id': ORIGIN + '/#profile' }, about: { '@id': PERSON_ID }, breadcrumb: { '@id': url + '#breadcrumb' } };
+  const graph = [person, org, page, crumbs];
+  if (n === 2) {
+    graph.push({
+      '@type': 'Service', '@id': url + '#service', name: lang === 'ru' ? '\u0422\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044f \u0446\u0438\u0444\u0440\u043e\u0432\u044b\u0445 \u043f\u0440\u043e\u0434\u0443\u043a\u0442\u043e\u0432 \u0438 \u0443\u0441\u043b\u0443\u0433' : 'Technical delivery of digital products and services',
+      provider: { '@id': PERSON_ID }, description: seoDesc,
+      serviceType: lang === 'ru' ? ['\u041a\u043b\u0438\u0435\u043d\u0442\u0441\u043a\u0438\u0435 \u043e\u043d\u043b\u0430\u0439\u043d-\u0441\u0435\u0440\u0432\u0438\u0441\u044b', '\u0412\u043d\u0443\u0442\u0440\u0435\u043d\u043d\u0438\u0435 \u0431\u0438\u0437\u043d\u0435\u0441-\u0441\u0438\u0441\u0442\u0435\u043c\u044b', '\u0418\u043d\u0442\u0435\u0433\u0440\u0430\u0446\u0438\u0438 \u0438 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0437\u0430\u0446\u0438\u044f'] : ['Customer-facing services', 'Internal business systems', 'Integration & automation'],
+    });
+  }
+  if (n === 5) {
+    const items = [...body.matchAll(/<summary>(.*?)<\/summary><p>(.*?)<\/p>/g)].map((m) => ({ '@type': 'Question', name: plain(m[1]), acceptedAnswer: { '@type': 'Answer', text: plain(m[2]) } }));
+    if (items.length) graph.push({ '@type': 'FAQPage', '@id': url + '#faq', url, inLanguage: lang, mainEntity: items });
+  }
+  return ldScript({ '@context': 'https://schema.org', '@graph': graph });
+}
+
+const AB_SCRIPT = `<script>(function(){var v="${AB_FORCE}";try{if(!v){v=localStorage.getItem("${AB_KEY}");if(v!=="a"&&v!=="b"){v=Math.random()<.5?"a":"b";localStorage.setItem("${AB_KEY}",v)}}}catch(e){}v=v==="b"?"b":"a";window.edgeFunnelAB=v;if(v==="b")document.documentElement.className+=" fab-b"})()</script>`;
 
 const GTAG = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-2Z5VJ13B20"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-2Z5VJ13B20', {page_location: window.location.origin + window.location.pathname, allow_google_signals: false, send_page_view: true});
+var loc = window.location.origin + window.location.pathname, q = [];
+try { new URLSearchParams(window.location.search).forEach(function (v, k) { if (/^utm_(source|medium|campaign|content|term)$/.test(k) && /^[A-Za-z0-9_.\-]{1,64}$/.test(v)) q.push(k + '=' + v); }); } catch (e) {}
+if (q.length) loc += '?' + q.join('&');
+gtag('config', 'G-2Z5VJ13B20', {page_location: loc, allow_google_signals: false, send_page_view: true});
 </script>`;
 
 function render(lang, n) {
@@ -138,30 +236,48 @@ function render(lang, n) {
     ? `<a class="button primary" href="${base(lang, n + 1)}">${esc(t.next(t.stage[n]))}</a><a class="button secondary" href="${base(lang, 7)}" data-ladder-contact>${esc(t.discuss)}</a>`
     : `<a class="button secondary" href="${home(lang)}">${esc(t.siteLink)}</a>`;
   const tg = n < 7 ? `<p class="funnel-meta">${esc(t.tgLine)} <a href="${TELEGRAM}">${esc(t.tgLink)}</a></p>` : '';
-  const title = `${c.title} | ${t.wordmark}`;
+  const [seoTitle, seoDesc] = SEO[lang][n];
+  const ans = ANSWER[lang][n];
+  const answerBlock = ans ? `\n  <section class="section answer-section"><div class="wrap"><div class="answer" data-answer><h2>${esc(ans[0])}</h2><p>${esc(ans[1])}</p></div></div></section>` : '';
+  const shareUrl = `${url}?utm_source=telegram&utm_medium=share&utm_campaign=ladder&utm_content=share_s${n}`;
+  const shareBlock = n === 6 ? `<p class="share"><a class="button secondary" href="https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&amp;text=${encodeURIComponent(SHARE[lang].text)}" target="_blank" rel="noopener">${esc(SHARE[lang].label)}</a></p>` : '';
+  const heroCta = n < 7 ? `<p class="hero-cta"><a class="button primary" href="${base(lang, 7)}" data-ladder-contact>${esc(t.discuss)}</a></p>` : '';
+  const stickyCta = n < 7
+    ? `<div class="sticky-cta" data-sticky-cta><a class="button primary" href="${base(lang, 7)}" data-ladder-contact>${esc(t.discuss)}</a></div>`
+    : `<div class="sticky-cta" data-sticky-cta><a class="button primary" href="${TELEGRAM}" data-prefill="${esc(PREFILL[lang])}">${esc(t.tgLink)}</a></div>`;
   return `<!doctype html>
 <html lang="${lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(title)}</title>
-<meta name="description" content="${esc(c.lead)}">
+<title>${esc(seoTitle)}</title>
+<meta name="description" content="${esc(seoDesc)}">
 <meta name="author" content="Timothy Ivaikin">
-<meta name="robots" content="noindex">
+<meta name="robots" content="${INDEXABLE ? 'index,follow' : 'noindex'}">
 <meta name="theme-color" content="#f5f7fa">
 <link rel="canonical" href="${url}">
 <link rel="alternate" hreflang="${other}" href="${ORIGIN + base(other, n)}">
 <link rel="alternate" hreflang="${lang}" href="${url}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${t.siteName}">
-<meta property="og:title" content="${esc(title)}">
-<meta property="og:description" content="${esc(c.lead)}">
+<meta property="og:title" content="${esc(seoTitle)}">
+<meta property="og:description" content="${esc(seoDesc)}">
 <meta property="og:url" content="${url}">
 <meta property="og:locale" content="${t.locale}">
+<meta property="og:image" content="${OG_IMAGE}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(lang === 'ru' ? 'Тимофей Ивайкин — предприниматель, основатель и автор' : 'Timothy Ivaikin — entrepreneur, founder and author')}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(seoTitle)}">
+<meta name="twitter:description" content="${esc(seoDesc)}">
+<meta name="twitter:image" content="${OG_IMAGE}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/home/fonts/manrope-bold.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="stylesheet" href="${ASSET.css}">
 <link rel="stylesheet" href="${ASSET.funnelCss}">
+${AB_SCRIPT}
+${jsonLd(lang, n, t, body, url, seoTitle, seoDesc)}
 ${GTAG}
 </head>
 <body class="home-page funnel" data-funnel-step="${n}">
@@ -176,13 +292,16 @@ ${GTAG}
     <p class="eyebrow">${esc(t.stepOf(n))} \u00b7 ${esc(t.stage[n - 1])}</p>
     <h1 id="funnel-title" class="funnel-title">${esc(c.title)}</h1>
     <p class="funnel-lead">${esc(c.lead)}</p>
-    ${n === 7 ? `<div id="contact">${body}</div>` : body}
-  </div></section>
+    ${heroCta}
+    ${n === 7 ? `<div id="contact" class="contact-stack">${body}</div>` : body}
+    ${shareBlock}
+  </div></section>${answerBlock}
   <section class="section funnel-next"><div class="wrap">
     <div class="hero-actions">${nextBlock}</div>
     ${tg}
   </div></section>
 </main>
+${stickyCta}
 <footer class="site-footer"><div class="wrap footer-inner"><div><a class="footer-brand" href="${home(lang)}">${esc(t.wordmark)}</a><p class="footer-note">${esc(t.footerNote)}</p></div><nav class="social-links" aria-label="${lang === 'ru' ? 'Публичные профили' : 'Public profiles'}"><a href="${lang === 'ru' ? '/ru/press/' : '/press/'}">${esc(t.press)}</a><a href="https://www.linkedin.com/in/timothyivaikin" rel="me">LinkedIn</a></nav></div></footer>
 <script src="${ASSET.js}" defer></script>
 </body>
