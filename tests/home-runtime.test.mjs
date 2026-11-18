@@ -5,9 +5,11 @@ import vm from 'node:vm';
 
 const source=()=>readFileSync(new URL('../assets/front/home.js',import.meta.url),'utf8');
 function run(href,script='https://ivaikin.com/assets/front/home.js',gtag,copyUI={},clipboard){
-  const redirects=[];const handlers={};const events=[];
-  const window={location:{href,replace:uri=>redirects.push(uri)},gtag};
-  const document={querySelector:selector=>copyUI[selector]??null,currentScript:{src:script},documentElement:{lang:'ru'},addEventListener:(name,callback)=>handlers[name]=callback,dispatchEvent:e=>events.push(e)};
+  const redirects=[];const handlers={};const events=[];const all={};
+  // Funnel events (ladder_*) are covered in home-ladder.test.mjs; these tests look at the contact events only.
+  const contactOnly=gtag&&((...args)=>{if(!String(args[1]).startsWith('ladder_'))gtag(...args)});
+  const window={location:{href,replace:uri=>redirects.push(uri)},gtag:contactOnly};
+  const document={querySelector:selector=>copyUI[selector]??null,currentScript:{src:script},documentElement:{lang:'ru'},addEventListener:(name,callback)=>{(all[name]??=[]).push(callback);handlers[name]=e=>all[name].forEach(fn=>fn(e))},dispatchEvent:e=>events.push(e)};
   vm.runInNewContext(source(),{window,document,navigator:{clipboard},URL,CustomEvent:class{constructor(type,args){this.type=type;Object.assign(this,args)}}});
   return {redirects,handlers,events};
 }
