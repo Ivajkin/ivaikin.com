@@ -1,0 +1,49 @@
+/* Hunt ladder funnel pages only (/ladder/, /ru/ladder/). Loaded after home.css. */
+.funnel .funnel-nav{display:flex;gap:4px;margin-right:auto;overflow-x:auto}
+.funnel .funnel-nav a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 10px;border-radius:999px;text-decoration:none;color:var(--muted);font-size:.8rem;font-weight:700;white-space:nowrap}
+.funnel .funnel-nav .n{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;border:1px solid var(--line);font-size:.72rem}
+.funnel .funnel-nav a[aria-current]{color:var(--ink);background:var(--white)}
+.funnel .funnel-nav a[aria-current] .n{background:var(--blue);border-color:var(--blue);color:#fff}
+.funnel .wordmark{margin-right:0}
+.funnel .funnel-title{font-size:clamp(2.2rem,4.6vw,4rem);line-height:1.05;letter-spacing:-.05em;max-width:20ch;margin-bottom:20px}
+.funnel .funnel-lead{font-size:1.1rem;color:var(--muted);max-width:58ch;margin-bottom:32px}
+.funnel .funnel-sub{font-size:clamp(1.5rem,2.4vw,2rem);margin-top:40px;margin-bottom:8px}
+.funnel .funnel-meta{font-size:.84rem;color:var(--muted);margin-top:10px}
+.funnel .funnel-meta a{color:var(--blue)}
+.funnel .funnel-intro{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:40px;align-items:center}
+.funnel .funnel-portrait figcaption{font-size:.8rem;color:var(--muted);margin-top:8px}
+.funnel .funnel-intro h2{font-size:1.8rem;margin-bottom:12px}
+.funnel .funnel-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.funnel .funnel-card{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.funnel .funnel-card h3{font-size:1.7rem}
+.funnel .funnel-card ul{margin:0;padding-left:1.1rem;color:var(--muted)}
+.funnel .funnel-card dl{margin:0}
+.funnel .funnel-card dt{font-weight:700;font-size:.85rem;margin-top:10px}
+.funnel .funnel-card dd{margin:2px 0 0;color:var(--muted);font-size:.92rem}
+.funnel .card-eyebrow{font-size:.8rem;font-weight:700;color:var(--muted);margin:0}
+.funnel .text-link{display:inline-flex;gap:8px;align-items:center;font-weight:700;font-size:.9rem;color:var(--blue);text-decoration:none;margin-right:18px}
+.funnel .text-link:hover{text-decoration:underline}
+.funnel .funnel-steps-list{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.funnel .funnel-steps-list li{counter-increment:s;border-top:1px solid var(--line);padding-top:20px;position:relative}
+.funnel .funnel-steps-list li::before{content:counter(s);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1px solid #bac9dc;color:var(--blue);font-weight:700;font-size:.8rem;margin-bottom:12px}
+.funnel .funnel-steps-list h3{font-size:1.15rem}
+.funnel .funnel-steps-list p{color:var(--muted);font-size:.92rem;margin-top:8px}
+.funnel .funnel-quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:20px 0}
+.funnel .funnel-quotes figure{border-left:3px solid var(--blue);padding-left:20px}
+.funnel .funnel-quotes blockquote{margin:0;font-size:1.02rem}
+.funnel .funnel-quotes figcaption{font-size:.84rem;color:var(--muted);margin-top:10px}
+.funnel .funnel-faq details{border-top:1px solid var(--line);padding:20px 0}
+.funnel .funnel-faq details:last-child{border-bottom:1px solid var(--line)}
+.funnel .funnel-faq summary{font-weight:700;cursor:pointer}
+.funnel .funnel-faq p{color:var(--muted);margin-top:12px}
+.funnel .funnel-brief{max-width:60ch;line-height:2;padding-left:1.4rem}
+.funnel .funnel-intents{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.funnel .email-link{font-weight:700}
+.funnel .funnel-next{padding-top:0}
+@media (max-width:760px){
+  .funnel .header-inner{flex-wrap:wrap;min-height:0;padding-top:12px}
+  .funnel .funnel-nav{order:3;flex:1 0 100%}
+  .funnel .funnel-intro,.funnel .funnel-cards,.funnel .funnel-steps-list,.funnel .funnel-quotes{grid-template-columns:1fr}
+  .funnel .funnel-next .button,.funnel .funnel-intents .button{width:100%}
+}
+.funnel .language-nav{margin-left:auto}
