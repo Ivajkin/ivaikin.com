@@ -35,6 +35,7 @@ The private preview is at `http://127.0.0.1:4187/ru/`. It binds only to loopback
 - `assets/home/`: profile-page CSS, language-query support, portrait and local fonts.
 - `assets/books/`: published covers and book-page styles.
 - `assets/recognition/`: recognition-page CSS and two unchanged source photographs.
+- `docs/analytics-events.md`: GA4 contact event names and what fires them.
 - `tests/home.test.mjs` and `tests/seo.test.mjs`: static content, metadata, identity, navigation, linked assets and preserved-page checks.
 - `tests/recognition.test.mjs`: bilingual article metadata, distinct evidence photographs, stable identity, internal discovery and reproducible builds.
 

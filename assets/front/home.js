@@ -41,11 +41,40 @@
     });
   }
 
+  // E1: GA4 events for contact actions (see docs/analytics-events.md). Guarded: nothing happens without gtag.
+  // Parameters are site-owned labels only, never URLs, mail subjects or visitor input.
+  const ctaEvent = href => {
+    let target;
+    try { target = new URL(href, window.location.href); } catch { return ''; }
+    const host = target.hostname.toLowerCase().replace(/^www\./, '');
+    const first = target.pathname.toLowerCase().split('/')[1] || '';
+    if (target.protocol === 'mailto:') return 'cta_email';
+    if (target.protocol !== 'http:' && target.protocol !== 'https:') return '';
+    if (host === 'calendar.app.google') return 'cta_calendar';
+    if (host === 'wa.me' || host === 'api.whatsapp.com' || host === 'whatsapp.com') return 'cta_whatsapp';
+    if (host === 'linkedin.com' || host.endsWith('.linkedin.com')) return 'cta_linkedin';
+    if (host === 't.me' || host === 'telegram.me') {
+      if (first === 'timothy_ivaikin_ru' || first === 'joinchat' || first.startsWith('+') || href.includes('t.me/+')) return 'cta_channel';
+      return first.endsWith('bot') ? 'cta_bot' : 'cta_telegram';
+    }
+    return /\.pdf$/.test(target.pathname.toLowerCase()) ? 'pdf_download' : '';
+  };
+  const sendCta = (name, element) => {
+    try {
+      if (typeof window.gtag !== 'function') return;
+      window.gtag('event', name, {
+        page_language: document.documentElement.lang,
+        section: element?.closest?.('section')?.id || 'other',
+      });
+    } catch {}
+  };
   // A click is an intent to contact, never proof of a submitted or qualified lead.
   document.addEventListener('click', event => {
     const link = event.target.closest?.('a[href]');
     if (!link) return;
     const href = link.getAttribute('href');
+    const ctaName = ctaEvent(href);
+    if (ctaName) sendCta(ctaName, link);
     const channel = href.startsWith('mailto:') ? 'email' : href.startsWith('https://t.me/timothyivaikin') ? 'telegram' : null;
     if (!channel) return;
     // Only explicit site-owned labels are collected; never derive intent from
@@ -61,4 +90,9 @@
       });
     }
   });
+
+  // The browser fires "submit" only after native validation passes.
+  document.addEventListener('submit', event => {
+    if (event.target?.tagName === 'FORM') sendCta('form_submit', event.target);
+  }, true);
 })();
