@@ -19,3 +19,8 @@ Parameters are site-owned labels only: never URLs, mail subjects or visitor inpu
 Mark the events as key events in GA4 (Admin, Events, "Mark as key event"): `cta_calendar`, `cta_telegram`, `cta_email`, `cta_whatsapp`, `cta_channel`, `cta_bot`, `form_submit`.
 
 Rollback: `git revert <commit>` of the single E1 commit; GitHub Pages updates in 1-5 minutes.
+
+## E3: channel note (`/` and `/ru/`)
+
+A small note in the contact block links to the Telegram channel. The link is the constant `telegramChannelUrl` in `content/home.mjs`; copy is `channelNote` and `channelLink` for `en` and `ru` (Spanish and Chinese pages have no note). A click fires `cta_channel`.
+To use an invite link for this site, change only `telegramChannelUrl` and run `npm run build`. Rollback: revert the E3 commit.

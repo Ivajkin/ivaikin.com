@@ -9,6 +9,8 @@ export const recommendations = [
   { name: 'Oleg Nozhichkin', date: '2024-12-10', quote: 'When shifting priorities and tight timelines might derail a project, Timothy is already anticipating scenarios, orchestrating globally distributed teams…' },
   { name: 'Mark Beseliya', date: '2024-12-08', quote: 'Under his leadership, we built a high-performing team entirely from scratch and delivered innovative solutions on tight deadlines.' },
 ];
+// E3: one constant for the Telegram channel link (swap for per-site invite links later).
+export const telegramChannelUrl = 'https://t.me/timothy_ivaikin_ru';
 export const recommendationSource = 'https://www.linkedin.com/in/timothyivaikin/details/recommendations/?detailScreenTabIndex=0';
 const additions = {
   en: {
@@ -25,6 +27,7 @@ const additions = {
     projectBrief: ['Business and your role', 'What is blocked, and why it matters now', 'The result you need, and who it is for', 'Current stage', 'Target date, if any', 'Budget range, if known', 'Who decides and accepts the result'],
     intents: ['A project', 'A partnership', 'An interview or event'],
     partnershipLink: 'Explore referral, delivery and technology partnerships with Edge',
+    channelNote: 'Notes on data, integrations and acceptance of IT projects:', channelLink: 'Telegram channel (in Russian)',
     intentSubjects: ['Project discussion', 'Partnership proposal', 'Interview or event invitation'],
     intentBodies: ['What needs to work:\nWho it is for:\nCurrent stage:\n', 'The opportunity:\nThe people involved:\nWhat we could do together:\n', 'Topic:\nAudience:\nFormat and proposed dates:\n'],
     socialAlt: 'Timothy Ivaikin — entrepreneur, founder and author',
@@ -43,6 +46,7 @@ const additions = {
     projectBrief: ['Компания и ваша роль', 'Что мешает и почему это важно сейчас', 'Нужный результат и для кого он', 'Текущий этап', 'Желаемый срок, если есть', 'Диапазон бюджета, если известен', 'Кто принимает решение и результат работы'],
     intents: ['Проект', 'Партнёрство', 'Интервью или выступление'],
     partnershipLink: 'Партнёрство с Edge: рекомендации, совместная поставка и технологии',
+    channelNote: 'Заметки о данных, интеграциях и приемке IT-проектов:', channelLink: 'Telegram-канал',
     intentSubjects: ['Обсуждение проекта', 'Предложение о партнёрстве', 'Приглашение на интервью или выступление'],
     intentBodies: ['Что должно заработать:\nДля кого:\nТекущий этап:\n', 'Возможность:\nУчастники:\nЧто можем сделать вместе:\n', 'Тема:\nАудитория:\nФормат и предполагаемые даты:\n'],
     socialAlt: 'Тимофей Ивайкин — предприниматель, основатель и автор',
