@@ -148,6 +148,8 @@ p{max-width:68ch}
 .contact-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:10%;align-items:center}
 .contact-copy>.eyebrow{margin-bottom:16px}
 .contact-copy>p:not(.eyebrow){font-size:.95rem;color:var(--muted);margin-top:24px}
+.contact-copy>p.channel-note{font-size:.85rem;margin-top:12px}
+.channel-note a{font-weight:700;text-decoration:underline}
 .contact-next{margin-top:24px;border-top:1px solid #c8d3e3;padding-top:20px}
 .contact-next h3{font-size:.95rem;line-height:1.5}
 .contact-next p{font-size:.88rem;line-height:1.8;color:var(--muted);margin-top:10px}

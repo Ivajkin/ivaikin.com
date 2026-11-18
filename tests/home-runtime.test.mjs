@@ -30,7 +30,7 @@ test('contact click records intent only, without reporting a submitted lead or p
   const calls=[];const result=run('https://ivaikin.com/ru/',undefined,(...args)=>calls.push(args));
   const link={getAttribute:()=> 'mailto:hello@edgeivaikin.com?body=private%20message',closest:()=>({id:'contact'})};
   result.handlers.click({target:{closest:()=>link}});
-  assert.deepEqual(JSON.parse(JSON.stringify(calls)),[['event','contact_click',{channel:'email',page_language:'ru',section:'contact',intent:'general'}]]);
+  assert.deepEqual(JSON.parse(JSON.stringify(calls)),[['event','cta_email',{page_language:'ru',section:'contact'}],['event','contact_click',{channel:'email',page_language:'ru',section:'contact',intent:'general'}]]);
   assert.equal(JSON.stringify(calls).includes('private'),false);
 });
 test('contact intents come only from explicit allowlisted markup; message data never becomes an event parameter',()=>{
@@ -40,7 +40,7 @@ test('contact intents come only from explicit allowlisted markup; message data n
     const link={getAttribute:name=>name==='href'?'mailto:hello@edgeivaikin.com?subject=private&body=secret':supplied,closest:()=>({id:'contact'})};
     result.handlers.click({target:{closest:()=>link}});
     const expected=['project','partnership','media'].includes(supplied)?supplied:'general';
-    assert.deepEqual(JSON.parse(JSON.stringify(calls)),[['event','contact_click',{channel:'email',page_language:'ru',section:'contact',intent:expected}]]);
+    assert.deepEqual(JSON.parse(JSON.stringify(calls)),[['event','cta_email',{page_language:'ru',section:'contact'}],['event','contact_click',{channel:'email',page_language:'ru',section:'contact',intent:expected}]]);
     assert.doesNotMatch(JSON.stringify(calls),/private|secret/);
   }
 });
@@ -49,7 +49,7 @@ test('generic Telegram contacts are recorded as general rather than an inferred 
   const result=run('https://ivaikin.com/ru/#contact',undefined,(...args)=>calls.push(args));
   const link={getAttribute:name=>name==='href'?'https://t.me/timothyivaikin':null,closest:()=>({id:'contact'})};
   result.handlers.click({target:{closest:()=>link}});
-  assert.deepEqual(JSON.parse(JSON.stringify(calls)),[['event','contact_click',{channel:'telegram',page_language:'ru',section:'contact',intent:'general'}]]);
+  assert.deepEqual(JSON.parse(JSON.stringify(calls)),[['event','cta_telegram',{page_language:'ru',section:'contact'}],['event','contact_click',{channel:'telegram',page_language:'ru',section:'contact',intent:'general'}]]);
 });
 test('contact navigation works when analytics is blocked or absent',()=>{
   const result=run('https://ivaikin.com/ru/');
@@ -87,4 +87,37 @@ test('denied or unavailable clipboard selects the visible brief without claiming
     assert.equal(ui.template.selected,true);
     assert.equal(ui.button.disabled,false);
   }
+});
+
+test('E1 events: each contact action maps to one cta event with site-owned parameters only',()=>{
+  const cases={
+    'https://calendar.app.google/4aFN841D87V6or7q9':'cta_calendar',
+    'https://t.me/timothyivaikin':'cta_telegram',
+    'https://t.me/EdgeExecuteBot':'cta_bot',
+    'https://t.me/timothy_ivaikin_ru':'cta_channel',
+    'https://t.me/+AbCdEf123':'cta_channel',
+    'mailto:hello@edgeivaikin.com?subject=private':'cta_email',
+    'https://wa.me/79956573730?text=private':'cta_whatsapp',
+    'https://www.linkedin.com/in/timothyivaikin/':'cta_linkedin',
+    '/files/example.pdf':'pdf_download',
+    'https://example.org/':null,
+    '#contact':null,
+  };
+  for(const [href,expected] of Object.entries(cases)){
+    const calls=[];const result=run('https://ivaikin.com/ru/',undefined,(...args)=>calls.push(args));
+    const link={getAttribute:()=>href,closest:()=>({id:'work'})};
+    result.handlers.click({target:{closest:()=>link}});
+    const ctas=JSON.parse(JSON.stringify(calls)).filter(c=>c[1].startsWith('cta_')||c[1]==='pdf_download');
+    if(expected===null){assert.deepEqual(ctas,[],href);continue}
+    assert.deepEqual(ctas,[['event',expected,{page_language:'ru',section:'work'}]],href);
+    assert.doesNotMatch(JSON.stringify(calls),/private|AbCdEf/);
+  }
+});
+test('E1 events: form submit is reported once, and tracking is harmless without gtag',()=>{
+  const calls=[];const result=run('https://ivaikin.com/ru/',undefined,(...args)=>calls.push(args));
+  result.handlers.submit({target:{tagName:'FORM',closest:()=>({id:'contact'})}});
+  assert.deepEqual(JSON.parse(JSON.stringify(calls)),[['event','form_submit',{page_language:'ru',section:'contact'}]]);
+  const bare=run('https://ivaikin.com/ru/');
+  assert.doesNotThrow(()=>bare.handlers.submit({target:{tagName:'FORM',closest:()=>null}}));
+  assert.doesNotThrow(()=>bare.handlers.click({target:{closest:()=>({getAttribute:()=>'https://calendar.app.google/x',closest:()=>null})}}));
 });
