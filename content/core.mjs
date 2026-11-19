@@ -68,7 +68,7 @@ export const coreLocales = {
     faqTitle: 'A few useful answers',
     faqs: [
       ['Who is Timothy Ivaikin?', 'Timothy Ivaikin (Тимофей Ивайкин) is an entrepreneur, founder of Edge Ecosystem, creator of EdgeFocus with his team, and author of Good Results and Shattering Limits.'],
-      ['What is your business education?', 'Timothy completed CORe (Credential of Readiness), a certificate program of Harvard Business School Online (formerly HBX), in the 2017 cohort: Business Analytics, Economics for Managers and Financial Accounting. In client work this means that a digital product is planned together with its budget, economics and measurable result.'],
+      ['What is your business education?', 'Timothy completed CORe (Credential of Readiness), a certificate program of Harvard Business School Online (formerly HBX), in the 2017 cohort: Business Analytics, Economics for Managers and Financial Accounting. He is also a member of the HBS Online Community, the network for HBS Online learners. In client work this means that a digital product is planned together with its budget, economics and measurable result.'],
       ['What can we work on together?', 'Digital products and services that need software, IT infrastructure and a coordinated team: customer portals, internal systems, integrations and automation. Start with the business situation and the result you need.'],
       ['Can I invite you to an interview or event?', 'Yes. Send the topic, audience, format and proposed dates. Relevant themes include building digital products, leadership, delegation and organizing work.'],
     ],
@@ -121,7 +121,7 @@ export const coreLocales = {
     faqTitle: 'Несколько важных ответов',
     faqs: [
       ['Кто такой Тимофей Ивайкин?', 'Тимофей Ивайкин (Timothy Ivaikin) — предприниматель, основатель Edge Ecosystem, создатель EdgeFocus вместе с командой и автор книг Good Results и Shattering Limits.'],
-      ['Какое у вас бизнес-образование?', 'Тимофей прошел CORe (Credential of Readiness), сертификационную программу Harvard Business School Online (ранее HBX), поток 2017 года: бизнес-аналитика, экономика для менеджеров и финансовый учет. В работе с клиентами это значит, что цифровой продукт планируется вместе с бюджетом, экономикой и измеримым результатом.'],
+      ['Какое у вас бизнес-образование?', 'Тимофей прошел CORe (Credential of Readiness), сертификационную программу Harvard Business School Online (ранее HBX), поток 2017 года: бизнес-аналитика, экономика для менеджеров и финансовый учет. Он также участник сообщества HBS Online Community, сети участников программ HBS Online. В работе с клиентами это значит, что цифровой продукт планируется вместе с бюджетом, экономикой и измеримым результатом.'],
       ['С чем можно обратиться?', 'С запуском цифровых продуктов и услуг, которым нужны программное обеспечение, IT-инфраструктура и согласованная работа команды: клиентских порталов, внутренних систем, интеграций и автоматизации. Начните с описания ситуации и нужного результата.'],
       ['Можно пригласить на интервью или выступление?', 'Да. Пришлите тему, аудиторию, формат и предполагаемые даты. Темы для разговора: создание цифровых продуктов, лидерство, делегирование и организация работы.'],
     ],
