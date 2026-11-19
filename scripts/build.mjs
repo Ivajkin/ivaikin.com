@@ -32,6 +32,7 @@ function render(lang, c) {
       url: identity.url + '/', image: identity.url + '/assets/home/timothy-ivaikin.jpg',
       description: c.identity,
       sameAs: [...identity.profiles.map(([,url]) => url), identity.telegram],
+      hasCredential: identity.credentials,
     },
   };
   const langNav = links.map(([code,label]) => `<a href="${paths[code]}" lang="${code}" hreflang="${code}" aria-label="${esc(locales[code].nativeName)}"${lang === code ? ' aria-current="page"' : ''}>${label}</a>`).join('');

@@ -42,6 +42,7 @@ export const extraLocales = {
     faqTitle: 'Algunas respuestas útiles',
     faqs: [
       ['¿Quién es Timothy Ivaikin?', 'Timothy Ivaikin (Тимофей Ивайкин) es emprendedor, fundador de Edge Ecosystem, creador de EdgeFocus junto con su equipo y autor de Good Results y Shattering Limits.'],
+      ['¿Qué formación empresarial tienes?', 'Timothy completó CORe (Credential of Readiness), un programa de certificado de Harvard Business School Online (antes HBX), en la promoción de 2017: Business Analytics, Economics for Managers y Financial Accounting. En el trabajo con clientes, esto significa que un producto digital se planifica junto con su presupuesto, su economía y un resultado medible.'],
       ['¿En qué podemos trabajar juntos?', 'En productos y servicios digitales que requieren software, infraestructura de TI y un equipo coordinado: portales para clientes, sistemas internos, integraciones y automatizaciones. Empieza por la situación del negocio y el resultado que necesitas.'],
       ['¿Puedo invitarte a una entrevista o a un evento?', 'Sí. Envíame el tema, el público, el formato y las fechas propuestas. Algunos temas relevantes son la creación de productos digitales, el liderazgo, la delegación y la organización del trabajo.'],
     ],
@@ -94,6 +95,7 @@ export const extraLocales = {
     faqTitle: '几个常见问题',
     faqs: [
       ['Timothy Ivaikin 是谁？', 'Timothy Ivaikin（Тимофей Ивайкин）是企业家、Edge Ecosystem 创始人，与团队共同打造 EdgeFocus，也是《Good Results》和《Shattering Limits》的作者。'],
+      ['你有怎样的商业教育背景？', 'Timothy 于 2017 年期完成了哈佛商学院在线（Harvard Business School Online，前身为 HBX）的证书项目 CORe（Credential of Readiness），课程包括商业分析、管理者经济学和财务会计。在客户项目中，这意味着数字产品会与预算、经济性和可衡量的结果一起规划。'],
       ['我们可以在哪些方面合作？', '需要软件、IT 基础设施与团队协作的数字产品和服务，包括客户门户、内部系统、系统集成与自动化。请先介绍你的业务现状和需要达成的结果。'],
       ['可以邀请你参加访谈或活动吗？', '可以。请提供主题、受众、形式和拟定日期。相关话题包括数字产品开发、领导力、授权委派和工作组织。'],
     ],

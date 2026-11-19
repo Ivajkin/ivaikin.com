@@ -35,6 +35,7 @@ function render(lang, base) {
       url: identity.url + '/', image: identity.url + '/assets/front/portrait.webp',
       description: c.identity,
       sameAs: [...identity.profiles.map(([,url]) => url), identity.telegram],
+      hasCredential: identity.credentials,
     },
   };
   return `<!doctype html>

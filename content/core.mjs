@@ -10,6 +10,18 @@ export const identity = {
     ['GitHub', 'https://github.com/Ivajkin'],
     ['Medium', 'https://ivaikin.medium.com/'],
   ],
+  // Source: credential PDF from HBX Support, 17.09.2018 (HBX ID 201700016183, July 2017 cohort, grade Pass).
+  // No public verification URL yet; add `url` once a verifiable digital copy (CeDiD) is obtained.
+  credentials: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'CORe (Credential of Readiness)',
+      description: 'Harvard Business School Online (formerly HBX) program: Business Analytics, Economics for Managers, Financial Accounting. Grade: Pass.',
+      credentialCategory: 'certificate',
+      dateCreated: '2018-09-17',
+      recognizedBy: { '@type': 'EducationalOrganization', name: 'Harvard Business School Online', url: 'https://online.hbs.edu/' },
+    },
+  ],
 };
 
 export const coreLocales = {
@@ -56,6 +68,7 @@ export const coreLocales = {
     faqTitle: 'A few useful answers',
     faqs: [
       ['Who is Timothy Ivaikin?', 'Timothy Ivaikin (Тимофей Ивайкин) is an entrepreneur, founder of Edge Ecosystem, creator of EdgeFocus with his team, and author of Good Results and Shattering Limits.'],
+      ['What is your business education?', 'Timothy completed CORe (Credential of Readiness), a certificate program of Harvard Business School Online (formerly HBX), in the 2017 cohort: Business Analytics, Economics for Managers and Financial Accounting. In client work this means that a digital product is planned together with its budget, economics and measurable result.'],
       ['What can we work on together?', 'Digital products and services that need software, IT infrastructure and a coordinated team: customer portals, internal systems, integrations and automation. Start with the business situation and the result you need.'],
       ['Can I invite you to an interview or event?', 'Yes. Send the topic, audience, format and proposed dates. Relevant themes include building digital products, leadership, delegation and organizing work.'],
     ],
@@ -108,6 +121,7 @@ export const coreLocales = {
     faqTitle: 'Несколько важных ответов',
     faqs: [
       ['Кто такой Тимофей Ивайкин?', 'Тимофей Ивайкин (Timothy Ivaikin) — предприниматель, основатель Edge Ecosystem, создатель EdgeFocus вместе с командой и автор книг Good Results и Shattering Limits.'],
+      ['Какое у вас бизнес-образование?', 'Тимофей прошел CORe (Credential of Readiness), сертификационную программу Harvard Business School Online (ранее HBX), поток 2017 года: бизнес-аналитика, экономика для менеджеров и финансовый учет. В работе с клиентами это значит, что цифровой продукт планируется вместе с бюджетом, экономикой и измеримым результатом.'],
       ['С чем можно обратиться?', 'С запуском цифровых продуктов и услуг, которым нужны программное обеспечение, IT-инфраструктура и согласованная работа команды: клиентских порталов, внутренних систем, интеграций и автоматизации. Начните с описания ситуации и нужного результата.'],
       ['Можно пригласить на интервью или выступление?', 'Да. Пришлите тему, аудиторию, формат и предполагаемые даты. Темы для разговора: создание цифровых продуктов, лидерство, делегирование и организация работы.'],
     ],
