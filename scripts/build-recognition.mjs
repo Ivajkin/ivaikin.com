@@ -33,7 +33,7 @@ function render(lang, c) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(c.title)}</title>
 <meta name="description" content="${esc(c.description)}">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#f5f7fa">
 <link rel="canonical" href="${canonical}">
 ${Object.entries(paths).map(([code,path]) => `<link rel="alternate" hreflang="${code}" href="${identity.url}${path}">`).join('\n')}
@@ -93,5 +93,6 @@ const owned = new Set(Object.values(paths).map(path => identity.url + path));
 sitemap = sitemap.replace(/[ \t]*<url\b[^>]*>[\s\S]*?<\/url>\r?\n?/g, block => owned.has(block.match(/<loc>\s*([^<]+)\s*<\/loc>/)?.[1].trim()) ? '' : block);
 const alternates = Object.entries(paths).map(([lang,path]) => `<xhtml:link rel="alternate" hreflang="${lang}" href="${identity.url}${path}"/>`).join('\n    ');
 const entries = Object.values(paths).map(path => `  <url><loc>${identity.url}${path}</loc>\n    ${alternates}\n    <xhtml:link rel="alternate" hreflang="x-default" href="${identity.url}${paths.en}"/>\n  </url>`);
-await writeFile(sitemapPath, sitemap.replace('</urlset>', entries.join('\n') + '\n</urlset>'));
+void entries; // recognition pages stay reachable by direct link but are not listed for search (self-DD v2, 19.11.2026)
+await writeFile(sitemapPath, sitemap);
 console.log('Built English and Russian recognition pages; existing sitemap entries preserved.');

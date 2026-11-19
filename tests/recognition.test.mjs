@@ -72,7 +72,7 @@ for (const [lang, route] of Object.entries(routes)) {
     }
     for (const profile of lang === 'en' ? ['/', '/about/'] : ['/ru/', '/ru/about/']) {
       const ideas = read(profile + 'index.html').match(/<section id="ideas"[\s\S]*?<\/section>/)[0];
-      assert.ok(tags(ideas, 'a').some(a => a.href === route), 'Recognition must be discoverable from the ideas area');
+      assert.ok(!tags(ideas, 'a').some(a => a.href === route), 'Recognition is reachable by direct link only, not from the homepage (self-DD v2)');
     }
   });
 }
@@ -87,14 +87,11 @@ test('full build keeps recognition URLs unique, reciprocal and reproducible whil
       const sitemap = readFileSync(resolve(target, 'sitemap.xml'), 'utf8');
       const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
       assert.equal(new Set(locations).size, locations.length);
-      assert.equal(locations.length, 28);
+      assert.equal(locations.length, 26);
       for (const route of ['/ru/blog/', '/ru/blog/ai-enterprise-projects/']) assert.ok(locations.includes(ORIGIN + route));
       for (const route of Object.values(routes)) {
-        assert.ok(locations.includes(ORIGIN + route));
-        const block = [...sitemap.matchAll(/<url\b[^>]*>([\s\S]*?)<\/url>/g)].find(m => m[1].includes(`<loc>${ORIGIN}${route}</loc>`))[1];
-        assert.deepEqual(Object.fromEntries(tags(block, 'xhtml:link').map(l => [l.hreflang, l.href])), {
-          en: ORIGIN + routes.en, ru: ORIGIN + routes.ru, 'x-default': ORIGIN + routes.en,
-        });
+        assert.ok(!locations.includes(ORIGIN + route), 'Recognition pages are not listed for search');
+        assert.match(readFileSync(resolve(target, '.' + route, 'index.html'), 'utf8'), /<meta name="robots" content="noindex, follow">/);
       }
       const output = [sitemap, ...Object.values(routes).map(p => readFileSync(resolve(target, '.' + p, 'index.html'), 'utf8'))];
       if (previous) assert.deepEqual(output, previous, 'Repeated builds must be byte-identical');

@@ -9,7 +9,7 @@ const copy={
   en:{
     casesTitle:'A few examples.',casesIntro:'Client delivery, work in other teams and an owned product. Each case keeps its own contribution and context.',caseLabels:['Situation','My contribution','Result'],caseDetails:'Case & contribution',caseProof:['Launch announcement','Course catalog','Open the product'],
     cases:[
-      {id:'discover-culture',role:'Technical lead · partner delivery',situation:'One place to discover cultural events and book tickets.',contribution:'Technical leadership through my Dubai company, Enlightened Ventures LLC-FZ, as part of a partner delivery.',result:'Saudi Arabia’s Ministry of Culture announced the platform’s beta launch on 23 November 2023.'},
+      {id:'discover-culture',role:'Technical lead · partner delivery',situation:'One place to discover cultural events and book tickets.',contribution:'Technical leadership through my company, Enlightened Ventures LLC-FZ, as part of a partner delivery.',result:'Saudi Arabia’s Ministry of Culture announced the platform’s beta launch on 23 November 2023.'},
       {id:'infijoy',role:'CTO · Infijoy team',situation:'Deliver lessons and usage analytics across web and mobile.',contribution:'Led the platform’s development, including content delivery, analytics and release automation.',result:'The team demonstrated the product in July 2022. The current course catalog can be explored separately.'},
       {id:'edgefocus',role:'Product founder · with the Edge team',situation:'Keep customer relationships and project delivery connected.',contribution:'With the team, brought leads, deals and project tasks into one workspace.',result:'A working product for capturing a lead, developing a deal and managing the project’s tasks.'},
     ],
@@ -21,7 +21,7 @@ const copy={
   ru:{
     casesTitle:'Несколько примеров.',casesIntro:'Клиентские проекты, работа в других командах и собственный продукт. У каждого примера — свой вклад и контекст.',caseLabels:['Задача','Мой вклад','Результат'],caseDetails:'Кейс и вклад',caseProof:['Объявление о запуске','Каталог курсов','Открыть продукт'],
     cases:[
-      {id:'discover-culture',role:'Технический руководитель · партнёрская поставка',situation:'Единая площадка для поиска культурных мероприятий и оформления билетов.',contribution:'Техническое руководство через мою компанию в Дубае Enlightened Ventures LLC-FZ в рамках партнёрской поставки.',result:'Министерство культуры Саудовской Аравии объявило о бета-запуске платформы 23 ноября 2023 года.'},
+      {id:'discover-culture',role:'Технический руководитель · партнёрская поставка',situation:'Единая площадка для поиска культурных мероприятий и оформления билетов.',contribution:'Техническое руководство через мою компанию Enlightened Ventures LLC-FZ в рамках партнерской поставки.',result:'Министерство культуры Саудовской Аравии объявило о бета-запуске платформы 23 ноября 2023 года.'},
       {id:'infijoy',role:'Технический директор · команда Infijoy',situation:'Доставка уроков и аналитика их использования в вебе и мобильных приложениях.',contribution:'Руководил разработкой платформы: доставкой контента, аналитикой и автоматизацией релизов.',result:'Команда показала продукт на демо в июле 2022 года. Актуальный каталог курсов доступен по отдельной ссылке.'},
       {id:'edgefocus',role:'Основатель продукта · вместе с командой Edge',situation:'Связать работу с клиентами и исполнение проектов.',contribution:'Вместе с командой объединили лиды, сделки и задачи проектов в одном пространстве.',result:'Работающий продукт, в котором можно завести лид, вести сделку и управлять задачами по проекту.'},
     ],
@@ -45,7 +45,7 @@ const copy={
   zh:{
     casesTitle:'几个实际案例。',casesIntro:'客户项目、在其他团队的工作与自主产品。每个案例分别说明个人贡献和项目背景。',caseLabels:['需求','我的贡献','结果'],caseDetails:'案例与贡献',caseProof:['上线公告','课程目录','打开产品'],
     cases:[
-      {id:'discover-culture',role:'技术负责人 · 合作交付',situation:'提供统一的文化活动发现与购票平台。',contribution:'通过我在迪拜的公司 Enlightened Ventures LLC-FZ，参与合作交付并承担技术领导工作。',result:'沙特阿拉伯文化部于 2023 年 11 月 23 日宣布该平台启动公测。'},
+      {id:'discover-culture',role:'技术负责人 · 合作交付',situation:'提供统一的文化活动发现与购票平台。',contribution:'通过我的公司 Enlightened Ventures LLC-FZ，参与合作交付并承担技术领导工作。',result:'沙特阿拉伯文化部于 2023 年 11 月 23 日宣布该平台启动公测。'},
       {id:'infijoy',role:'技术总监 · Infijoy 团队',situation:'在网页和移动应用中提供课程内容及使用分析。',contribution:'领导平台开发，包括内容分发、使用分析和发布自动化。',result:'团队于 2022 年 7 月演示了产品。当前课程目录可通过单独的链接查看。'},
       {id:'edgefocus',role:'产品创始人 · 与 Edge 团队共同打造',situation:'连接客户关系管理与项目执行。',contribution:'与团队一起，将潜在客户、交易机会和项目任务整合到同一工作空间。',result:'一个可以记录潜在客户、推进交易机会并管理项目任务的实际产品。'},
     ],

@@ -12,7 +12,7 @@
     "en": {
       "name": "English",
       "title": "Press & media",
-      "intro": "Verified background, releases and editorial contacts for Timothy Ivaikin.",
+      "intro": "Background, releases and editorial contacts for Timothy Ivaikin.",
       "contact": "For interviews, comments and source requests",
       "request": "Please include your outlet, topic, format, deadline and publication language.",
       "email": "Contact for media",
@@ -34,7 +34,7 @@
       "archiveNote": "Releases on this site are issued by Timothy Ivaikin. External publications retain their own attribution.",
       "news": [
         "Corporate Culture intensive in Moscow",
-        "Recognition from the Nasledie Mira publishing house"
+        "Letter of appreciation from the Nasledie Mira publishing house"
       ],
       "newsDeck": [
         "Participation on 13 November 2026; the organisers introduced Ivaikin as a panel speaker.",
@@ -60,7 +60,7 @@
     "ru": {
       "name": "Русский",
       "title": "Для СМИ",
-      "intro": "Проверенная справка о Тимофее Ивайкине, релизы и контакт для редакций.",
+      "intro": "Справка о Тимофее Ивайкине, релизы и контакт для редакций.",
       "contact": "Интервью, комментарии и запросы источников",
       "request": "Укажите издание, тему, формат, срок подготовки и язык публикации.",
       "email": "Связаться по вопросам СМИ",
@@ -82,7 +82,7 @@
       "archiveNote": "Релизы на этом сайте публикуются от имени Тимофея Ивайкина. Внешние публикации сохраняют собственную атрибуцию.",
       "news": [
         "Участие в интенсиве о корпоративной культуре в Москве",
-        "Признание от издательского дома «Наследие мира»"
+        "Благодарственное письмо издательского дома «Наследие мира»"
       ],
       "newsDeck": [
         "Событие 13 ноября 2026 года; организаторы представили Ивайкина как спикера панели.",
@@ -108,7 +108,7 @@
     "es": {
       "name": "Español",
       "title": "Prensa y medios",
-      "intro": "Información verificada, comunicados y contacto editorial de Timothy Ivaikin.",
+      "intro": "Información, comunicados y contacto editorial de Timothy Ivaikin.",
       "contact": "Entrevistas, comentarios y fuentes",
       "request": "Indique el medio, el tema, el formato, el plazo y el idioma de publicación.",
       "email": "Contacto para medios",
@@ -130,7 +130,7 @@
       "archiveNote": "Los comunicados de este sitio se publican en nombre de Timothy Ivaikin. Las publicaciones externas conservan su atribución. Los materiales completos están disponibles en inglés y ruso.",
       "news": [
         "Participación en un encuentro sobre cultura corporativa · inglés",
-        "Reconocimiento de Nasledie Mira · inglés"
+        "Carta de agradecimiento de la editorial Nasledie Mira · inglés"
       ],
       "newsDeck": [
         "Encuentro del 13 de noviembre de 2026.",
@@ -152,7 +152,7 @@
     "zh": {
       "name": "中文",
       "title": "媒体资料",
-      "intro": "Timothy Ivaikin 的已核实简介、新闻稿及媒体联系信息。",
+      "intro": "Timothy Ivaikin 的简介、新闻稿及媒体联系信息。",
       "contact": "采访、评论与资料查询",
       "request": "请注明媒体名称、主题、形式、截止时间和发布语言。",
       "email": "媒体联系",
@@ -174,7 +174,7 @@
       "archiveNote": "本网站新闻稿由 Timothy Ivaikin 发布；外部报道保留各自的署名与归属。完整材料提供英文和俄文版本。",
       "news": [
         "参加莫斯科企业文化活动 · 英文",
-        "获 Nasledie Mira 出版机构表彰 · 英文"
+        "Nasledie Mira 出版机构感谢信 · 英文"
       ],
       "newsDeck": [
         "活动日期为 2026 年 11 月 13 日。",
