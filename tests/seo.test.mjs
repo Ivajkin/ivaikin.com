@@ -214,7 +214,9 @@ const PRESERVED = [
 
 test('legacy assets and interview content are preserved while the isolated analytics integration can change', () => {
   for (const path of PRESERVED) assert.equal(read(path), upstream(path), `Existing public artifact changed: ${path}`);
-  const withoutInterviewAnalytics = html => html.replace(/<script src="\.\.\/\.\.\/\.\.\/assets\/interviews\/tai-chi-business\/interview-analytics\.js" defer><\/script>\n/g, '');
+  const withoutInterviewAnalytics = html => html.replace(/<script src="\.\.\/\.\.\/\.\.\/assets\/interviews\/tai-chi-business\/interview-analytics\.js" defer><\/script>\n/g, '')
+    // The participants credit (Shifu and the Academy, 19.11.2026) is the only other approved addition.
+    .replace(/<div class="caption-note"><strong>(?:Участники|Participants):<\/strong>.*?<\/div>\n/g, '');
   for (const { path } of INTERVIEWS) {
     const file = path.slice(1) + 'index.html';
     assert.equal(withoutInterviewAnalytics(read(file)), withoutInterviewAnalytics(upstream(file)),
@@ -222,6 +224,15 @@ test('legacy assets and interview content are preserved while the isolated analy
   }
   assert.ok(!tags(page('/'), 'script').some(script => script.src === '/assets/home/home.js'),
     'The child-page redirect script must not replace legacy homepage behavior');
+});
+
+test('interview pages name the Academy founder and link to the Academy site', () => {
+  for (const { path } of INTERVIEWS) {
+    const html = read(path.slice(1) + 'index.html');
+    assert.match(html, /<div class="caption-note"><strong>(?:Участники|Participants):<\/strong>/);
+    assert.match(html, /Vladimir Sidorov|Владимир Сидоров/);
+    assert.ok(html.includes('<a href="https://taijipro.com" rel="noopener">'), `Academy link missing: ${path}`);
+  }
 });
 
 test('sitemap keeps child profiles and independent interview entries alongside new homepages', () => {
