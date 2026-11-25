@@ -86,8 +86,8 @@ test('homepage build is repeatable and retains the profile and interview pages',
       for (const path of preserved) assert.equal(readFileSync(resolve(target, path), 'utf8'), read(path));
       const locations = [...readFileSync(resolve(target, 'sitemap.xml'), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map(x => x[1]);
       assert.equal(new Set(locations).size, locations.length, 'Repeat builds duplicate canonical URLs');
-      assert.equal(locations.length, 26);
-      for (const route of ['/ru/blog/', '/ru/blog/ai-enterprise-projects/']) assert.ok(locations.includes(ORIGIN + route));
+      assert.equal(locations.length, 29);
+      for (const route of ['/ru/blog/', '/ru/blog/ai-enterprise-projects/', '/ru/blog/antikrizis-produkt-2026/']) assert.ok(locations.includes(ORIGIN + route));
       for (const [, path] of ROUTES) assert.ok(locations.includes(ORIGIN + path));
     }
   } finally { rmSync(target, { recursive: true, force: true }); }
