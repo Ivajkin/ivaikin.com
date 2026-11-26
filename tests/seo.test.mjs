@@ -243,6 +243,7 @@ test('sitemap keeps child profiles and independent interview entries alongside n
   const press = ['/press/', '/ru/press/', '/es/press/', '/zh/press/', '/press/corporate-culture-2026-11-13/', '/ru/press/corporate-culture-2026-11-13/'];
   const books = ['', 'ru/', 'es/', 'zh/'].flatMap(prefix => ['good-results', 'shattering-limits'].map(slug => `/${prefix}books/${slug}/`));
   const owned = new Set([...LANDINGS.map(route => ORIGIN + route.path), ...homes.map(path => ORIGIN + path), ...books.map(path => ORIGIN + path), ...press.map(path => ORIGIN + path), ...['/ru/blog/', '/ru/blog/ai-enterprise-projects/'].map(path => ORIGIN + path)]);
+  for (const p of ['/ladder/1/', '/ladder/4/', '/ru/ladder/1/', '/ru/ladder/4/']) owned.add(ORIGIN + p);
   const oldEntries = blocks(upstream('sitemap.xml'), 'url')
     .filter(entry => !owned.has(decode(blocks(entry.content, 'loc')[0]?.content.trim())))
     .filter(entry => !recognition.some(path => decode(blocks(entry.content, 'loc')[0]?.content.trim()) === ORIGIN + path));

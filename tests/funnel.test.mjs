@@ -59,7 +59,7 @@ test('funnel pages: 7 steps in EN and RU, noindex, canonical, GA4 loaded before 
     const path = pagePath(lang, n);
     assert.ok(existsSync(new URL('../' + path, import.meta.url)), path);
     const html = read(path);
-    assert.match(html, /<meta name="robots" content="noindex">/, path);
+    assert.match(html, [1, 4].includes(n) ? /<meta name="robots" content="index,follow">/ : /<meta name="robots" content="noindex">/, path);
     assert.ok(html.includes(`<link rel="canonical" href="https://ivaikin.com${hrefOf(lang, n)}">`), path);
     assert.ok(html.includes(`data-funnel-step="${n}"`) && html.includes('data-ladder-stage'), path);
     const g = html.indexOf("gtag('config', 'G-2Z5VJ13B20'");
@@ -85,7 +85,7 @@ test('funnel script reference carries the current content hash', () => {
 });
 
 test('funnel pages are not in the sitemap or robots.txt and are not linked from the existing homepages', () => {
-  assert.ok(!read('sitemap.xml').includes('/ladder/'));
+  { const sm = read('sitemap.xml'); for (const n of STEPS) for (const u of [`/ladder/${n}/`, `/ru/ladder/${n}/`]) assert.equal(sm.includes('<loc>https://ivaikin.com' + u + '</loc>'), [1, 4].includes(n), u); }
   assert.ok(!read('robots.txt').includes('ladder'));
   for (const f of ['index.html', 'ru/index.html', 'es/index.html', 'zh/index.html']) assert.ok(!read(f).includes('/ladder/'), f);
 });

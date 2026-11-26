@@ -89,7 +89,7 @@ test('complete builds retain every owned book URL exactly once in the sitemap',(
       execFileSync(process.execPath,['scripts/build-home.mjs'],{cwd:target});
       execFileSync(process.execPath,['scripts/build-recognition.mjs'],{cwd:target});
       execFileSync(process.execPath,['scripts/build-books.mjs'],{cwd:target});
-      const urls=[...readFileSync(resolve(target,'sitemap.xml'),'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>x[1]);
+      const urls=[...readFileSync(resolve(target,'sitemap.xml'),'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>x[1]).filter(u=>!u.includes("/ladder/"));
       assert.equal(urls.length,new Set(urls).size);
       for(const lang of languages)for(const slug of books)assert.ok(urls.includes(`https://ivaikin.com/${prefix(lang)}books/${slug}/`));
     }

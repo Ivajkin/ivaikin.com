@@ -84,7 +84,7 @@ test('homepage build is repeatable and retains the profile and interview pages',
     for (let run = 0; run < 2; run++) {
       execFileSync(process.execPath, ['scripts/build-home.mjs'], { cwd: target });
       for (const path of preserved) assert.equal(readFileSync(resolve(target, path), 'utf8'), read(path));
-      const locations = [...readFileSync(resolve(target, 'sitemap.xml'), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map(x => x[1]);
+      const locations = [...readFileSync(resolve(target, 'sitemap.xml'), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map(x => x[1]).filter(u => !u.includes("/ladder/"));
       assert.equal(new Set(locations).size, locations.length, 'Repeat builds duplicate canonical URLs');
       assert.equal(locations.length, 26);
       for (const route of ['/ru/blog/', '/ru/blog/ai-enterprise-projects/']) assert.ok(locations.includes(ORIGIN + route));
