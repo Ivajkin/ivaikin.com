@@ -33,14 +33,17 @@
       "company": "Edge Ecosystem press room",
       "archiveNote": "Releases on this site are issued by Timothy Ivaikin. External publications retain their own attribution.",
       "news": [
+        "Roirate Anti-Crisis 2026 conference in Skolkovo",
         "Corporate Culture intensive in Moscow",
         "Letter of appreciation from the Nasledie Mira publishing house"
       ],
       "newsDeck": [
+        "Attended on 13 November 2026 and took part in the hands-on systems simulation.",
         "Participation on 13 November 2026; the organisers introduced Ivaikin as a panel speaker.",
         "Original diploma and letter of appreciation, with dated context."
       ],
       "newsDate": [
+        "Event: 13 Nov 2026 · Published: 27 Nov 2026",
         "Event: 13 Nov 2026 · Release: 14 Nov 2026",
         "Documents: 7 Oct 2026 · Published: 13 Nov 2026"
       ],
@@ -51,8 +54,6 @@
       "updated": "Updated 14 November 2026",
       "brand": "Official brand materials",
       "releaseLabel": "Press release · issued by Timothy Ivaikin",
-      "eventLabel": "Event date: 13 November 2026",
-      "publishedLabel": "Published 14 November 2026",
       "back": "Back to press room",
       "portraitCaption": "Portrait from the previously published archive. Not a photograph from the intensive.",
       "portraitDownload": "Download portrait · WebP"
@@ -81,14 +82,17 @@
       "company": "Пресс-раздел Edge Ecosystem",
       "archiveNote": "Релизы на этом сайте публикуются от имени Тимофея Ивайкина. Внешние публикации сохраняют собственную атрибуцию.",
       "news": [
+        "Конференция Roirate «Антикризис 2026» в Сколково",
         "Участие в интенсиве о корпоративной культуре в Москве",
         "Благодарственное письмо издательского дома «Наследие мира»"
       ],
       "newsDeck": [
+        "Участие 13 ноября 2026 года в конференции о решениях при неопределенности и в практической части - симуляции работы системы.",
         "Событие 13 ноября 2026 года; организаторы представили Ивайкина как спикера панели.",
         "Оригиналы диплома и благодарности с датированным контекстом."
       ],
       "newsDate": [
+        "Событие: 13.11.2026 · Публикация: 27.11.2026",
         "Событие: 13.11.2026 · Релиз: 14.11.2026",
         "Документы: 07.10.2026 · Публикация: 13.11.2026"
       ],
@@ -99,8 +103,6 @@
       "updated": "Обновлено 14 ноября 2026",
       "brand": "Официальные материалы бренда",
       "releaseLabel": "Пресс-релиз от имени Тимофея Ивайкина",
-      "eventLabel": "Дата события: 13 ноября 2026",
-      "publishedLabel": "Опубликовано 14 ноября 2026",
       "back": "Вернуться в раздел для СМИ",
       "portraitCaption": "Портрет из ранее опубликованного архива. Не фотография с интенсива.",
       "portraitDownload": "Скачать портрет · WebP"
@@ -129,14 +131,17 @@
       "company": "Prensa de Edge Ecosystem · inglés",
       "archiveNote": "Los comunicados de este sitio se publican en nombre de Timothy Ivaikin. Las publicaciones externas conservan su atribución. Los materiales completos están disponibles en inglés y ruso.",
       "news": [
+        "Conferencia Anti-Crisis 2026 de Roirate en Skolkovo · inglés",
         "Participación en un encuentro sobre cultura corporativa · inglés",
         "Carta de agradecimiento de la editorial Nasledie Mira · inglés"
       ],
       "newsDeck": [
+        "Asistió el 13 de noviembre de 2026 y participó en la simulación práctica del sistema.",
         "Encuentro del 13 de noviembre de 2026.",
         "Diploma y carta de agradecimiento originales."
       ],
       "newsDate": [
+        "Encuentro: 13.11.2026 · Publicación: 27.11.2026",
         "Encuentro: 13.11.2026 · Comunicado: 14.11.2026",
         "Documentos: 07.10.2026 · Publicación: 13.11.2026"
       ],
@@ -173,14 +178,17 @@
       "company": "Edge Ecosystem 媒体资料 · 英文",
       "archiveNote": "本网站新闻稿由 Timothy Ivaikin 发布；外部报道保留各自的署名与归属。完整材料提供英文和俄文版本。",
       "news": [
+        "Roirate 反危机 2026 斯科尔科沃会议 · 英文",
         "参加莫斯科企业文化活动 · 英文",
         "Nasledie Mira 出版机构感谢信 · 英文"
       ],
       "newsDeck": [
+        "2026 年 11 月 13 日参加会议，并参与系统实践模拟。",
         "活动日期为 2026 年 11 月 13 日。",
         "证书及感谢信原件。"
       ],
       "newsDate": [
+        "活动：2026.11.13 · 发布：2026.11.27",
         "活动：2026.11.13 · 发布：2026.11.14",
         "文件：2026.10.07 · 发布：2026.11.13"
       ],
@@ -200,34 +208,91 @@
   ],
   "logo": null,
   "archiveURLs": [
+    "/press/roirate-antikrizis-2026-11-13/",
     "/press/corporate-culture-2026-11-13/",
     "/en/recognition/nasledie-mira-2026/"
   ],
   "archiveURLsRU": [
+    "/ru/press/roirate-antikrizis-2026-11-13/",
     "/ru/press/corporate-culture-2026-11-13/",
     "/ru/recognition/nasledie-mira-2026/"
   ],
   "downloadPrefix": "biography",
   "articles": {
-    "ru": [
-      "Тимофей Ивайкин принял участие в интенсиве «Корпоративная культура, или Искусство видеть людей»",
-      "В центре программы — управленческие решения, ответственность и поведение команды в период изменений.",
-      "Москва. 13 ноября предприниматель, основатель Edge Ecosystem и автор Тимофей Ивайкин принял участие в интенсиве «Корпоративная культура, или Искусство видеть людей». Организаторы представили его в составе спикеров панельной дискуссии. Программа включала обсуждение корпоративной культуры и игру-симуляцию «Совет директоров».",
-      "В подготовке к панели Ивайкин выделил два управленческих вопроса: как строить организацию, в которой новые лидеры способны брать ответственность за результат, и какие принципы помогают сохранять устойчивость при расширении команды и запуске проектов.",
-      "Учебные материалы интенсива предлагали рассматривать повторяющиеся сценарии поведения в конкретной управленческой ситуации: переходить от догадок к наблюдению, обсуждать действия без перехода на личности и замечать условия, при которых решения откладываются или исполняются поспешно.",
-      "Практическая ценность такого разбора — возможность проверить устройство работы до выводов о качествах человека. Понятен ли ожидаемый результат? Есть ли у исполнителя полномочия, данные и ресурсы? Как принимается решение при разногласиях? Ответы позволяют обсуждать ответственность предметно и сохранять уважение к участникам команды.",
-      "Ивайкин работает на пересечении предпринимательства, бизнес-моделей, процессов и реализации. В этой рамке корпоративная культура связана с повседневными решениями: как согласуется работа, передаются полномочия и проверяется результат. Цифровые продукты и автоматизация поддерживают эти договорённости, когда их содержание уже понятно.",
-      "Тимофей Ивайкин — предприниматель, основатель Edge Ecosystem и автор книг Good Results и Shattering Limits. Его работа объединяет исследование рынка и потребностей, бизнес-модели, процессы и организацию реализации. Для редакций и деловых контактов: https://ivaikin.com/ru/ · https://t.me/TIMOTHYIVAIKIN"
-    ],
-    "en": [
-      "Timothy Ivaikin attends the Corporate Culture intensive in Moscow",
-      "The programme explored management decisions, accountability and team behaviour during organisational change.",
-      "Moscow. Entrepreneur, Edge Ecosystem founder and author Timothy Ivaikin attended “Corporate Culture, or the Art of Seeing People” on 13 November 2026. The organisers introduced him as a panel speaker. The programme combined a discussion of corporate culture with a Board of Directors simulation.",
-      "During preparation, Ivaikin identified two management questions: how to build an organisation in which new leaders can take responsibility for outcomes, and which principles help a growing team remain effective as new projects begin.",
-      "The workshop materials examined recurring management behaviours and the conditions in which they arise. A useful practical distinction is between observing a person's actions and assuming their motives. Before drawing conclusions, a manager can check whether the expected outcome is clear and whether the person has the information, authority and resources needed to deliver it.",
-      "This connects corporate culture to everyday decisions: how work is agreed, authority is delegated and results are accepted. Technology and automation can support those arrangements when their substance is clear.",
-      "Timothy Ivaikin is an entrepreneur, founder of Edge Ecosystem and author of Good Results and Shattering Limits. His work spans market needs, business models, processes and implementation.",
-      "Media and business contact: https://ivaikin.com/ · https://t.me/TIMOTHYIVAIKIN"
-    ]
+    "corporate-culture-2026-11-13": {
+      "eventDate": "2026-11-13",
+      "publishedDate": "2026-11-14",
+      "eventLabel": {
+        "en": "Event date: 13 November 2026",
+        "ru": "Дата события: 13 ноября 2026"
+      },
+      "publishedLabel": {
+        "en": "Published 14 November 2026",
+        "ru": "Опубликовано 14 ноября 2026"
+      },
+      "ru": [
+        "Тимофей Ивайкин принял участие в интенсиве «Корпоративная культура, или Искусство видеть людей»",
+        "В центре программы — управленческие решения, ответственность и поведение команды в период изменений.",
+        "Москва. 13 ноября предприниматель, основатель Edge Ecosystem и автор Тимофей Ивайкин принял участие в интенсиве «Корпоративная культура, или Искусство видеть людей». Организаторы представили его в составе спикеров панельной дискуссии. Программа включала обсуждение корпоративной культуры и игру-симуляцию «Совет директоров».",
+        "В подготовке к панели Ивайкин выделил два управленческих вопроса: как строить организацию, в которой новые лидеры способны брать ответственность за результат, и какие принципы помогают сохранять устойчивость при расширении команды и запуске проектов.",
+        "Учебные материалы интенсива предлагали рассматривать повторяющиеся сценарии поведения в конкретной управленческой ситуации: переходить от догадок к наблюдению, обсуждать действия без перехода на личности и замечать условия, при которых решения откладываются или исполняются поспешно.",
+        "Практическая ценность такого разбора — возможность проверить устройство работы до выводов о качествах человека. Понятен ли ожидаемый результат? Есть ли у исполнителя полномочия, данные и ресурсы? Как принимается решение при разногласиях? Ответы позволяют обсуждать ответственность предметно и сохранять уважение к участникам команды.",
+        "Ивайкин работает на пересечении предпринимательства, бизнес-моделей, процессов и реализации. В этой рамке корпоративная культура связана с повседневными решениями: как согласуется работа, передаются полномочия и проверяется результат. Цифровые продукты и автоматизация поддерживают эти договорённости, когда их содержание уже понятно.",
+        "Тимофей Ивайкин — предприниматель, основатель Edge Ecosystem и автор книг Good Results и Shattering Limits. Его работа объединяет исследование рынка и потребностей, бизнес-модели, процессы и организацию реализации. Для редакций и деловых контактов: https://ivaikin.com/ru/ · https://t.me/TIMOTHYIVAIKIN"
+      ],
+      "en": [
+        "Timothy Ivaikin attends the Corporate Culture intensive in Moscow",
+        "The programme explored management decisions, accountability and team behaviour during organisational change.",
+        "Moscow. Entrepreneur, Edge Ecosystem founder and author Timothy Ivaikin attended “Corporate Culture, or the Art of Seeing People” on 13 November 2026. The organisers introduced him as a panel speaker. The programme combined a discussion of corporate culture with a Board of Directors simulation.",
+        "During preparation, Ivaikin identified two management questions: how to build an organisation in which new leaders can take responsibility for outcomes, and which principles help a growing team remain effective as new projects begin.",
+        "The workshop materials examined recurring management behaviours and the conditions in which they arise. A useful practical distinction is between observing a person's actions and assuming their motives. Before drawing conclusions, a manager can check whether the expected outcome is clear and whether the person has the information, authority and resources needed to deliver it.",
+        "This connects corporate culture to everyday decisions: how work is agreed, authority is delegated and results are accepted. Technology and automation can support those arrangements when their substance is clear.",
+        "Timothy Ivaikin is an entrepreneur, founder of Edge Ecosystem and author of Good Results and Shattering Limits. His work spans market needs, business models, processes and implementation.",
+        "Media and business contact: https://ivaikin.com/ · https://t.me/TIMOTHYIVAIKIN"
+      ]
+    },
+    "roirate-antikrizis-2026-11-13": {
+      "eventDate": "2026-11-13",
+      "publishedDate": "2026-11-27",
+      "eventLabel": {
+        "en": "Event date: 13 November 2026",
+        "ru": "Дата события: 13 ноября 2026"
+      },
+      "publishedLabel": {
+        "en": "Published 27 November 2026",
+        "ru": "Опубликовано 27 ноября 2026"
+      },
+      "image": {
+        "src": "/assets/press/roirate-antikrizis-2026-11-13-01.jpg",
+        "width": 1000,
+        "height": 1500,
+        "alt": {
+          "ru": "Тимофей Ивайкин на конференции «Антикризис 2026». Фото: Roirate",
+          "en": "Timothy Ivaikin at Anti-Crisis 2026. Photo: Roirate"
+        },
+        "caption": {
+          "ru": "Тимофей Ивайкин на конференции «Антикризис 2026». Фото: Roirate",
+          "en": "Timothy Ivaikin at Anti-Crisis 2026. Photo: Roirate"
+        }
+      },
+      "ru": [
+        "Тимофей Ивайкин принял участие в конференции Roirate «Антикризис 2026» в Сколково",
+        "Предприниматели и продуктовые команды обсуждали, как проверять спрос, распределять бюджет и принимать решения в условиях неопределенности.",
+        "Москва. 13 ноября 2026 года предприниматель, основатель Edge Ecosystem и автор Тимофей Ивайкин принял участие в конференции «Антикризис 2026. Как получить прибыль в период нестабильности». Конференцию провела компания ROIRATE в бизнес-центре «Стратос» в Сколково. Ивайкин также участвовал в практической части программы - симуляции работы системы.",
+        "По данным организатора, программа объединила шесть выступлений: о восприятии кризиса, медиа внутри компании, запуске продукта при ограниченных ресурсах, возможностях Кластера медиатехнологий, геймификации продукта и системном подходе к стратегии в связке «люди, системы и ИИ».",
+        "Для собственника бизнеса в период нестабильности главный вопрос - куда направить ограниченный бюджет. Ответ начинается с проверки: есть ли подтвержденный спрос, возвращаются ли клиенты, кто отвечает за результат и как его принимают. Ускорение отдельных операций, в том числе с помощью ИИ, полезно тогда, когда организация способна проверить дополнительный объем работы и довести его до результата для клиента.",
+        "Ивайкин работает на пересечении предпринимательства, бизнес-моделей, процессов и реализации. Edge Ecosystem создает CRM, внутренние порталы, интеграции и автоматизацию и занимается антикризисным управлением цифровыми проектами. В этой рамке системный подход означает, что ответственность, данные и правила проверки договорены до выбора инструмента.",
+        "Тимофей Ивайкин - предприниматель, основатель Edge Ecosystem (ООО «ЭДЖ ЭКОСИСТЕМА») и автор книг Good Results и Shattering Limits. Программа конференции: https://roirate.ru/product-ecology-workshop. Для редакций и деловых контактов: https://ivaikin.com/ru/ · https://t.me/TIMOTHYIVAIKIN"
+      ],
+      "en": [
+        "Timothy Ivaikin attends Roirate's Anti-Crisis 2026 conference in Skolkovo",
+        "Entrepreneurs and product teams discussed how to validate demand, allocate budgets and make decisions under uncertainty.",
+        "Moscow. On 13 November 2026, entrepreneur, Edge Ecosystem founder and author Timothy Ivaikin attended \"Anti-Crisis 2026: How to Stay Profitable in Unstable Times\", a conference hosted by ROIRATE at the Stratos business centre in Skolkovo. Ivaikin also took part in the programme's hands-on systems simulation.",
+        "According to the organiser, the programme included six sessions: how people perceive a crisis, in-house media, launching a product with limited resources, opportunities of the Media Technology Cluster, product gamification, and a systems approach to strategy that connects people, systems and AI.",
+        "In unstable markets, a business owner's first question is where to put a limited budget. The answer starts with evidence: confirmed demand, repeat customers, clear ownership of the outcome and an agreed way to accept it. Faster work, including work done with AI, pays off when the organisation can review the extra output and turn it into a result for the customer.",
+        "Ivaikin works at the intersection of entrepreneurship, business models, processes and delivery. Edge Ecosystem builds CRM, internal portals, integrations and automation and provides turnaround management for digital projects. In this frame, a systems approach means agreeing on responsibilities, data and verification rules before choosing a tool.",
+        "Timothy Ivaikin is an entrepreneur, founder of Edge Ecosystem and author of Good Results and Shattering Limits. Programme: https://roirate.ru/product-ecology-workshop. Media and business contact: https://ivaikin.com/ · https://t.me/TIMOTHYIVAIKIN"
+      ]
+    }
   }
 }
