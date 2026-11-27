@@ -123,6 +123,8 @@ const C = {
 // Indexing decision: the funnel pages stay noindex. Flip INDEXABLE to true (and add the 14 URLs to sitemap.xml) only
 // after the 7-day story A/B review; see docs/seo-funnel-v2.md.
 const INDEXABLE = false;
+// Approved 19.11.2026 (EF #30896): after the 7-day review only steps 1 and 4 are indexable; the rest stay noindex.
+const INDEX_STEPS = [1, 4];
 // CRO bundle A/B. '' = random 50/50 per browser. Set 'a' to roll every visitor back to the control.
 const AB_FORCE = '';
 const AB_KEY = 'iv_funnel_ab_cro_v1';
@@ -253,7 +255,7 @@ function render(lang, n) {
 <title>${esc(seoTitle)}</title>
 <meta name="description" content="${esc(seoDesc)}">
 <meta name="author" content="Timothy Ivaikin">
-<meta name="robots" content="${INDEXABLE ? 'index,follow' : 'noindex'}">
+<meta name="robots" content="${INDEXABLE || INDEX_STEPS.includes(n) ? 'index,follow' : 'noindex'}">
 <meta name="theme-color" content="#f5f7fa">
 <link rel="canonical" href="${url}">
 <link rel="alternate" hreflang="${other}" href="${ORIGIN + base(other, n)}">
@@ -318,3 +320,13 @@ for (const lang of ['en', 'ru']) {
   }
 }
 console.log('funnel pages written: 14');
+
+// Sitemap: only the indexable steps (INDEX_STEPS) are listed. Entries are rewritten on every build so repeated builds stay identical.
+{
+  const sitemapPath = resolve(root, 'sitemap.xml');
+  let sitemap = await readFile(sitemapPath, 'utf8');
+  sitemap = sitemap.replace(/[ \t]*<url><loc>https:\/\/ivaikin\.com(?:\/ru)?\/ladder\/\d\/<\/loc>[^\n]*<\/url>\r?\n?/g, '');
+  const listed = INDEXABLE ? [1, 2, 3, 4, 5, 6, 7] : INDEX_STEPS;
+  const entries = listed.flatMap(n => ['en', 'ru'].map(lang => '  <url><loc>' + ORIGIN + base(lang, n) + '</loc><lastmod>2026-11-26</lastmod></url>'));
+  await writeFile(sitemapPath, sitemap.replace('</urlset>', entries.join('\n') + '\n</urlset>'));
+}
